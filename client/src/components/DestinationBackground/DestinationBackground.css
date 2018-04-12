@@ -1,0 +1,30 @@
+#destination-background-zoom {
+  text-align: center;
+  background: url("../../images/destination_background.png") center fixed
+    no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  background-size: cover;
+  -webkit-animation: zoomin 3.5s 1;
+}
+@-webkit-keyframes zoomin {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.7);
+  }
+}
+
+#destination-background-static {
+  text-align: center;
+  background: url("../../images/destination_background.png") center fixed
+    no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  background-size: cover;
+}

@@ -1,6 +1,7 @@
-.background {
+#trip-name-background-zoom {
   text-align: center;
-  background: url("../../background2.png") center fixed no-repeat;
+  background: url("../../images/trip_name_background.png") center fixed
+    no-repeat;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -15,4 +16,15 @@
   100% {
     -webkit-transform: scale(1.7);
   }
+}
+
+#trip-name-background-static {
+  text-align: center;
+  background: url("../../images/trip_name_background.png") center fixed
+    no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  background-size: cover;
 }
