@@ -3,16 +3,27 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  projectName = (event) => {
+    event.preventDefault();
+    let projectInput = event.target[0].value;
+
+    console.log(projectInput);
+  }
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App container">
+
+        <form id="project-form" onSubmit={this.projectName}>
+          <p className="project-name-header">Give your trip a name...</p>
+          <input style={{ fontSize: "50px" }} id="project-name" type="text" required />
+        </form>
+
+
+
       </div>
     );
   }

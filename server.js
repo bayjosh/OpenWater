@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var path = require("path");
-var db = require("./models");
+// var db = require("./models");
 
 //Use morgan logger for logging requests
 var logger = require("morgan");
