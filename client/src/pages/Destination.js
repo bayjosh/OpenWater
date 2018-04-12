@@ -10,6 +10,8 @@ class Destination extends Component {
       "id",
       "destination-background-zoom"
     );
+
+    event.target.style.visibility = "hidden";
   };
 
   render() {

@@ -11,6 +11,8 @@ class Name extends Component {
       "trip-name-background-zoom"
     );
 
+    event.target.style.visibility = "hidden";
+
     console.log(tripName);
   };
 
