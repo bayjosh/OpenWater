@@ -5,9 +5,6 @@ Home Page Design
 
 ////////////////////////////////////////////////*/
 body {
-    background: url("./background.png");
-    background-size: cover;
-    height: 100%;
     
 }
 
@@ -23,27 +20,23 @@ body {
 }
 
 #project-form {
-    padding-top: 165px;
+    padding-top: 115px;
     text-align: center; 
 } 
 
 #project-name {
    width: 50%;
-   -webkit-appearance: none;
    color: white;
    size: 50px;
    border-bottom: 3px solid white;
-   text-shadow: 2px 2px 2px black;
-   box-shadow: 0 4px 2px -2px black;
    font-family: 'Slabo 27px', serif;
    text-align: center;
 }
 
-.project-name-header {
+#project-name-header {
     color: white;
     font-size: 80px;
     font-family: 'Amatic SC', cursive;
-    text-shadow: 2px 2px 2px black;
     font-weight: bold;
     margin-bottom: 0;
 }
@@ -55,6 +48,13 @@ body {
     filter: invert(100%);
     
     
+}
+
+#logo2 {
+    width: 400px;
+    height: 200px;
+    float: left;
+    margin-top: 90px;
 }
 
 /*////////////////////////////////////////////////// 
