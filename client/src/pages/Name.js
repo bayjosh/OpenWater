@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import NameBackground from "../components/NameBackground";
+import { Redirect } from "react-router-dom";
 
 class Name extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      fireRedirect: false
+    };
+  }
+
   tripNameSubmit = event => {
     event.preventDefault();
     let tripName = event.target[0].value;
@@ -12,6 +21,10 @@ class Name extends Component {
     );
 
     event.target.style.visibility = "hidden";
+
+    setTimeout(() => {
+      this.setState({ fireRedirect: true });
+    }, 1000);
 
     console.log(tripName);
   };
@@ -35,6 +48,8 @@ class Name extends Component {
                 required
               />
             </form>
+
+            {this.state.fireRedirect && <Redirect to="/destination" />}
 
             <img
               id="logo"

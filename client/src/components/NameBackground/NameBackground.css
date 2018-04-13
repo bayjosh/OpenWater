@@ -7,18 +7,26 @@
   width: 100%;
   z-index: -2;
   background-size: cover;
-  -webkit-animation: zoomin 3.5s 1;
+  -webkit-animation: zoomin2 1.5s;
 }
 @-webkit-keyframes zoomin {
   0% {
     -webkit-transform: scale(1);
   }
   100% {
-    -webkit-transform: scale(1.7);
+    -webkit-transform: scale(1.5);
+  }
+}
+@-webkit-keyframes zoomin2 {
+  0% {
+    -webkit-transform: scale(1.4);
+  }
+  100% {
+    -webkit-transform: scale(2);
   }
 }
 
-#trip-name-background-static {
+#trip-name-background-initZoom {
   text-align: center;
   background: url("../../images/trip_name_background.png") center fixed
     no-repeat;
@@ -27,4 +35,5 @@
   width: 100%;
   z-index: -2;
   background-size: cover;
+  -webkit-animation: zoomin 15s linear;
 }
