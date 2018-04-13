@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import DestinationBackground from "../components/DestinationBackground";
+import { Redirect } from "react-router-dom";
 class Destination extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      fireRedirect: false
+    };
+  }
   destinationSubmit = event => {
     event.preventDefault();
     let originInput = event.target[0].value;
@@ -12,6 +20,10 @@ class Destination extends Component {
     );
 
     event.target.style.visibility = "hidden";
+
+    setTimeout(() => {
+      this.setState({ fireRedirect: true });
+    }, 1000);
   };
 
   render() {
@@ -47,7 +59,7 @@ class Destination extends Component {
               <input type="submit" value="GO" />
               </span>
             </form>
-
+            {this.state.fireRedirect && <Redirect to="/dashboard" />}
             {/* <img
               id="logo"
               src="https://www.shareicon.net/download/2015/09/13/100454_map_512x512.png"

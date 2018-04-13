@@ -1,6 +1,6 @@
 #destination-background-zoom {
   text-align: center;
-  background: url("../../images/destination_background.png") center fixed
+  background: url("../../images/destination_background_unfilt.png") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
@@ -21,7 +21,7 @@
 
 #destination-background-initZoom {
   text-align: center;
-  background: url("../../images/destination_background.png") center fixed
+  background: url("../../images/destination_background_unfilt.png") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
