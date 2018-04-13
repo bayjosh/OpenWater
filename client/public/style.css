@@ -56,6 +56,27 @@ Home Page Design
 Destination Page Design
 
 //////////////////////////////////////////////////*/
+.destination{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center
+}
+.destination-container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+#destination-form{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+  
 
 #saved-trips {
   float: left;
@@ -65,15 +86,17 @@ Destination Page Design
   font-family: "Nanum Myeongjo", serif;
   margin: 20px 0 0 20px;
   font-weight: bold;
+  z-index: 3
 }
 
 #destination-form {
   padding-top: 115px;
   text-align: center;
+  margin-right: 0;
 }
 
 #origin-input {
-  width: 50%;
+  width: 90%;
   color: white;
   size: 50px;
   border-bottom: 3px solid white;
@@ -90,7 +113,7 @@ Destination Page Design
 }
 
 #destination-input {
-  width: 50%;
+  width: 90%;
   color: white;
   size: 50px;
   border-bottom: 3px solid white;

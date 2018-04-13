@@ -16,8 +16,7 @@ class Destination extends Component {
 
   render() {
     return (
-      <div>
-        <DestinationBackground />
+        <DestinationBackground>
         <div className="destination">
           <a id="saved-trips" href="#">
             Saved Trips
@@ -26,9 +25,9 @@ class Destination extends Component {
           <div className="destination-container">
             <form id="destination-form" onSubmit={this.destinationSubmit}>
               <span>
-                <p id="origin-header">Origin:</p>
+                <p id="origin-header">From:</p>
                 <input
-                  autofocus="autofocus"
+                  autoFocus="autofocus"
                   style={{ fontSize: "50px" }}
                   id="origin-input"
                   type="text"
@@ -36,7 +35,7 @@ class Destination extends Component {
                 />
               </span>
               <span>
-                <p id="destination-header">Destination:</p>
+                <p id="destination-header">To:</p>
                 <input
                   style={{ fontSize: "50px" }}
                   id="destination-input"
@@ -44,16 +43,18 @@ class Destination extends Component {
                   required
                 />
               </span>
+              <span>
               <input type="submit" value="GO" />
+              </span>
             </form>
 
-            <img
+            {/* <img
               id="logo"
               src="https://www.shareicon.net/download/2015/09/13/100454_map_512x512.png"
-            />
+            /> */}
           </div>
         </div>
-      </div>
+          </DestinationBackground>
     );
   }
 }
