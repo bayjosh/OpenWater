@@ -40,16 +40,10 @@ mongoose.connect(MONGODB_URI);
 
     // var results = [];
 
-const selector = "#detailed-forecast-body > div:nth-child(3) > div.col-sm-9.col-lg-10.forecast-text"
+const selector = $('[name=latlon]')
+console.log(selector)
 const Nightmare = require('nightmare')
-const nightmare = Nightmare(
-    { 
-    show: true 
-    },
-    {
-    waitTimeout: 1000 // in ms
-    }
-);
+const nightmare = Nightmare({show: true});
 
 var lat = "42.0726384"
 var lon = "-87.602569"
@@ -57,19 +51,18 @@ var lon = "-87.602569"
 // var selector = '#global_localnews_title'
 
 nightmare
-    .goto(`http://marine.weather.gov/MapClick.php?lat=${lat}&lon=${lon}&Submit=Submit`)
-    .wait('div.text-center a')
-    .click('div.text-center a')
-    .wait(3000)
+    .goto('http://www.nws.noaa.gov/om/marine/point.htm')
+    .type()
+    .wait('div.row-forecast')
     .evaluate((selector, done) => {
     // now we're executing inside the browser scope.
     setTimeout(
-      () => done(null, document.querySelector(selector).innerText),
+      () => done(null, $((selector)).text()),
       200
     )
   }, selector)
     .end()
-    .then(text => {console.log(text)})
+    .then(result => {console.log(result)})
     .catch(error => {
         console.error('Search failed:', error)
     })
