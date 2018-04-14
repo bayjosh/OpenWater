@@ -31,7 +31,8 @@ class Name extends Component {
 
   render() {
     return (
-      <NameBackground>
+      <div>
+      <NameBackground />
         <div className="tripName">
           <a id="saved-trips" href="#">
             Saved Trips
@@ -39,7 +40,7 @@ class Name extends Component {
 
           <div className="container">
             <form id="trip-name-form" onSubmit={this.tripNameSubmit}>
-              <p id="trip-name-header">Name your trip</p>
+              <p id="trip-name-header">Name your voyage</p>
               <input
                 autofocus="autofocus"
                 style={{ fontSize: "50px" }}
@@ -57,7 +58,7 @@ class Name extends Component {
             />
           </div>
         </div>
-      </NameBackground>
+        </div>
     );
   }
 }

@@ -1,34 +1,57 @@
+@-webkit-keyframes zoomin2 {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.5);
+  }
+}
+
 #destination-background-zoom {
   text-align: center;
-  background: url("../../images/destination_background_unfilt.png") center fixed
+  background: url("../../images/dock.png") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: -2;
-  -webkit-animation: zoomin2 1.5s;
+  -webkit-animation: zoomin2 2.5s ease-in, blurOut 2.5s ease-in;
+  animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes zoomin2 {
+
+@-webkit-keyframes blurIn {
   0% {
-    -webkit-transform: scale(1.4);
+    -webkit-filter: blur(20px)
+    
   }
   100% {
-    -webkit-transform: scale(2);
+    -webkit-filter: blur(0px)
+  }
+}
+
+@-webkit-keyframes blurOut {
+  0% {
+    -webkit-filter: blur(0px)
+    
+  }
+  100% {
+    -webkit-filter: blur(20px)
   }
 }
 
 #destination-background-initZoom {
   text-align: center;
-  background: url("../../images/destination_background_unfilt.png") center fixed
+  background: url("../../images/dock.png") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: -2;
-  -webkit-animation: zoomin 15s linear;
+ -webkit-animation: zoomin 12s ease-out, blurIn 3.5s;
+ animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes zoomin {
@@ -36,6 +59,6 @@
     -webkit-transform: scale(1);
   }
   100% {
-    -webkit-transform: scale(1.5);
+    -webkit-transform: scale(1.3);
   }
 }

@@ -1,34 +1,46 @@
 #trip-name-background-zoom {
   text-align: center;
-  background: url("../../images/trip_name_background.png") center fixed
+  background: url("../../images/river1.jpg") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: -2;
-  -webkit-animation: zoomin2 1.5s;
+  -webkit-animation: zoomin2 2.5s ease-in, blurOut 2.5s ease-in;
+  animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes zoomin2 {
   0% {
-    -webkit-transform: scale(1.4);
+    -webkit-transform: scale(1);
   }
   100% {
-    -webkit-transform: scale(2);
+    -webkit-transform: scale(1.5);
+  }
+}
+
+@-webkit-keyframes blurOut {
+  0% {
+    -webkit-filter: blur(0px)
+    
+  }
+  100% {
+    -webkit-filter: blur(20px)
   }
 }
 
 #trip-name-background-initZoom {
   text-align: center;
-  background: url("../../images/trip_name_background.png") center fixed
+  background: url("../../images/river1.jpg") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: -2;
-  -webkit-animation: zoomin 15s linear;
+  -webkit-animation: zoomin 12s ease-out;
+   animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes zoomin {
@@ -36,6 +48,6 @@
     -webkit-transform: scale(1);
   }
   100% {
-    -webkit-transform: scale(1.5);
+    -webkit-transform: scale(1.3);
   }
 }

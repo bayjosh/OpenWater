@@ -23,12 +23,13 @@ class Destination extends Component {
 
     setTimeout(() => {
       this.setState({ fireRedirect: true });
-    }, 1000);
+    }, 2150);
   };
 
   render() {
     return (
-        <DestinationBackground>
+      <div>
+        <DestinationBackground />
         <div className="destination">
           <a id="saved-trips" href="#">
             Saved Trips
@@ -66,7 +67,7 @@ class Destination extends Component {
             /> */}
           </div>
         </div>
-          </DestinationBackground>
+      </div>
     );
   }
 }
