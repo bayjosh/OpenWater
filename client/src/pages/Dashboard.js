@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 // import MyMapComponent from "../components/Map";
 // import MyFancyMapComponent from "../components/Map";
 import Map from "../components/Map";
+import NOAAWeather from "../components/NOAAWeather"
 
 class Dashboard extends Component {
   constructor() {
@@ -20,6 +21,7 @@ class Dashboard extends Component {
           <a id="saved-trips" href="#">
             Saved Trips
           </a>
+          <NOAAWeather />
           <Map />
         </div>
       </DashboardBackground>

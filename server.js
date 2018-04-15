@@ -3,6 +3,11 @@ var app = express();
 var path = require("path");
 var request = require("request")
 var cheerio = require('cheerio');
+const selector = 'div.row-forecast'
+const Nightmare = require('nightmare')
+const nightmare = Nightmare({
+    typeInterval: 10
+});
 // var nightmare = require('nightmare');
 // var db = require("./models");
 
@@ -33,6 +38,13 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:/openRoad_db";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+    next();
+});
+
 
 
 // app.get('/NOAAscrape', function (req, res) {
@@ -40,32 +52,33 @@ mongoose.connect(MONGODB_URI);
 
     // var results = [];
 
-const selector = $('[name=latlon]')
-console.log(selector)
-const Nightmare = require('nightmare')
-const nightmare = Nightmare({show: true});
-
-var lat = "42.0726384"
-var lon = "-87.602569"
-
-// var selector = '#global_localnews_title'
-
-nightmare
-    .goto('http://www.nws.noaa.gov/om/marine/point.htm')
-    .type()
-    .wait('div.row-forecast')
-    .evaluate((selector, done) => {
-    // now we're executing inside the browser scope.
-    setTimeout(
-      () => done(null, $((selector)).text()),
-      200
-    )
-  }, selector)
-    .end()
-    .then(result => {console.log(result)})
-    .catch(error => {
-        console.error('Search failed:', error)
-    })
+app.post('/weatherScrape', function(req, res){
+   
+    let lat = req.body.lat
+    let lon = req.body.lon;
+    console.log(lat, lon)
+    nightmare
+        .goto('http://www.nws.noaa.gov/om/marine/point.htm')
+        .type('[name=lat]', lat)
+        .type('[name=lon]', lon)
+        .click('[name=Submit]')
+        .wait('#detailed-forecast-body')
+        .evaluate(() => {
+            var forecasts = [];
+            for (var i = 1; i < document.querySelector('#detailed-forecast-body').childElementCount - 2; i++) {
+                let forecast = {}
+                forecast.header = document.querySelector('#detailed-forecast-body').children[i - 1].children[0].textContent;
+                forecast.text = document.querySelector('#detailed-forecast-body').children[i - 1].children[1].textContent;
+                forecasts.push(forecast)
+            }
+            return forecasts
+        })
+        .end()
+        .then(result => res.json(result))
+        .catch(error => {
+            console.error('Search failed:', error)
+        })
+})
 
     
 
