@@ -2,7 +2,8 @@
     background: url("../../images/dock2.jpg") fixed center no-repeat;
     background-size: cover;
     position: absolute;
-  height: 140%;
+  height: 1000%;
+  overflow: auto;
   width: 100%;
   z-index: -2;
   background-color: rgba(255, 255, 255, 0.753);

@@ -4,7 +4,8 @@ import { Redirect } from "react-router-dom";
 // import MyMapComponent from "../components/Map";
 // import MyFancyMapComponent from "../components/Map";
 import Map from "../components/Map";
-import NOAAWeather from "../components/NOAAWeather"
+import NOAAWeather from "../components/NOAAWeather";
+import Dockwa from "../components/Dockwa";
 
 class Dashboard extends Component {
   constructor() {
@@ -37,14 +38,27 @@ class Dashboard extends Component {
             <div id="weather" style={{ width: `45vw`, alignSelf: `flex-start`, margin: `0`, borderRadius: `25px` }} class="card blue-grey darken-1" >
               <div class="card-content white-text">
                 <span class="card-title" style={{ textAlign: `center`, color: `white` }}>Weather Forecast</span> <hr />
-                <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
                 <NOAAWeather />
               </div>
               <div class="card-action" style={{
                 borderRadius: `25px`, textAlign: `center`
               }}>
                 <a href="#">Captain's Log</a>
+              </div>
+            </div>
+
+
+
+
+
+            <div id="Dockwa" style={{ width: `45vw`, alignSelf: `flex-start`, margin: `0`, borderRadius: `25px` }} class="card blue-grey darken-1" >
+              <div class="card-content white-text">
+                <span class="card-title" style={{ textAlign: `center`, color: `white` }}>Docks in Your Area</span> <hr />
+                <Dockwa />
+              </div>
+              <div class="card-action" style={{
+                borderRadius: `25px`, textAlign: `center`
+              }}>
               </div>
             </div>
           </div>
