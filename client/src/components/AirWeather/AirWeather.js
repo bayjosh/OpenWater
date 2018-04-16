@@ -10,41 +10,28 @@ class AirWeather extends Component {
     };
   }
 
-  submitWeather = event => {
-    event.preventDefault();
-    API.getWeather().then(res => {
-      console.log(res.data.DailyForecasts);
-      this.setState({ AirWeather: res.data.DailyForecasts });
-    });
-  };
+  getWeather = () => {
+    let zip = "20850"
+    API.getLocation(zip).then(res => {
+      return res.data[0].ParentCity.Key
+    })
+      .then(result => {
+        API.getWeather(result).then(res => {
+          this.setState({ AirWeather: res.data.DailyForecasts });
+        });
+      }
+      )
+  }
 
-  //   loadDockwa = event => {
-  //     event.preventDefault();
-  //     let lat = 41.8781136;
-  //     let lon = -87.6297982;
-  //     return fetch("http://localhost:5000/dockwaScrape", {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({ lat, lon })
-  //     })
-  //       .then(res => res.json())
-  //       .then(res => {
-  //         // console.log('line 26 '+res)
-  //         this.setState({
-  //           DockwaInfo: res
-  //         });
-  //       });
-  //   };
+
+
 
   render() {
     return (
       <div className="airWeather" style={{ width: `100%`, display: `flex`, flexWrap: `wrap`, flexDirection: `row`, justifyContent: `center` }}>
         <button
           className="waves-effect waves-light btn"
-          onClick={this.submitWeather}
+          onClick={this.getWeather}
           style={{
             textAlign: `center`,
             backgroundColor: `white`,
