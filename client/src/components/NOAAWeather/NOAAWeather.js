@@ -5,41 +5,59 @@ class NOAAWeather extends Component {
     constructor() {
         super();
         this.state = {
-            forecasts: [{ header: "hello", text: 'hi' }, { header: "byebye", text: 'bye' }]
+            forecastTime: "forcastTime",
+            zoneNames: ["zoneNames"],
+            headers: ["headers"],
+            texts: ["texts"],
+            warnings: ["warnings"]
         };
     }
 
-    componentDidMount() {
-
-    }
     loadWeather = event => {
         event.preventDefault();
-        let lat = 42
-        let lon = -87
-        fetch('http://localhost:5000/weatherScrape', {
+        let zip = '60611'
+       return fetch('http://localhost:5000/weatherScrape', {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ lat, lon }),
+            body: JSON.stringify({ zip }),
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res)
-                this.setState({ forecasts: res })
+                // console.log(res)
+                this.setState({
+                    forecastTime: res.forecastTime,
+                    zoneNames: res.zoneNames,
+                    headers: res.headers,
+                    texts: res.texts,
+                    warnings: res.warnings })
             })
     }
 
     render() {
         return (
             <div className="NOAAWeather">
+                <h4 style={{ textAlign: `center` }}>Marine Zones: </h4>{this.state.zoneNames.map((el, i) => (
+                    <h4 key={i}>
+                    {el}
+                    </h4>    
+                ))}
+                {this.state.forecastTime}
                 <button onClick={this.loadWeather}>SCRAPE</button>
                 <div>
 
-                    {this.state.forecasts.map((el, i) => (<p key={i}>
-                        {el.header}: {el.text}
-                    </p>))}
+                    {this.state.headers.map((el, i) => (
+                    <div>
+                        <h5 key={i}>
+                            {el}
+                        </h5>
+                        <p>
+                            {this.state.texts[i]}
+                        </p>
+                    </div>
+                    ))}
                 </div>
             </div>
         );

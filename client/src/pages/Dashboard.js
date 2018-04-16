@@ -4,7 +4,8 @@ import { Redirect } from "react-router-dom";
 // import MyMapComponent from "../components/Map";
 // import MyFancyMapComponent from "../components/Map";
 import Map from "../components/Map";
-import NOAAWeather from "../components/NOAAWeather"
+import NOAAWeather from "../components/NOAAWeather";
+import Dockwa from "../components/Dockwa";
 
 class Dashboard extends Component {
   constructor() {
@@ -56,15 +57,43 @@ class Dashboard extends Component {
               </div>
             </div>
 
+            <div id="docking-area">
+              <h3 style={{ color: `white`, padding: `35px 0 20px 0` }}>DOCKING AREA</h3>
+              <button class="waves-effect waves-light btn" style={{ textAlign: `center`, backgroundColor: `white`, color: `black` }}>Find Docking</button>
+            </div>
+
+            <div
+              id="Dockwa"
+              style={{
+                width: `45vw`,
+                alignSelf: `flex-start`,
+                margin: `0`,
+                borderRadius: `25px`
+              }}
+              className="card blue-grey darken-1"
+            >
+              <div className="card-content white-text">
+                <span
+                  className="card-title"
+                  style={{ textAlign: `center`, color: `white` }}
+                >
+                  Docks in Your Area
+                </span>{" "}
+                <hr />
+                <Dockwa />
+              </div>
+              <div
+                className="card-action"
+                style={{
+                  borderRadius: `25px`,
+                  textAlign: `center`
+                }}
+              />
+            </div>
           </div>
         </div>
-        <div id="docking-area">
-          <h3 style={{ color: `white`, padding: `35px 0 20px 0` }}>DOCKING AREA</h3>
-          <button class="waves-effect waves-light btn" style={{ textAlign: `center`, backgroundColor: `white`, color: `black` }}>Find Docking</button>
-        </div>
+
       </div>
-
-
     );
   }
 }

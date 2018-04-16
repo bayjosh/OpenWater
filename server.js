@@ -6,7 +6,7 @@ var cheerio = require('cheerio');
 const selector = 'div.row-forecast'
 const Nightmare = require('nightmare')
 const nightmare = Nightmare({
-    typeInterval: 10
+   show: true// typeInterval: 10
 });
 // var nightmare = require('nightmare');
 // var db = require("./models");
@@ -46,63 +46,105 @@ app.use(function (req, res, next) {
 });
 
 
-
-// app.get('/NOAAscrape', function (req, res) {
-//     //scrape request
-
-    // var results = [];
-
-app.post('/weatherScrape', function(req, res){
-   
-    let lat = req.body.lat
-    let lon = req.body.lon;
-    console.log(lat, lon)
+app.post('/weatherScrape', function (req, res) {
+    let zip = req.body.zip
     nightmare
-        .goto('http://www.nws.noaa.gov/om/marine/point.htm')
-        .type('[name=lat]', lat)
-        .type('[name=lon]', lon)
-        .click('[name=Submit]')
-        .wait('#detailed-forecast-body')
+        .goto('https://www.wunderground.com/MAR/')
+        .type('#marineSearch', zip)
+        .click('[value=Go]')
+        .wait(('div.content')[1])
         .evaluate(() => {
-            var forecasts = [];
-            for (var i = 1; i < document.querySelector('#detailed-forecast-body').childElementCount - 2; i++) {
-                let forecast = {}
-                forecast.header = document.querySelector('#detailed-forecast-body').children[i - 1].children[0].textContent;
-                forecast.text = document.querySelector('#detailed-forecast-body').children[i - 1].children[1].textContent;
-                forecasts.push(forecast)
+            var selector = document.querySelectorAll('div.content')[1]
+            var forecastTime = document.querySelector('[class=title]').textContent
+            var headers = [];
+            var warnings = [];
+            var zoneNames = [];
+            var texts = [];
+            for (var i = 0; i < selector.childElementCount; i++) {
+                if (selector.children[i].tagName == 'H5') {
+                    headers.push(selector.children[i].textContent);
+                } else if (selector.children[i].className === "marine-warning") {
+                    for (var j = 0; j < selector.children[i].childElementCount; j++) {
+                        warnings.push(selector.children[i].children[j].textContent);
+                    }
+                } else if (selector.children[i].className === 'marine-warning-location') {
+                    zoneNames.push(selector.children[i].textContent);
+                } else if (selector.children[i].className == "") {
+                    texts.push(selector.children[i].textContent)
+                }
+
             }
-            return forecasts
+            return { headers, warnings, zoneNames, texts, forecastTime }
         })
         .end()
-        .then(result => res.json(result))
+        .then(result => { res.json(result) })
         .catch(error => {
             console.error('Search failed:', error)
         })
+
 })
 
-    
+app.post('/dockwaScrape', function (req, res) {
+    nightmare
+        .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=9`)
+        .wait('div.marina-card')
+        .evaluate(() => {
+            var marinaCards = []
+
+            for (var i = 0; i < document.querySelector("div.map-marina-list").children[1].childElementCount; i++) {
+                var marinaCard = {}
+                var marinaSelector = document.querySelectorAll('div.marina-card')[i].children[0]
+                var URL = marinaSelector.getAttribute('href')
+                var name = marinaSelector.children[0].children[0].children[0].textContent
+                var pictureStyle = marinaSelector.getAttribute('style').substring(marinaSelector.getAttribute('style').indexOf('(') + 1, marinaSelector.getAttribute('style').indexOf(')'))
+                var price = marinaSelector.children[1].children[0].textContent
+
+                marinaCard.URL = URL
+                marinaCard.name = name
+                marinaCard.pictureStyle = pictureStyle
+                marinaCard.price = price
+
+                marinaCards.push(marinaCard)
+
+            }
+            return marinaCards
+        })
+        .end()
+        .then(result => { res.json(result) })
+        .catch(error => {
+            console.error('Search failed:', error)
+        })
+
+})
+
+//     //////////////////////////////////////FIRST DRAFT/////////////////////
+//     // let lat = req.body.lat
+//     // let lon = req.body.lon;
+//     // console.log(lat, lon)
+//     // nightmare
+//     //     .goto('http://www.nws.noaa.gov/om/marine/point.htm')
+//     //     .type('[name=lat]', lat)
+//     //     .type('[name=lon]', lon)
+//     //     .click('[name=Submit]')
+//     //     .wait('#detailed-forecast-body')
+//     //     .evaluate(() => {
+//     //         var forecasts = [];
+//     //         for (var i = 1; i < document.querySelector('#detailed-forecast-body').childElementCount - 2; i++) {
+//     //             let forecast = {}
+//     //             forecast.header = document.querySelector('#detailed-forecast-body').children[i - 1].children[0].textContent;
+//     //             forecast.text = document.querySelector('#detailed-forecast-body').children[i - 1].children[1].textContent;
+//     //             forecasts.push(forecast)
+//     //         }
+//     //         return forecasts
+//     //     })
+//     //     .end()
+//     //     .then(result => res.json(result))
+//     //     .catch(error => {
+//     //         console.error('Search failed:', error)
+//     //     })
+//     ////////////////////////////////////////////////////////////////////
+//
 
 
-//     request('http://marine.weather.gov/MapClick.php?lat=' + lat + '&lon=' + lon, function (error, response, html) { 
-//         console.log(html)
 
-//             if (error) throw error
-//             var $ = cheerio.load(html);
-            
-//             $('ul#seven-day-forecast-list').each(function (i, element) {
-//                 var result = {};
-//                 var URL = $(element).find($('a')).attr('href');
-//                 console.log(URL)
-                
-                
-//                 result.header = header;
-//                 result.text = text;
-        
-//                 results.push(result) 
-//                 console.log(results)
-//                 res.send('did it work???');
-//             })
-           
-//         })
-    
-// })
+
