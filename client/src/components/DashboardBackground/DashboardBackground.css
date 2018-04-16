@@ -28,12 +28,21 @@ box-shadow: 2px 10px 5px -6px rgba(0,0,0,0.75);
 margin-bottom: 25px;
 }
 
+.card {
+  -webkit-box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
+box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
+}
+
 #docking-area {
-  background-color: rgba(6, 0, 85, 0.562);
-  height: 800px;
+  background-color: rgba(145, 174, 194, 0.952);
+  height: 100%;
   text-align: center;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-radius: 25px;
+  padding-bottom: 40px;
+  -webkit-box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
+box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
   
 }
 
@@ -51,6 +60,13 @@ h1 {
 h3 {
   font-family: 'Abel', sans-serif;
   text-shadow:0px 3px 2px #050504;
+}
+
+#dashboard-footer {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  opacity: 0.8;
+  
 }
 
 

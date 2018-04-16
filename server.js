@@ -4,10 +4,7 @@ var path = require("path");
 var request = require("request")
 var cheerio = require('cheerio');
 const selector = 'div.row-forecast'
-const Nightmare = require('nightmare')
-const nightmare = Nightmare({
-   show: true// typeInterval: 10
-});
+
 // var nightmare = require('nightmare');
 // var db = require("./models");
 
@@ -47,6 +44,10 @@ app.use(function (req, res, next) {
 
 
 app.post('/weatherScrape', function (req, res) {
+    const Nightmare = require('nightmare')
+    const nightmare = Nightmare({
+        typeInterval: 10
+    });
     let zip = req.body.zip
     nightmare
         .goto('https://www.wunderground.com/MAR/')
@@ -85,6 +86,10 @@ app.post('/weatherScrape', function (req, res) {
 })
 
 app.post('/dockwaScrape', function (req, res) {
+    const Nightmare = require('nightmare')
+    const nightmare = Nightmare({
+        typeInterval: 10
+    })
     nightmare
         .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=9`)
         .wait('div.marina-card')

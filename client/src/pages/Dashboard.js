@@ -27,9 +27,9 @@ class Dashboard extends Component {
           <div className="dashboard">
 
 
-            <div id="weather-map" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-around`, marginBottom: `45px` }}>
+            <div id="weather-map" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-evenly`, marginBottom: `45px` }}>
               <div id="map-card" style={{ width: `45vw`, alignSelf: `flex-start`, height: `66vh`, margin: `0`, borderRadius: `25px`, backgroundColor: `rgba(145, 174, 194, 0.952)` }} class="card darken-1" >
-                <div class="card-content white-text">
+                <div class="card-content white-text" style={{ height: `100%` }} >
                   <span class="card-title" style={{ textAlign: `center` }}>Map</span>
                   <div id="map-card-content" style={{ display: `flex`, justifyContent: `center`, alignItems: `center`, marginTop: `20px` }}>
                     <Map /></div>
@@ -59,27 +59,16 @@ class Dashboard extends Component {
 
             <div id="docking-area">
               <h3 style={{ color: `white`, padding: `35px 0 20px 0` }}>DOCKING AREA</h3>
-              <button class="waves-effect waves-light btn" style={{ textAlign: `center`, backgroundColor: `white`, color: `black` }}>Find Docking</button>
-            </div>
-
-            <div
-              id="Dockwa"
-              style={{
-                width: `45vw`,
-                alignSelf: `flex-start`,
-                margin: `0`,
-                borderRadius: `25px`
-              }}
-              className="card blue-grey darken-1"
-            >
-              <div className="card-content white-text">
-                <span
-                  className="card-title"
-                  style={{ textAlign: `center`, color: `white` }}
-                >
-                  Docks in Your Area
-                </span>{" "}
-                <hr />
+              <div
+                id="Dockwa"
+                style={{
+                  width: `100%`,
+                  alignSelf: `flex-start`,
+                  margin: `0`,
+                  borderRadius: `25px`,
+                  justifyContent: `center`
+                }}
+              >
                 <Dockwa />
               </div>
               <div
@@ -91,9 +80,11 @@ class Dashboard extends Component {
               />
             </div>
           </div>
+          <footer id="dashboard-footer" style={{ textAlign: `center`, color: `black`, height: `125px`, paddingTop: `55px` }}>Open Water</footer>
         </div>
-
       </div>
+
+
     );
   }
 }
