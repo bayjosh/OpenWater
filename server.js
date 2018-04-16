@@ -93,10 +93,11 @@ app.post('/dockwaScrape', function (req, res) {
 
             for (var i = 0; i < document.querySelector("div.map-marina-list").children[1].childElementCount; i++) {
                 var marinaCard = {}
-                var URL = document.querySelectorAll('div.marina-card')[i].children[0].getAttribute('href')
-                var name = document.querySelectorAll('div.marina-card')[i].children[0].children[0].children[0].children[0].textContent
-                var pictureStyle = document.querySelectorAll('div.marina-card')[0].children[0].getAttribute('style')
-                var price = document.querySelectorAll('div.marina-card')[i].children[0].children[1].children[0].textContent
+                var marinaSelector = document.querySelectorAll('div.marina-card')[i].children[0]
+                var URL = marinaSelector.getAttribute('href')
+                var name = marinaSelector.children[0].children[0].children[0].textContent
+                var pictureStyle = marinaSelector.getAttribute('style').substring(marinaSelector.getAttribute('style').indexOf('(') + 1, marinaSelector.getAttribute('style').indexOf(')'))
+                var price = marinaSelector.children[1].children[0].textContent
 
                 marinaCard.URL = URL
                 marinaCard.name = name

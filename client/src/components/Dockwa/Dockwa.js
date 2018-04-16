@@ -13,7 +13,7 @@ class Dockwa extends Component {
         event.preventDefault();
         let lat = 41.87811360
         let lon = -87.6297982
-        fetch('http://localhost:5000/dockwaScrape', {
+       return fetch('http://localhost:5000/dockwaScrape', {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -28,16 +28,18 @@ class Dockwa extends Component {
                     DockwaInfo: res,
                 })
             })
+    
     }
-
+    
     render() {
         return (
             <div className="Dockwa">
                 <button onClick={this.loadDockwa}>SCRAPE</button>
                 {this.state.DockwaInfo.map((el, i) => (
-                    <a key = {i} target="_blank" href={el.URL}>
+                    <a key={i} style={{color: `white`}}target="_blank" href={el.URL}>
                         <h5>{el.name}</h5>
                         <h6>{el.price}</h6>
+                        <img className="responsive-img" src={el.pictureStyle} />
                     </a>
                 ))} 
             </div>

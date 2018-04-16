@@ -16,7 +16,7 @@ class NOAAWeather extends Component {
     loadWeather = event => {
         event.preventDefault();
         let zip = '60611'
-        fetch('http://localhost:5000/weatherScrape', {
+       return fetch('http://localhost:5000/weatherScrape', {
             method: "POST",
             headers: {
                 Accept: "application/json",
