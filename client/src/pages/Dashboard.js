@@ -16,15 +16,42 @@ class Dashboard extends Component {
   }
   render() {
     return (
-      <DashboardBackground>
+      <div>
+        <DashboardBackground />
+        <h1 style={{ margin: `0`, color: `white`, textAlign: `center`, marginBottom: `40px` }}>Dashboard</h1>
         <div className="dashboard">
-          <a id="saved-trips" href="#">
-            Saved Trips
-          </a>
-          <NOAAWeather />
-          <Map />
+
+
+          <div id="weather-map" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-around` }}>
+            <div id="map-card" style={{ width: `45vw`, alignSelf: `flex-start`, height: `66vh`, margin: `0`, borderRadius: `25px` }} class="card blue-grey darken-1" >
+              <div class="card-content white-text">
+                <span class="card-title" style={{ textAlign: `center` }}>Map</span>
+                <div id="map-card-content" style={{ display: `flex`, justifyContent: `center`, alignItems: `center`, marginTop: `20px` }}>
+                  <Map /></div>
+
+              </div>
+            </div>
+
+
+
+            <div id="weather" style={{ width: `45vw`, alignSelf: `flex-start`, margin: `0`, borderRadius: `25px` }} class="card blue-grey darken-1" >
+              <div class="card-content white-text">
+                <span class="card-title" style={{ textAlign: `center`, color: `white` }}>Weather Forecast</span> <hr />
+                <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+                <NOAAWeather />
+              </div>
+              <div class="card-action" style={{
+                borderRadius: `25px`, textAlign: `center`
+              }}>
+                <a href="#">Captain's Log</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </DashboardBackground>
+      </div>
+
+
     );
   }
 }

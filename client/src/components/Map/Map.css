@@ -1,13 +1,15 @@
-#map {
-  height: 100%;
-}
+
 
 /* Optional: Makes the sample page fill the window. */
 
 html,
 body {
-  height: 500px;
-  width: 500px;
+  /* height: 500px; */
+  /* width: 500px; */
   margin: 0;
   padding: 0;
 }
+
+
+
+

@@ -19,11 +19,12 @@ class Map extends Component {
       />
     ));
     return (
-      <div>
+      <div id="map-weather-container">
         <GoogleMapExample
-          containerElement={<div style={{ height: `100vh`, width: "100vw" }} />}
-          mapElement={<div style={{ height: `100vh` }} />}
+          containerElement={<div style={{ width: "40vw" }} />}
+          mapElement={<div style={{ height: `50vh`, borderRadius: `25px` }} />}
         />
+
       </div>
     );
   }
