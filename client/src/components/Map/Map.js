@@ -1,14 +1,6 @@
 import "./Map.css";
 import React, { Component } from "react";
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  Polyline,
-  PolylineProps,
-  InfoWindow,
-  InfoWindowProps
-} from "react-google-maps";
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 class Map extends Component {
   render() {
@@ -24,7 +16,6 @@ class Map extends Component {
           containerElement={<div style={{ width: "40vw" }} />}
           mapElement={<div style={{ height: `50vh`, borderRadius: `25px` }} />}
         />
-
       </div>
     );
   }
