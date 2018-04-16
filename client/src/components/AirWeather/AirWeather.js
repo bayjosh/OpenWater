@@ -6,14 +6,15 @@ class AirWeather extends Component {
   constructor() {
     super();
     this.state = {
-      AirWeather: ""
+      AirWeather: []
     };
   }
 
   submitWeather = event => {
     event.preventDefault();
     API.getWeather().then(res => {
-      this.setState({ AirWeather: "hello" });
+      console.log(res.data.DailyForecasts);
+      this.setState({ AirWeather: res.data.DailyForecasts });
     });
   };
 
@@ -40,16 +41,7 @@ class AirWeather extends Component {
 
   render() {
     return (
-      <div
-        className="airWeather"
-        style={{
-          width: `100%`,
-          display: `flex`,
-          flexWrap: `wrap`,
-          flexDirection: `row`,
-          justifyContent: `center`
-        }}
-      >
+      <div className="airWeather" style={{ width: `100%`, display: `flex`, flexWrap: `wrap`, flexDirection: `row`, justifyContent: `center` }}>
         <button
           className="waves-effect waves-light btn"
           onClick={this.submitWeather}
@@ -58,25 +50,33 @@ class AirWeather extends Component {
             backgroundColor: `white`,
             color: `black`,
             marginBottom: `25px`
-          }}
-        >
-          Scrape Weather
-        </button>
-        <div
-          id="air-weather-container"
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-evenly`,
-            width: `100%`,
-            flexDirection: `row`
-          }}
-        >
-          {this.state.AirWeather}
+          }}>Scrape Weather</button>
+        <div id="air-weather-container" style={{
+          display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row`
+        }}>
+          {this.state.AirWeather.map((el, i) => (
+            <div>
+              <h5>{el.Date}</h5>
+              <h5>High: {el.Temperature.Maximum.Value}</h5>
+              <h5>Low: {el.Temperature.Minimum.Value}</h5>
+              <h5>Day: {el.Day.IconPhrase}</h5>
+              {el.Day.Icon.toString().length === 1 ?
+                <img src={`https://developer.accuweather.com/sites/default/files/0${el.Day.Icon}-s.png`} />
+                :
+                <img src={`https://developer.accuweather.com/sites/default/files/${el.Day.Icon}-s.png`} />
+              }
+              <h5>Night: {el.Night.IconPhrase}</h5>
+              {el.Night.Icon.toString().length === 1 ?
+                <img src={`https://developer.accuweather.com/sites/default/files/0${el.Night.Icon}-s.png`} />
+                :
+                <img src={`https://developer.accuweather.com/sites/default/files/${el.Night.Icon}-s.png`} />
+              }
+            </div>
+          ))}
         </div>
       </div>
-    );
+    )
   }
-}
 
+}
 export default AirWeather;
