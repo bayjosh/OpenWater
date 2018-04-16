@@ -41,7 +41,7 @@ class Dashboard extends Component {
               <div style={{
                 display: `flex`, width: `45vw`, flexWrap: `wrap`
               }}>
-                <div id="weather" style={{ width: `45vw`, alignSelf: `flex-start`, margin: `0`, borderRadius: `25px`, height: `60vh`, backgroundColor: `rgba(145, 174, 194, 0.952)` }} class="card darken-1" >
+                <div id="weather" style={{ width: `45vw`, alignSelf: `flex-start`, margin: `0`, borderRadius: `25px`, height: `100%`, backgroundColor: `rgba(145, 174, 194, 0.952)` }} class="card darken-1" >
                   <div class="card-content white-text">
                     <span class="card-title" style={{ textAlign: `center`, color: `white` }}>Weather Forecast</span> <hr />
                     <p>I am a very simple card. I am good at containing small bits of information.
