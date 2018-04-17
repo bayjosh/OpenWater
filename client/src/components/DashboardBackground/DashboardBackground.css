@@ -12,6 +12,20 @@
   
 }
 
+@-webkit-keyframes blurIn {
+  0% {
+    -webkit-filter: blur(100px)
+    
+  }
+  100% {
+    -webkit-filter: blur(0px)
+  }
+}
+
+#blur-in-background {
+  -webkit-animation: blurIn 0.75s ease-in
+}
+
 .dashboard {
   margin-top: 45px;
 }

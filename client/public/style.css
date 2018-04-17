@@ -21,12 +21,13 @@ Home Page Design
 }
 
 #trip-name-input {
-  width: 50%;
+  width: 20%;
   color: white;
   size: 50px;
-  border-bottom: 3px solid white;
   font-family: "Slabo 27px", serif;
   text-align: center;
+  background-color: rgba(145, 174, 194, 0.952);
+  border-radius: 25px;
 }
 
 #trip-name-header {

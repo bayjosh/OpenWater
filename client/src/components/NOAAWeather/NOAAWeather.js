@@ -16,7 +16,7 @@ class NOAAWeather extends Component {
     loadWeather = event => {
         event.preventDefault();
         let zip = this.props.zipCode
-       return fetch('http://localhost:5000/weatherScrape', {
+        return fetch('http://localhost:5000/weatherScrape', {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -32,7 +32,8 @@ class NOAAWeather extends Component {
                     zoneNames: res.zoneNames,
                     headers: res.headers,
                     texts: res.texts,
-                    warnings: res.warnings })
+                    warnings: res.warnings
+                })
             })
     }
 
@@ -41,22 +42,22 @@ class NOAAWeather extends Component {
             <div className="NOAAWeather">
                 <h4 style={{ textAlign: `center` }}>Marine Zones: </h4>{this.state.zoneNames.map((el, i) => (
                     <h4 key={i}>
-                    {el}
-                    </h4>    
+                        {el}
+                    </h4>
                 ))}
                 {this.state.forecastTime}
                 <button onClick={this.loadWeather}>SCRAPE</button>
                 <div>
 
                     {this.state.headers.map((el, i) => (
-                    <div>
-                        <h5 key={i}>
-                            {el}
-                        </h5>
-                        <p>
-                            {this.state.texts[i]}
-                        </p>
-                    </div>
+                        <div>
+                            <h5 key={i}>
+                                {el}
+                            </h5>
+                            <p>
+                                {this.state.texts[i]}
+                            </p>
+                        </div>
                     ))}
                 </div>
             </div>

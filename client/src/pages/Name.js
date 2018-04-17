@@ -32,7 +32,7 @@ class Name extends Component {
   render() {
     return (
       <div>
-      <NameBackground />
+        <NameBackground />
         <div className="tripName">
           <a id="saved-trips" href="#">
             Saved Trips
@@ -40,25 +40,22 @@ class Name extends Component {
 
           <div className="container">
             <form id="trip-name-form" onSubmit={this.tripNameSubmit}>
-              <p id="trip-name-header">Name your voyage</p>
-              <input
-                autofocus="autofocus"
-                style={{ fontSize: "50px" }}
+              <p id="trip-name-header">Start your voyage</p>
+              <button
+                class="waves-effect waves-light btn"
                 id="trip-name-input"
-                type="text"
-                required
-              />
+                type="submit"> Bon Voyage!</button>
             </form>
 
-            {this.state.fireRedirect && <Redirect to="/destination" />}
+            {this.state.fireRedirect && <Redirect to="/dashboard" />}
 
-            <img
+            {/* <img
               id="logo"
               src="https://www.shareicon.net/download/2015/09/13/100454_map_512x512.png"
-            />
+            /> */}
           </div>
         </div>
-        </div>
+      </div>
     );
   }
 }

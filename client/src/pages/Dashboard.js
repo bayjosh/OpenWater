@@ -38,7 +38,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div id="blur-in-background">
         <div>
           <DashboardBackground />
           <div id="header-background"> </div>
@@ -134,7 +134,7 @@ class Dashboard extends Component {
                   </div>
                 </div>
 
-                <span>
+                {/* <span>
                   <button
                     class="btn waves-effect waves-light"
                     style={{ width: `42vh`, margin: `0 10px 0 20px` }}
@@ -149,7 +149,7 @@ class Dashboard extends Component {
                   >
                     View Logs
                   </button>
-                </span>
+                </span> */}
               </div>
             </div>
 
