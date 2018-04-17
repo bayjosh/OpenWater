@@ -18,7 +18,6 @@ const MapWindow = compose(
     defaultZoom={8}
     defaultCenter={{ lat: -34.397, lng: 150.644 }}
     onClick={props.onGoogleMapClick}
-  // getPosition={props.getPostion}
 
   >
     {props.isMarkerShown && <Marker position={{ lat: props.markerPositionLat, lng: props.markerPositionLon }} onClick={props.onMarkerClick} />}
@@ -35,16 +34,6 @@ class MapComponent extends React.PureComponent {
     }
   }
 
-  // componentDidMount() {
-  //   this.delayedShowMarker()
-  // }
-
-  // delayedShowMarker = () => {
-  //   setTimeout(() => {
-  //     this.setState({ isMarkerShown: true })
-  //   }, 5000)
-  // }
-
   handleMarkerClick = () => {
     this.setState({ isMarkerShown: false })
   }
@@ -56,19 +45,6 @@ class MapComponent extends React.PureComponent {
     this.props.onChange(this.state.markerPositionLat, this.state.markerPositionLon);
   }
 
-  // onStateChange = event => {
-  //   let latitude = event.getPosition().lat();
-  //   let longitude = event.getPosition().lon();
-  //   this.props.onChange(latitude, longitude)
-  // }
-
-
-
-  // getPosition = (lat, lon) => {
-  //   this.setState({ markerPositionLat: lat, markerPositionLon: lon })
-
-  // }
-
 
   render() {
     return (
@@ -79,8 +55,6 @@ class MapComponent extends React.PureComponent {
         isMarkerShown={this.state.isMarkerShown}
         onMarkerClick={this.handleMarkerClick}
         onGoogleMapClick={this.handleGoogleMapClick}
-      // getPosition={this.getPosition()}
-
       />
     )
   }

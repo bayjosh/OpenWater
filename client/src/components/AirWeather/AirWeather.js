@@ -23,9 +23,6 @@ class AirWeather extends Component {
       )
   }
 
-
-
-
   render() {
     return (
       <div className="airWeather" style={{ width: `100%`, display: `flex`, flexWrap: `wrap`, flexDirection: `row`, justifyContent: `center` }}>

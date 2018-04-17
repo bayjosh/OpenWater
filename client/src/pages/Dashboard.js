@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import DashboardBackground from "../components/DashboardBackground";
 import { Redirect } from "react-router-dom";
-// import MyMapComponent from "../components/Map";
-// import MyFancyMapComponent from "../components/Map";
 import MapComponent from "../components/Map";
 import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
-
 
 class Dashboard extends Component {
   constructor(props) {
