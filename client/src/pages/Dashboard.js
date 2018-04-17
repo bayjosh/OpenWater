@@ -3,7 +3,7 @@ import DashboardBackground from "../components/DashboardBackground";
 import { Redirect } from "react-router-dom";
 // import MyMapComponent from "../components/Map";
 // import MyFancyMapComponent from "../components/Map";
-import Map from "../components/Map";
+import MapComponent from "../components/Map";
 import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
@@ -62,7 +62,7 @@ class Dashboard extends Component {
                   <span class="card-title" style={{ textAlign: `center` }}>
                     Map
                   </span>
-                  <div
+                  {/* <div
                     id="map-card-content"
                     style={{
                       display: `flex`,
@@ -70,19 +70,14 @@ class Dashboard extends Component {
                       alignItems: `center`,
                       marginTop: `20px`
                     }}
-                  >
-                    <Map />
-                  </div>
+                  > */}
+                  <MapComponent
+                    isMarkerShown={false}
+                  />
+                  {/* </div> */}
                 </div>
               </div>
 
-<<<<<<< HEAD
-
-              <div style={{
-                display: `flex`, width: `45vw`, flexWrap: `wrap`
-              }}>
-                <div id="weather" style={{ width: `45vw`, alignSelf: `flex-start`, margin: `0`, borderRadius: `25px`, height: `100%`, backgroundColor: `rgba(145, 174, 194, 0.952)` }} class="card darken-1" >
-=======
               <div
                 style={{
                   display: `flex`,
@@ -102,7 +97,6 @@ class Dashboard extends Component {
                   }}
                   class="card darken-1"
                 >
->>>>>>> 2ce06f86bbd88e5b1d788fc79859be2251add79e
                   <div class="card-content white-text">
                     <span
                       class="card-title"
