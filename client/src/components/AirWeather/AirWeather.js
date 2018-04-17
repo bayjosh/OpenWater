@@ -10,6 +10,14 @@ class AirWeather extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+
+    if (prevState.AirWeather !== this.state.AirWeather) {
+      this.getWeather();
+    }
+
+  }
+
   getWeather = () => {
     let zip = this.props.zipCode
     API.getLocation(zip).then(res => {
@@ -26,7 +34,7 @@ class AirWeather extends Component {
   render() {
     return (
       <div className="airWeather" style={{ width: `100%`, display: `flex`, flexWrap: `wrap`, flexDirection: `row`, justifyContent: `center` }}>
-        <button
+        {/* <button
           className="waves-effect waves-light btn"
           onClick={this.getWeather}
           style={{
@@ -34,7 +42,7 @@ class AirWeather extends Component {
             backgroundColor: `white`,
             color: `black`,
             marginBottom: `25px`
-          }}>Scrape Weather</button>
+          }}>Scrape Weather</button> */}
         <div id="air-weather-container" style={{
           display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row`
         }}>

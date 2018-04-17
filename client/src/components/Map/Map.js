@@ -34,6 +34,8 @@ class MapComponent extends React.PureComponent {
     }
   }
 
+
+
   handleMarkerClick = () => {
     this.setState({ isMarkerShown: false })
   }

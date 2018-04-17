@@ -18,10 +18,11 @@ class Dashboard extends Component {
       zipCode: 0
     };
   }
+
+
   onChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
     API.getZipCode(this.state.lat, this.state.lon).then(res => {
-       //return res[0].address_components[7].long_name
       for (var i = 0; i < res.data.results[0].address_components.length; i++) {
         if (res.data.results[0].address_components[i].types[0] === "postal_code") {
           return res.data.results[0].address_components[i].long_name
@@ -29,7 +30,7 @@ class Dashboard extends Component {
       }
     })
       .then(result => {
-        this.setState({ zipCode: result})
+        this.setState({ zipCode: result })
         console.log(this.state.zipCode)
       })
   }
