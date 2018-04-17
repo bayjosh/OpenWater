@@ -7,6 +7,7 @@ import MapComponent from "../components/Map";
 import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
+import API from "../utils/API"
 
 
 class Dashboard extends Component {
@@ -16,12 +17,26 @@ class Dashboard extends Component {
     this.state = {
       fireRedirect: false,
       lat: 0,
-      lon: 0
+      lon: 0,
+      zipCode: 0
     };
   }
   onChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
+    API.getZipCode(this.state.lat, this.state.lon).then(res => {
+       //return res[0].address_components[7].long_name
+      for (var i = 0; i < res.data.results[0].address_components.length; i++) {
+        if (res.data.results[0].address_components[i].types[0] === "postal_code") {
+          return res.data.results[0].address_components[i].long_name
+        }
+      }
+    })
+      .then(result => {
+        this.setState({ zipCode: result})
+        console.log(this.state.zipCode)
+      })
   }
+
 
   render() {
     return (
@@ -117,7 +132,7 @@ class Dashboard extends Component {
                       bits of information. I am convenient because I require
                       little markup to use effectively.
                     </p>
-                    <NOAAWeather lat={this.state.lat} lon={this.state.lon} />
+                    <NOAAWeather zipCode={this.state.zipCode} />
                   </div>
                 </div>
 
@@ -165,7 +180,7 @@ class Dashboard extends Component {
                   information. I am convenient because I require little markup
                   to use effectively.
                 </p>
-                <AirWeather lat={this.state.lat} lon={this.state.lon} />
+                <AirWeather zipCode={this.state.zipCode} />
               </div>
             </div>
 
