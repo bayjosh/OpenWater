@@ -26,10 +26,13 @@ const MapWindow = compose(
 )
 
 class MapComponent extends React.PureComponent {
-  state = {
-    isMarkerShown: false,
-    markerPositionLat: -32,
-    markerPositionLon: 74
+  constructor(props) {
+    super(props)
+    this.state = {
+      isMarkerShown: false,
+      markerPositionLat: -32,
+      markerPositionLon: 74
+    }
   }
 
   // componentDidMount() {
@@ -50,7 +53,16 @@ class MapComponent extends React.PureComponent {
     let lat = event.latLng.lat()
     let lon = event.latLng.lng()
     this.setState({ isMarkerShown: true, markerPositionLat: lat, markerPositionLon: lon })
+    this.props.onChange(this.state.markerPositionLat, this.state.markerPositionLon);
   }
+
+  // onStateChange = event => {
+  //   let latitude = event.getPosition().lat();
+  //   let longitude = event.getPosition().lon();
+  //   this.props.onChange(latitude, longitude)
+  // }
+
+
 
   // getPosition = (lat, lon) => {
   //   this.setState({ markerPositionLat: lat, markerPositionLon: lon })
@@ -61,6 +73,7 @@ class MapComponent extends React.PureComponent {
   render() {
     return (
       <MapWindow
+        onStateChange={this.onStateChange}
         markerPositionLat={this.state.markerPositionLat}
         markerPositionLon={this.state.markerPositionLon}
         isMarkerShown={this.state.isMarkerShown}

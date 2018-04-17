@@ -6,6 +6,7 @@ import Destination from "./pages/Destination";
 import Name from "./pages/Name";
 import Dashboard from "./pages/Dashboard";
 
+
 const App = () => (
   <Router>
     <div>

@@ -8,13 +8,19 @@ import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
 
+
 class Dashboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      fireRedirect: false
+      fireRedirect: false,
+      lat: 0,
+      lon: 0
     };
+  }
+  onChange = (lati, long) => {
+    this.setState({ lat: lati, lon: long })
   }
 
   render() {
@@ -73,6 +79,7 @@ class Dashboard extends Component {
                   > */}
                   <MapComponent
                     isMarkerShown={false}
+                    onChange={this.onChange}
                   />
                   {/* </div> */}
                 </div>
@@ -110,7 +117,7 @@ class Dashboard extends Component {
                       bits of information. I am convenient because I require
                       little markup to use effectively.
                     </p>
-                    <NOAAWeather />
+                    <NOAAWeather lat={this.state.lat} lon={this.state.lon} />
                   </div>
                 </div>
 
@@ -158,7 +165,7 @@ class Dashboard extends Component {
                   information. I am convenient because I require little markup
                   to use effectively.
                 </p>
-                <AirWeather />
+                <AirWeather lat={this.state.lat} lon={this.state.lon} />
               </div>
             </div>
 
@@ -176,7 +183,7 @@ class Dashboard extends Component {
                   justifyContent: `center`
                 }}
               >
-                <Dockwa />
+                <Dockwa lat={this.state.lat} lon={this.state.lon} />
               </div>
               <div
                 className="card-action"
@@ -196,7 +203,8 @@ class Dashboard extends Component {
               paddingTop: `55px`
             }}
           >
-            Open Water
+            <h6>Open Water</h6>
+            <p>Copyright © 2018 Coder Boiz Inc.</p>
           </footer>
         </div>
       </div>
