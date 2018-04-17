@@ -76,13 +76,6 @@ class Dashboard extends Component {
                 </div>
               </div>
 
-<<<<<<< HEAD
-
-              <div style={{
-                display: `flex`, width: `45vw`, flexWrap: `wrap`
-              }}>
-                <div id="weather" style={{ width: `45vw`, alignSelf: `flex-start`, margin: `0`, borderRadius: `25px`, height: `100%`, backgroundColor: `rgba(145, 174, 194, 0.952)` }} class="card darken-1" >
-=======
               <div
                 style={{
                   display: `flex`,
@@ -102,7 +95,6 @@ class Dashboard extends Component {
                   }}
                   class="card darken-1"
                 >
->>>>>>> 2ce06f86bbd88e5b1d788fc79859be2251add79e
                   <div class="card-content white-text">
                     <span
                       class="card-title"
