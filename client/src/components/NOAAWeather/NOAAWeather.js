@@ -5,11 +5,11 @@ class NOAAWeather extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            forecastTime: "forcastTime",
-            zoneNames: ["zoneNames"],
-            headers: ["headers"],
-            texts: ["texts"],
-            warnings: ["warnings"]
+            forecastTime: "",
+            zoneNames: [],
+            headers: [],
+            texts: [],
+            warnings: []
         };
     }
 

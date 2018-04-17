@@ -5,7 +5,7 @@ class Dockwa extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            DockwaInfo: ["Dockwa stuff"]
+            DockwaInfo: []
         };
     }
 

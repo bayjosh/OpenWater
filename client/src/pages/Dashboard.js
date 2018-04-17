@@ -125,11 +125,6 @@ class Dashboard extends Component {
                       Marine Forecast
                     </span>{" "}
                     <hr />
-                    <p>
-                      I am a very simple card. I am good at containing small
-                      bits of information. I am convenient because I require
-                      little markup to use effectively.
-                    </p>
                     <NOAAWeather zipCode={this.state.zipCode} />
                   </div>
                 </div>
@@ -170,14 +165,9 @@ class Dashboard extends Component {
                   class="card-title"
                   style={{ textAlign: `center`, color: `white` }}
                 >
-                  Air Forecast
+                  5-Day Air Forecast
                 </span>{" "}
                 <hr />
-                <p>
-                  I am a very simple card. I am good at containing small bits of
-                  information. I am convenient because I require little markup
-                  to use effectively.
-                </p>
                 <AirWeather zipCode={this.state.zipCode} />
               </div>
             </div>
@@ -186,6 +176,7 @@ class Dashboard extends Component {
               <h3 style={{ color: `white`, padding: `35px 0 20px 0` }}>
                 DOCKING AREA
               </h3>
+              <hr/>
               <div
                 id="Dockwa"
                 style={{

@@ -1,4 +1,5 @@
 import "./AirWeather.css";
+import Moment from "react-moment";
 import React, { Component } from "react";
 import API from "../../utils/API";
 
@@ -39,27 +40,32 @@ class AirWeather extends Component {
         <div id="air-weather-container" style={{
           display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row`
         }}>
-          {this.state.AirWeather.map((el, i) => (
-            <div>
-              <h5>{el.Date}</h5>
-              <h5>High: {el.Temperature.Maximum.Value}</h5>
-              <h5>Low: {el.Temperature.Minimum.Value}</h5>
-              <h5>Day: {el.Day.IconPhrase}</h5>
+          <div id="weather-container" style={{ display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row` }}>
+          {this.state.AirWeather.map((el, i) =>
+            <div key={i} style={{ color: `black`, width: `35%`, border: `white 1px solid`, marginBottom: `8px`, borderRadius: `25px`, textAlign: `center` }}>
+                <h4><strong><Moment format='dddd'>{el.Date}</Moment></strong></h4>
+                <hr/>
+                <h6><strong>{el.Temperature.Maximum.Value}°F</strong></h6>
+                <p>{el.Temperature.Minimum.Value}°F</p>
+                <h6><strong>During the day:</strong></h6> 
               {el.Day.Icon.toString().length === 1 ?
                 <img src={`https://developer.accuweather.com/sites/default/files/0${el.Day.Icon}-s.png`} />
                 :
                 <img src={`https://developer.accuweather.com/sites/default/files/${el.Day.Icon}-s.png`} />
               }
-              <h5>Night: {el.Night.IconPhrase}</h5>
+                <p>{el.Day.IconPhrase}</p>
+                <h6><strong>At night:</strong></h6> 
               {el.Night.Icon.toString().length === 1 ?
                 <img src={`https://developer.accuweather.com/sites/default/files/0${el.Night.Icon}-s.png`} />
                 :
                 <img src={`https://developer.accuweather.com/sites/default/files/${el.Night.Icon}-s.png`} />
               }
+                <p>{el.Night.IconPhrase}</p>
             </div>
-          ))}
-        </div>
+            
+  )}</div>
       </div>
+      </div >
     )
   }
 
