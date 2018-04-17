@@ -2,8 +2,8 @@ import "./Dockwa.css";
 import React, { Component } from "react";
 
 class Dockwa extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             DockwaInfo: ["Dockwa stuff"]
         };
@@ -11,8 +11,8 @@ class Dockwa extends Component {
 
     loadDockwa = event => {
         event.preventDefault();
-        let lat = 41.87811360
-        let lon = -87.6297982
+        let lat = this.props.lat
+        let lon = this.props.lon
         return fetch('http://localhost:5000/dockwaScrape', {
             method: "POST",
             headers: {
