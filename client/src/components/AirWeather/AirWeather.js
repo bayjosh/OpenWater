@@ -3,15 +3,15 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 
 class AirWeather extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       AirWeather: []
     };
   }
 
   getWeather = () => {
-    let zip = "20850"
+    let zip = this.props.zipCode
     API.getLocation(zip).then(res => {
       return res.data[0].ParentCity.Key
     })

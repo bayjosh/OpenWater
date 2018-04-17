@@ -2,8 +2,8 @@ import "./NOAAWeather.css";
 import React, { Component } from "react";
 
 class NOAAWeather extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             forecastTime: "forcastTime",
             zoneNames: ["zoneNames"],
@@ -15,7 +15,7 @@ class NOAAWeather extends Component {
 
     loadWeather = event => {
         event.preventDefault();
-        let zip = '60611'
+        let zip = this.props.zipCode
        return fetch('http://localhost:5000/weatherScrape', {
             method: "POST",
             headers: {
