@@ -38,8 +38,8 @@ class Dashboard extends Component {
   openDepthChart = event => {
     event.preventDefault();
     let iframe = document.createElement('iframe')
-    iframe.setAttribute('width','560')
-    iframe.setAttribute('height',"450")
+    iframe.setAttribute('width','100%')
+    iframe.setAttribute('height',"90%")
     iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`) 
     iframe.setAttribute('frameborder','0')
     document.getElementById('iframe').appendChild(iframe)
@@ -107,12 +107,19 @@ class Dashboard extends Component {
                   />
                   {/* </div> */}
                   <hr/>
-                  <button onClick={this.openDepthChart}>More Details</button>
+                  <button class="activator" onClick={this.openDepthChart}>Depth Chart</button>
                   
                   {/* <a target="_blank" href={`http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`}> Click here to view depths and other info</a> */}
                 </div>
+                <div style={{
+                  backgroundColor: `rgba(145, 174, 194, 0.952)`
+                }} class="card-reveal">
+                  <span  class="card-title"><i class="right">Back to Map</i></span>
+                  <div style={{ textAlign: `center`, color: `white` }}id="real-title">Depth Chart</div>
+                  <hr/>
+                  <div style={{ height: `100%` }} id='iframe'></div>
+                </div>
               </div>
-              <div id='iframe'></div>
               <div
                 style={{
                   display: `flex`,
