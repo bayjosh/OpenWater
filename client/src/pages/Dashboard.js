@@ -35,6 +35,16 @@ class Dashboard extends Component {
       })
   }
 
+  openNewWindow = event => {
+    event.preventDefault();
+    let iframe = document.createElement('iframe')
+    iframe.setAttribute('width','560')
+    iframe.setAttribute('height',"450")
+    iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`) 
+    iframe.setAttribute('frameborder','0')
+    document.getElementById('iframe').appendChild(iframe)
+   
+  }
 
   render() {
     return (
@@ -96,10 +106,12 @@ class Dashboard extends Component {
                   />
                   {/* </div> */}
                   <hr/>
-                  <a target="_blank" href={`http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`}> Click here to view depths and other info</a>
+                  <button onClick={this.openNewWindow}>More Details</button>
+                  
+                  {/* <a target="_blank" href={`http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`}> Click here to view depths and other info</a> */}
                 </div>
               </div>
-
+              <div id='iframe'></div>
               <div
                 style={{
                   display: `flex`,

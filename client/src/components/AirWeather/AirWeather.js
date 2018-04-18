@@ -43,7 +43,9 @@ class AirWeather extends Component {
           <div id="weather-container" style={{ display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row` }}>
           {this.state.AirWeather.map((el, i) =>
             <div key={i} style={{ color: `black`, width: `35%`, border: `white 1px solid`, marginBottom: `8px`, borderRadius: `25px`, textAlign: `center` }}>
-                <h4><strong><Moment format='dddd'>{el.Date}</Moment></strong></h4>
+                {i===0 ?
+                  <h4><strong>Today</strong></h4> : i === 1 ?
+                    <h4><strong>Tomorrow</strong></h4> : <h4><strong><Moment format='dddd'>{el.Date}</Moment></strong></h4>} 
                 <hr/>
                 <h6><strong>{el.Temperature.Maximum.Value}°F</strong></h6>
                 <p>{el.Temperature.Minimum.Value}°F</p>
