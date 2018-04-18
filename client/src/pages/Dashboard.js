@@ -35,7 +35,7 @@ class Dashboard extends Component {
       })
   }
 
-  openNewWindow = event => {
+  openDepthChart = event => {
     event.preventDefault();
     let iframe = document.createElement('iframe')
     iframe.setAttribute('width','560')
@@ -91,6 +91,7 @@ class Dashboard extends Component {
                   <span class="card-title" style={{ textAlign: `center` }}>
                     Map
                   </span>
+                  <hr/>
                   {/* <div
                     id="map-card-content"
                     style={{
@@ -106,7 +107,7 @@ class Dashboard extends Component {
                   />
                   {/* </div> */}
                   <hr/>
-                  <button onClick={this.openNewWindow}>More Details</button>
+                  <button onClick={this.openDepthChart}>More Details</button>
                   
                   {/* <a target="_blank" href={`http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`}> Click here to view depths and other info</a> */}
                 </div>

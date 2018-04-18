@@ -55,6 +55,11 @@ app.post('/weatherScrape', function (req, res) {
         .click('[value=Go]')
         .wait(('div.content')[1])
         .evaluate(() => {
+            if (document.querySelectorAll('div.title')[1] && document.querySelectorAll('div.title')[1].children[0].textContent=="Small Craft Advisory"){
+                var SCAheader = "Small Craft Advisory"
+                var SCAtext = document.querySelectorAll('div.content')[2].textContent
+                var SCAissued = document.querySelectorAll('div.title')[1].children[1].textContent
+            } //added small craft advisory only if there is one
             var selector = document.querySelectorAll('div.content')[1]
             var forecastTime = document.querySelector('[class=title]').textContent
             var headers = [];
@@ -75,7 +80,7 @@ app.post('/weatherScrape', function (req, res) {
                 }
 
             }
-            return { headers, warnings, zoneNames, texts, forecastTime }
+            return { headers, warnings, zoneNames, texts, forecastTime, SCAtext, SCAheader, SCAissued }
         })
         .end()
         .then(result => { res.json(result) })

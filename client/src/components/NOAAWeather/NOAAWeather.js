@@ -9,7 +9,10 @@ class NOAAWeather extends Component {
             zoneNames: [],
             headers: [],
             texts: [],
-            warnings: []
+            warnings: [],
+             SCAheader: "",
+            SCAtext: "",
+            SCAissued: ""
         };
     }
 
@@ -32,7 +35,10 @@ class NOAAWeather extends Component {
                     zoneNames: res.zoneNames,
                     headers: res.headers,
                     texts: res.texts,
-                    warnings: res.warnings
+                    warnings: res.warnings,
+                    SCAheader: res.SCAheader,
+                    SCAtext: res.SCAtext,
+                    SCAissued: res.SCAissued
                 })
             })
     }
@@ -45,7 +51,14 @@ class NOAAWeather extends Component {
                         {el}
                     </h4>
                 ))}
-                {this.state.forecastTime}
+                <hr/>
+                <h5>WARNINGS</h5>
+                  <h6>{this.state.SCAheader}</h6>
+                     <p>{this.state.SCAissued}</p>
+                   <p> {this.state.SCAtext}</p>
+                    <hr/>
+
+                <p>{this.state.forecastTime}</p>
                 <button onClick={this.loadWeather}>SCRAPE</button>
                 <div>
 
