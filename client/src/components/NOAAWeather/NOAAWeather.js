@@ -40,7 +40,7 @@ class NOAAWeather extends Component {
     render() {
         return (
             <div className="NOAAWeather">
-                <h4 style={{ textAlign: `center` }}>Marine Zones: </h4>{this.state.zoneNames.map((el, i) => (
+                <h5 style={{ textAlign: `center` }}>Marine Zones: </h5>{this.state.zoneNames.map((el, i) => (
                     <h4 key={i}>
                         {el}
                     </h4>
@@ -54,7 +54,7 @@ class NOAAWeather extends Component {
                             <h5 key={i}>
                                 {el}
                             </h5>
-                            <p>
+                            <p key={i}>
                                 {this.state.texts[i]}
                             </p>
                         </div>

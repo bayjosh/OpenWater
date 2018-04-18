@@ -6,7 +6,7 @@ const MapWindow = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCw1e-uu8VD-vsFQDzMXlHkiN_XL5N8YFg&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `90%` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
@@ -15,8 +15,8 @@ const MapWindow = compose(
 
 )((props) =>
   <GoogleMap
-    defaultZoom={6}
-    defaultCenter={{ lat: 42, lng: -87 }}
+    defaultZoom={5}
+    defaultCenter={{ lat: 44.837979309495736, lng: -83.28125581028485 }}
     onClick={props.onGoogleMapClick}
 
   >

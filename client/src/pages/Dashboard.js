@@ -70,7 +70,7 @@ class Dashboard extends Component {
                 style={{
                   width: `45vw`,
                   alignSelf: `flex-start`,
-                  height: `66vh`,
+                  height: `100vh`,
                   margin: `0`,
                   borderRadius: `25px`,
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
@@ -95,6 +95,8 @@ class Dashboard extends Component {
                     onChange={this.onChange}
                   />
                   {/* </div> */}
+                  <hr/>
+                  <a target="_blank" href="http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#8.08/42.0942/-86.7945">Click here to view depths and other info</a>
                 </div>
               </div>
 
