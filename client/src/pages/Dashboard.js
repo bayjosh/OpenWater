@@ -96,7 +96,7 @@ class Dashboard extends Component {
                   />
                   {/* </div> */}
                   <hr/>
-                  <a target="_blank" href="http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#8.08/42.0942/-86.7945">Click here to view depths and other info</a>
+                  <a target="_blank" href={`http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`}> Click here to view depths and other info</a>
                 </div>
               </div>
 
