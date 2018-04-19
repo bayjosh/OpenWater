@@ -12,6 +12,13 @@ class AirWeather extends Component {
   }
 
 
+  // UNSAFE_componentWillReceiveProps(){
+  //   if (this.props.zipCode !==0){
+  //     this.getWeather()
+  //   }
+  // }
+
+
   getWeather = () => {
     let zip = this.props.zipCode
     API.getLocation(zip).then(res => {
