@@ -9,8 +9,14 @@ class Dockwa extends Component {
         };
     }
 
-    loadDockwa = event => {
-        event.preventDefault();
+
+    componentDidUpdate() {
+        if (this.props.lat !== 0) {
+            this.loadDockwa()
+        }
+    }
+
+    loadDockwa = () => {
         let lat = this.props.lat
         let lon = this.props.lon
         return fetch('http://localhost:5000/dockwaScrape', {
@@ -40,7 +46,6 @@ class Dockwa extends Component {
                 flexDirection: `row`,
                 justifyContent: `center`
             }}>
-                <button className="waves-effect waves-light btn" onClick={this.loadDockwa} style={{ textAlign: `center`, backgroundColor: `white`, color: `black`, marginBottom: `25px` }}>Find Docking</button>
                 <div id="dock-container" style={{ display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row` }}>
                     {this.state.DockwaInfo.map((el, i) => (
                         <a key={i} style={{ color: `black`, width: `30%`, border: `white 1px solid`, marginBottom: `8px`, borderRadius: `25px` }} target="_blank" href={el.URL}>
@@ -48,7 +53,7 @@ class Dockwa extends Component {
                             <h6>{el.price}</h6>
                             <img className="responsive-img" style={{
                                 borderRadius: `25px`
-                            }} src={el.pictureStyle} />
+                            }} src={el.pictureStyle} alt="dockwa-img" />
                         </a>
                     ))}
                 </div>

@@ -10,14 +10,19 @@ class NOAAWeather extends Component {
             headers: [],
             texts: [],
             warnings: [],
-             SCAheader: "",
+            SCAheader: "",
             SCAtext: "",
             SCAissued: ""
         };
     }
 
-    loadWeather = event => {
-        event.preventDefault();
+    componentDidUpdate() {
+        if (this.props.zipCode !== 0) {
+            this.loadWeather()
+        }
+    }
+
+    loadWeather = () => {
         let zip = this.props.zipCode
         return fetch('http://localhost:5000/weatherScrape', {
             method: "POST",
@@ -51,23 +56,22 @@ class NOAAWeather extends Component {
                         {el}
                     </h4>
                 ))}
-                <hr/>
+                <hr />
                 <h5>WARNINGS</h5>
-                  <h6>{this.state.SCAheader}</h6>
-                     <p>{this.state.SCAissued}</p>
-                   <p> {this.state.SCAtext}</p>
-                    <hr/>
+                <h6>{this.state.SCAheader}</h6>
+                <p>{this.state.SCAissued}</p>
+                <p> {this.state.SCAtext}</p>
+                <hr />
 
                 <p>{this.state.forecastTime}</p>
-                <button onClick={this.loadWeather}>SCRAPE</button>
                 <div>
 
                     {this.state.headers.map((el, i) => (
-                        <div>
-                            <h5 key={i}>
+                        <div key={i}>
+                            <h5 >
                                 {el}
                             </h5>
-                            <p key={i}>
+                            <p>
                                 {this.state.texts[i]}
                             </p>
                         </div>

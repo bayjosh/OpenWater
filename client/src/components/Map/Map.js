@@ -118,8 +118,7 @@ export default MapComponent;
 // export default Map;
 
 
-"============================================================================="
-
+// ================================================
 // import React from "react";
 // import { compose, withProps } from "recompose";
 // import {

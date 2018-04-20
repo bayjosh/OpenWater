@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DashboardBackground from "../components/DashboardBackground";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import MapComponent from "../components/Map";
 import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
@@ -19,6 +19,12 @@ class Dashboard extends Component {
     };
   }
 
+  // componentDidUpdate() {
+  //   if (this.state.lat !== 0) {
+  //     this.openDepthChart()
+  //   }
+  // }
+
 
   onChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
@@ -35,15 +41,14 @@ class Dashboard extends Component {
       })
   }
 
-  openDepthChart = event => {
-    event.preventDefault();
+  openDepthChart = () => {
     let iframe = document.createElement('iframe')
-    iframe.setAttribute('width','100%')
-    iframe.setAttribute('height',"90%")
-    iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`) 
-    iframe.setAttribute('frameborder','0')
+    iframe.setAttribute('width', '100%')
+    iframe.setAttribute('height', "90%")
+    iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`)
+    iframe.setAttribute('frameborder', '0')
     document.getElementById('iframe').appendChild(iframe)
-   
+
   }
 
   render() {
@@ -85,13 +90,13 @@ class Dashboard extends Component {
                   borderRadius: `25px`,
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
                 }}
-                class="card darken-1"
+                className="card darken-1"
               >
-                <div class="card-content white-text" style={{ height: `100%` }}>
-                  <span class="card-title" style={{ textAlign: `center` }}>
-                    Map
+                <div className="card-content white-text" style={{ height: `100%` }}>
+                  <span className="card-title" style={{ textAlign: `center` }}>
+                    <h3>MAP</h3>
                   </span>
-                  <hr/>
+                  <hr />
                   {/* <div
                     id="map-card-content"
                     style={{
@@ -106,17 +111,17 @@ class Dashboard extends Component {
                     onChange={this.onChange}
                   />
                   {/* </div> */}
-                  <hr/>
-                  <button class="activator" onClick={this.openDepthChart}>Depth Chart</button>
-                  
+                  <hr />
+                  <button className="activator">Depth Chart</button>
+
                   {/* <a target="_blank" href={`http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`}> Click here to view depths and other info</a> */}
                 </div>
                 <div style={{
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
-                }} class="card-reveal">
-                  <span  class="card-title"><i class="right">Back to Map</i></span>
-                  <div style={{ textAlign: `center`, color: `white` }}id="real-title">Depth Chart</div>
-                  <hr/>
+                }} className="card-reveal">
+                  <span className="card-title"><i className="right">Back to Map</i></span>
+                  <div style={{ textAlign: `center`, color: `white` }} id="real-title">Depth Chart</div>
+                  <hr />
                   <div style={{ height: `100%` }} id='iframe'></div>
                 </div>
               </div>
@@ -137,14 +142,14 @@ class Dashboard extends Component {
                     height: `100%`,
                     backgroundColor: `rgba(145, 174, 194, 0.952)`
                   }}
-                  class="card darken-1"
+                  className="card darken-1"
                 >
-                  <div class="card-content white-text">
+                  <div className="card-content white-text">
                     <span
-                      class="card-title"
+                      className="card-title"
                       style={{ textAlign: `center`, color: `white` }}
                     >
-                      Marine Forecast
+                      <h3>MARINE FORECAST</h3>
                     </span>{" "}
                     <hr />
                     <NOAAWeather zipCode={this.state.zipCode} />
@@ -153,7 +158,7 @@ class Dashboard extends Component {
 
                 {/* <span>
                   <button
-                    class="btn waves-effect waves-light"
+                    className="btn waves-effect waves-light"
                     style={{ width: `42vh`, margin: `0 10px 0 20px` }}
                   >
                     Make a Log
@@ -162,7 +167,7 @@ class Dashboard extends Component {
                 <span>
                   <button
                     style={{ width: `42vh` }}
-                    class="btn waves-effect waves-light"
+                    className="btn waves-effect waves-light"
                   >
                     View Logs
                   </button>
@@ -173,21 +178,21 @@ class Dashboard extends Component {
             <div
               id="air-weather"
               style={{
-                width: `45vw`,
+                width: `100%`,
                 alignSelf: `flex-start`,
-                margin: `0`,
+                margin: `10px`,
                 borderRadius: `25px`,
                 height: `100%`,
                 backgroundColor: `rgba(145, 174, 194, 0.952)`
               }}
-              class="card darken-1"
+              className="card darken-1"
             >
-              <div class="card-content white-text">
+              <div className="card-content white-text">
                 <span
-                  class="card-title"
+                  className="card-title"
                   style={{ textAlign: `center`, color: `white` }}
                 >
-                  5-Day Air Forecast
+                  <h3>WEATHER FORECAST</h3>
                 </span>{" "}
                 <hr />
                 <AirWeather zipCode={this.state.zipCode} />
@@ -196,9 +201,9 @@ class Dashboard extends Component {
 
             <div id="docking-area">
               <h3 style={{ color: `white`, padding: `35px 0 20px 0` }}>
-                DOCKING AREA
+                DOCKING OPTIONS
               </h3>
-              <hr/>
+              <hr />
               <div
                 id="Dockwa"
                 style={{

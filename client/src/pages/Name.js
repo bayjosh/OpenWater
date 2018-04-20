@@ -34,9 +34,9 @@ class Name extends Component {
       <div>
         <NameBackground />
         <div className="tripName">
-          <a id="saved-trips" href="#">
+          {/* <a id="saved-trips" href="#">
             Saved Trips
-          </a>
+          </a> */}
 
           <div className="container">
             <form id="trip-name-form" onSubmit={this.tripNameSubmit}>

@@ -55,7 +55,7 @@ app.post('/weatherScrape', function (req, res) {
         .click('[value=Go]')
         .wait(('div.content')[1])
         .evaluate(() => {
-            if (document.querySelectorAll('div.title')[1] && document.querySelectorAll('div.title')[1].children[0].textContent=="Small Craft Advisory"){
+            if (document.querySelectorAll('div.title')[1] && document.querySelectorAll('div.title')[1].children[0].textContent == "Small Craft Advisory") {
                 var SCAheader = "Small Craft Advisory"
                 var SCAtext = document.querySelectorAll('div.content')[2].textContent
                 var SCAissued = document.querySelectorAll('div.title')[1].children[1].textContent
@@ -96,7 +96,7 @@ app.post('/dockwaScrape', function (req, res) {
         typeInterval: 10
     })
     nightmare
-        .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=9`)
+        .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=8`)
         .wait('div.marina-card')
         .evaluate(() => {
             var marinaCards = []

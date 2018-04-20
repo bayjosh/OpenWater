@@ -11,8 +11,8 @@ class Destination extends Component {
   }
   destinationSubmit = event => {
     event.preventDefault();
-    let originInput = event.target[0].value;
-    let destinationInput = event.target[1].value;
+    // let originInput = event.target[0].value;
+    // let destinationInput = event.target[1].value;
 
     event.target.parentElement.parentElement.parentElement.children[0].setAttribute(
       "id",
@@ -31,9 +31,9 @@ class Destination extends Component {
       <div>
         <DestinationBackground />
         <div className="destination">
-          <a id="saved-trips" href="#">
+          {/* <a id="saved-trips" href="#">
             Saved Trips
-          </a>
+          </a> */}
 
           <div className="destination-container">
             <form id="destination-form" onSubmit={this.destinationSubmit}>
@@ -57,7 +57,7 @@ class Destination extends Component {
                 />
               </span>
               <span>
-              <input type="submit" value="GO" />
+                <input type="submit" value="GO" />
               </span>
             </form>
             {this.state.fireRedirect && <Redirect to="/dashboard" />}
