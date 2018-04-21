@@ -6,6 +6,7 @@
 #wheel:hover{
     width: 150px;
     height: 150px;
+    z-index: 30;
      -webkit-animation: spin 5s infinite ease;
 }
 

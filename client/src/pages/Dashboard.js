@@ -69,6 +69,7 @@ class Dashboard extends Component {
           >
             Dashboard
           </h1>
+ 
           <LoadingWheel />
 
           <div className="dashboard">
