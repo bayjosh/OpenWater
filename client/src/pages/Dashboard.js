@@ -5,7 +5,8 @@ import MapComponent from "../components/Map";
 import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
-import API from "../utils/API"
+import API from "../utils/API";
+import LoadingWheel from "../components/LoadingWheel";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -68,6 +69,7 @@ class Dashboard extends Component {
           >
             Dashboard
           </h1>
+          <LoadingWheel />
 
           <div className="dashboard">
             <div

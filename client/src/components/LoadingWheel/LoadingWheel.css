@@ -1,0 +1,19 @@
+.wheel{
+    width: 150px;
+    height: 150px;
+}
+
+#wheel:hover{
+    width: 150px;
+    height: 150px;
+     -webkit-animation: spin 5s infinite ease;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); 
+  }
+  100% {
+    -webkit-transform: rotate(720deg);
+  }
+}

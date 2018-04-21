@@ -40,7 +40,7 @@ class AirWeather extends Component {
         <div id="air-weather-container" style={{
           display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row`
         }}>
-          <div><h4>Weather for: {this.state.city}, {this.state.wState}</h4></div>
+          {this.state.city !== "" ? <div><h4>Weather for: {this.state.city}, {this.state.wState}</h4></div> : <div></div>}
           <div id="weather-container" style={{ display: `flex`, flexWrap: `wrap`, justifyContent: `space-evenly`, width: `100%`, flexDirection: `row` }}>
             {this.state.AirWeather.map((el, i) =>
               <div key={i} style={{ color: `black`, width: `18%`, border: `white 1px solid`, marginBottom: `8px`, borderRadius: `25px`, textAlign: `center` }}>
