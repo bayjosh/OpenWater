@@ -39,6 +39,7 @@ class Dashboard extends Component {
       .then(result => {
         this.setState({ zipCode: result })
         console.log(this.state.zipCode)
+        this.openDepthChart();
       })
   }
 
@@ -48,8 +49,12 @@ class Dashboard extends Component {
     iframe.setAttribute('height', "90%")
     iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`)
     iframe.setAttribute('frameborder', '0')
+    if (document.getElementById('iframe').children.length === 1) {
+      document.getElementById('iframe').removeChild(document.getElementById('iframe').children[0]);
+      document.getElementById('iframe').appendChild(iframe)
+    } else {
     document.getElementById('iframe').appendChild(iframe)
-
+    }
   }
 
   render() {
@@ -116,8 +121,6 @@ class Dashboard extends Component {
                   {/* </div> */}
                   <hr />
                   <button className="activator">Depth Chart</button>
-
-                  {/* <a target="_blank" href={`http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`}> Click here to view depths and other info</a> */}
                 </div>
                 <div style={{
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
