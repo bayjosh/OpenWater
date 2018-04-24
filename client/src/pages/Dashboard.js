@@ -53,7 +53,7 @@ class Dashboard extends Component {
       document.getElementById('iframe').removeChild(document.getElementById('iframe').children[0]);
       document.getElementById('iframe').appendChild(iframe)
     } else {
-    document.getElementById('iframe').appendChild(iframe)
+      document.getElementById('iframe').appendChild(iframe)
     }
   }
 
@@ -74,7 +74,7 @@ class Dashboard extends Component {
           >
             Dashboard
           </h1>
- 
+
           <LoadingWheel />
 
           <div className="dashboard">
@@ -102,7 +102,7 @@ class Dashboard extends Component {
               >
                 <div className="card-content white-text" style={{ height: `100%` }}>
                   <span className="card-title" style={{ textAlign: `center` }}>
-                    <h3>MAP</h3>
+                    <h3>Map</h3>
                   </span>
                   <hr />
                   {/* <div
@@ -155,7 +155,7 @@ class Dashboard extends Component {
                       className="card-title"
                       style={{ textAlign: `center`, color: `white` }}
                     >
-                      <h3>MARINE FORECAST</h3>
+                      <h3>Marine Forecast</h3>
                     </span>{" "}
                     <hr />
                     <NOAAWeather zipCode={this.state.zipCode} />
@@ -198,7 +198,7 @@ class Dashboard extends Component {
                   className="card-title"
                   style={{ textAlign: `center`, color: `white` }}
                 >
-                  <h3>WEATHER FORECAST</h3>
+                  <h3>Weather Forecast</h3>
                 </span>{" "}
                 <hr />
                 <AirWeather zipCode={this.state.zipCode} />
@@ -207,7 +207,7 @@ class Dashboard extends Component {
 
             <div id="docking-area">
               <h3 style={{ color: `white`, padding: `35px 0 20px 0` }}>
-                DOCKING OPTIONS
+                Docking Options
               </h3>
               <hr />
               <div
