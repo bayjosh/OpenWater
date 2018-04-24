@@ -16,12 +16,17 @@ class NOAAWeather extends Component {
         };
     }
 
-    componentDidUpdate() {
-        if (this.props.zipCode !== 0) {
+
+    // componentDidUpdate() {
+    //     if (this.props.zipCode !== 0) {
+    //         this.loadWeather()
+    //     }
+    // }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.zipCode !== 0 && prevProps.zipCode !== this.props.zipCode) {
             this.loadWeather()
         }
     }
-
     loadWeather = () => {
         let zip = this.props.zipCode
         return fetch('http://localhost:5000/weatherScrape', {

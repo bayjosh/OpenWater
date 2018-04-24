@@ -10,8 +10,17 @@ class Dockwa extends Component {
     }
 
 
-    componentDidUpdate() {
-        if (this.props.lat !== 0) {
+// shouldComponentUpdate(nextProps, nextState){
+//     return nextProps.lat !== this.props.lat
+// }
+// componentWillReceiveProps(nextProps) {
+//   console.log(nextProps)
+//   if (this.props.lat !==0){// && nextProps.zipCode !== this.props.zipCode){
+//     this.loadDockwa()
+//   }
+// }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
             this.loadDockwa()
         }
     }

@@ -14,9 +14,9 @@ class Dashboard extends Component {
 
     this.state = {
       fireRedirect: false,
-      lat: 0,
-      lon: 0,
-      zipCode: 0
+      lat: null,
+      lon: null,
+      zipCode: null
     };
   }
 

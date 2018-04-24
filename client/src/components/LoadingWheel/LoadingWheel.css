@@ -7,7 +7,7 @@
     width: 150px;
     height: 150px;
     z-index: 30;
-     -webkit-animation: spin 5s infinite ease;
+     -webkit-animation: spin 1s infinite linear;
 }
 
 @-webkit-keyframes spin {
@@ -15,6 +15,6 @@
     -webkit-transform: rotate(0deg); 
   }
   100% {
-    -webkit-transform: rotate(720deg);
+    -webkit-transform: rotate(360deg);
   }
 }

@@ -13,15 +13,20 @@ class AirWeather extends Component {
     };
   }
 
-
-  componentDidUpdate() {
-    if (this.props.zipCode !== 0) {
+  // componentDidUpdate() {
+  //   if (this.props.zipCode !== 0) {
+  //     this.getWeather()
+  //   }
+  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.zipCode !== 0 && prevProps.zipCode !== this.props.zipCode) {
       this.getWeather()
     }
   }
 
   getWeather = () => {
     let zip = this.props.zipCode
+    console.log(zip)
     API.getLocation(zip).then(res => {
       this.setState({ city: res.data[0].LocalizedName, wState: res.data[0].AdministrativeArea.ID })
       return res.data[0].ParentCity.Key
