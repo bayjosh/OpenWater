@@ -1,9 +1,5 @@
-.wheel{
-    width: 150px;
-    height: 150px;
-}
 
-#wheel:hover{
+#wheel{
     width: 150px;
     height: 150px;
     z-index: 30;

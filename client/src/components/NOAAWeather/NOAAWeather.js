@@ -24,9 +24,14 @@ class NOAAWeather extends Component {
     // }
     componentDidUpdate(prevProps, prevState) {
         if (this.props.zipCode !== 0 && prevProps.zipCode !== this.props.zipCode) {
-            this.loadWeather()
+            this.loadWeather();
         }
     }
+
+
+
+
+
     loadWeather = () => {
         let zip = this.props.zipCode
         return fetch('http://localhost:5000/weatherScrape', {
@@ -50,6 +55,8 @@ class NOAAWeather extends Component {
                     SCAtext: res.SCAtext,
                     SCAissued: res.SCAissued
                 })
+                console.log(res.forecastTime)
+                this.props.handleModalLoad(this.state.forecastTime)
             })
     }
 

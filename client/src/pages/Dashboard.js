@@ -6,7 +6,7 @@ import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
 import API from "../utils/API";
-import LoadingWheel from "../components/LoadingWheel";
+import LoadingModal from "../components/LoadingModal";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -16,7 +16,8 @@ class Dashboard extends Component {
       fireRedirect: false,
       lat: null,
       lon: null,
-      zipCode: null
+      zipCode: null,
+      forecastTime: ""
     };
   }
 
@@ -39,8 +40,12 @@ class Dashboard extends Component {
       .then(result => {
         this.setState({ zipCode: result })
         console.log(this.state.zipCode)
-        this.openDepthChart();
+        // this.openDepthChart();
       })
+  }
+
+  handleModalLoad = (forecastTime) => {
+    this.setState({ forecastTime: forecastTime })
   }
 
   openDepthChart = () => {
@@ -75,7 +80,13 @@ class Dashboard extends Component {
             Dashboard
           </h1>
 
-          <LoadingWheel />
+
+          <LoadingModal
+            lat={this.state.lat}
+            lon={this.state.lon}
+            zipCode={this.state.zipCode}
+            forecastTime={this.state.forecastTime}
+          />
 
           <div className="dashboard">
             <div
@@ -102,7 +113,7 @@ class Dashboard extends Component {
               >
                 <div className="card-content white-text" style={{ height: `100%` }}>
                   <span className="card-title" style={{ textAlign: `center` }}>
-                    <h3>Map</h3>
+                    <h3>Location</h3>
                   </span>
                   <hr />
                   {/* <div
@@ -158,7 +169,8 @@ class Dashboard extends Component {
                       <h3>Marine Forecast</h3>
                     </span>{" "}
                     <hr />
-                    <NOAAWeather zipCode={this.state.zipCode} />
+                    <NOAAWeather zipCode={this.state.zipCode}
+                      handleModalLoad={this.handleModalLoad} />
                   </div>
                 </div>
 
