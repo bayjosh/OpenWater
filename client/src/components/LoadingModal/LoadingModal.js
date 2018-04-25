@@ -5,6 +5,8 @@ import LoadingWheel from "../LoadingWheel"
 import API from "../../utils/API";
 
 const customStyles = {
+    overlay: {
+    },
     content: {
         top: '50%',
         left: '50%',
@@ -33,17 +35,34 @@ class LoadingModal extends Component {
         if (this.props.zipCode !== 0 && prevProps.zipCode !== this.props.zipCode) {
             this.getLocation();
             this.openModal();
+
         } else if (this.props.forecastTime !== prevProps.forecastTime) {
             this.closeModal();
         }
     }
 
+    modalMessageLoad = () => {
+        console.log('hello')
+        const messageArr = ["...Gathering Marine Conditions...", "...Gathering Weather Forecast...", "...Gathering Docking Options..."];
+        // document.getElementById('modal-message').innerText = messageArr[0]
+
+        setTimeout(function () {
+            document.getElementById('modal-message').innerHTML = messageArr[0];
+            setTimeout(function () {
+                document.getElementById('modal-message').innerHTML = messageArr[1];
+                setTimeout(function () {
+                    document.getElementById('modal-message').innerHTML = messageArr[2]
+                }, 4000)
+            }, 4000)
+        }, 0)
+
+    }
 
 
     getLocation = () => {
         let zip = this.props.zipCode
         API.getLocation(zip).then(res => {
-            this.setState({ city: res.data[0].LocalizedName, wState: res.data[0].AdministrativeArea.ID })
+            this.setState({ city: res.data[0].LocalizedName, lState: res.data[0].AdministrativeArea.ID })
         })
     }
 
@@ -51,10 +70,11 @@ class LoadingModal extends Component {
         this.setState({ modalIsOpen: true });
     }
 
-    // afterOpenModal = () => {
-    //     // references are now sync'd and can be accessed.
-    //     this.subtitle.style.color = '#f00';
-    // }
+    afterOpenModal = () => {
+        // references are now sync'd and can be accessed.
+        // this.subtitle.style.color = '#f00';
+        this.modalMessageLoad();
+    }
 
 
     closeModal = () => {
@@ -67,15 +87,20 @@ class LoadingModal extends Component {
                 {/* <button onClick={this.openModal}>Open Modal</button> */}
                 <Modal
                     isOpen={this.state.modalIsOpen}
-                    // onAfterOpen={this.afterOpenModal}
+                    onAfterOpen={this.afterOpenModal}
                     // onRequestClose={this.closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
                     ariaHideApp={false}
                 >
-                    <LoadingWheel />
+                    <div className="center-align">
+                        <LoadingWheel />
 
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Fetching info for {this.state.city}, {this.state.lState}</h2>
+                        <h4 ref={subtitle => this.subtitle = subtitle}>Fetching info for {this.state.city}, {this.state.lState}</h4>
+                        <hr />
+                        <h6 id="modal-message"></h6>
+                    </div>
+
                 </Modal>
             </div>
         );

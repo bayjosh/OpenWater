@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/bayjosh/OpenRoad#readme",
   "dependencies": {
+    "animate.css": "^3.6.1",
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
     "electron": "^1.8.4",
