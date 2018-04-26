@@ -45,18 +45,22 @@ class LoadingModal extends Component {
         console.log('hello')
         const messageArr = ["...Gathering Marine Conditions...", "...Gathering Weather Forecast...", "...Gathering Docking Options..."];
         // document.getElementById('modal-message').innerText = messageArr[0]
+        if (this.state.modalIsOpen){
+                    setTimeout(() => {
+                        if (this.state.modalIsOpen) {
+                        document.getElementById('modal-message').innerHTML = messageArr[0];
+                        setTimeout(() => {
+                            if (this.state.modalIsOpen) {
+                            document.getElementById('modal-message').innerHTML = messageArr[1];
+                            setTimeout(() => {
+                                if (this.state.modalIsOpen) {
+                                document.getElementById('modal-message').innerHTML = messageArr[2]
+                            }}, 4000)
+                        }}, 4000)
+                    }}, 0)
 
-        setTimeout(function () {
-            document.getElementById('modal-message').innerHTML = messageArr[0];
-            setTimeout(function () {
-                document.getElementById('modal-message').innerHTML = messageArr[1];
-                setTimeout(function () {
-                    document.getElementById('modal-message').innerHTML = messageArr[2]
-                }, 4000)
-            }, 4000)
-        }, 0)
-
-    }
+                }
+        }   
 
 
     getLocation = () => {

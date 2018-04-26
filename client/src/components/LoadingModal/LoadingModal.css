@@ -1,17 +1,17 @@
 @-webkit-keyframes slideInLeft {
     0% {
-      -webkit-transform: translate3d(-100%, 0, -100%);
+      -webkit-transform: translateX(-100%);
       visibility: visible;
     }
   
     50% {
-      -webkit-transform: translate3d(0, 0, 0);
+      -webkit-transform: translateX(0);
       visibility: visible;
     }
-    100% {
-      -webkit-transform: translate3d(100%, 0, 0);
+    /* 100% {
+      -webkit-transform: translateX(100%);
       visibility: visible;
-    }
+    } */
   }
 
   /* @-webkit-keyframes slideOutRight {

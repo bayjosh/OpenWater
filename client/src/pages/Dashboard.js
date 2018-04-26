@@ -7,6 +7,7 @@ import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
 import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
+import LogVoyage from "../components/LogVoyage";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -174,24 +175,17 @@ class Dashboard extends Component {
                   </div>
                 </div>
 
+                <LogVoyage />
                 {/* <span>
-                  <button
-                    className="btn waves-effect waves-light"
-                    style={{ width: `42vh`, margin: `0 10px 0 20px` }}
-                  >
-                    Make a Log
-                  </button>
-                </span>
-                <span>
                   <button
                     style={{ width: `42vh` }}
                     className="btn waves-effect waves-light"
                   >
                     View Logs
                   </button>
-                </span> */}
+                </span>*/}
               </div>
-            </div>
+            </div> 
 
             <div
               id="air-weather"
