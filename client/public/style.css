@@ -36,7 +36,8 @@ Home Page Design
   font-family: "Amatic SC", cursive;
   font-weight: bold;
   margin-bottom: 0;
-  margin-top: 0;
+  margin-top: 40px;
+  text-align: center;
 }
 
 #logo {
