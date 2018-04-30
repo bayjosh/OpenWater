@@ -4,6 +4,7 @@ var path = require("path");
 var request = require("request")
 var cheerio = require('cheerio');
 const selector = 'div.row-forecast'
+var db = require("./models");
 
 // var nightmare = require('nightmare');
 // var db = require("./models");
@@ -28,7 +29,7 @@ app.listen(port, function () {
 
 var mongoose = require("mongoose");
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:/openRoad_db";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:/openWater_db";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -126,6 +127,34 @@ app.post('/dockwaScrape', function (req, res) {
         })
 
 })
+
+//Saving Voyages to Mongo 
+
+app.post("/saveVoyage", function (req, res) {
+    console.log(req.body)
+    var voyage = {};
+    voyage.name = req.body.name;
+    voyage.date = req.body.date;
+    voyage.description = req.body.description;
+    voyage.fuel = req.body.fuel;
+    voyage.mileageStart = req.body.mileageStart;
+    voyage.mileageEnd = req.body.mileageEnd;
+
+
+
+
+    db.Voyage.create(voyage)
+        .then(function (dbVoyage) {
+            // console.log(result)
+            res.send("Yayyy");
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+});
+
+
+
 
 //     //////////////////////////////////////FIRST DRAFT/////////////////////
 //     // let lat = req.body.lat

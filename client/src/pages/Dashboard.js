@@ -9,6 +9,7 @@ import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
 import LogVoyage from "../components/LogVoyage";
 
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -132,9 +133,9 @@ class Dashboard extends Component {
                   />
                   {/* </div> */}
                   <hr />
-                  { this.state.zipCode !== null ?
-                  <button className="activator">Depth Chart</button>
-                  : <div />}
+                  {this.state.zipCode !== null ?
+                    <button className="activator">Depth Chart</button>
+                    : <div />}
                 </div>
                 <div style={{
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
@@ -187,7 +188,7 @@ class Dashboard extends Component {
                   </button>
                 </span>*/}
               </div>
-            </div> 
+            </div>
 
             <div
               id="air-weather"
