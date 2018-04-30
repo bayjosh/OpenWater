@@ -141,8 +141,6 @@ app.post("/saveVoyage", function (req, res) {
     voyage.mileageEnd = req.body.mileageEnd;
 
 
-
-
     db.Voyage.create(voyage)
         .then(function (dbVoyage) {
             // console.log(result)
