@@ -132,7 +132,9 @@ class Dashboard extends Component {
                   />
                   {/* </div> */}
                   <hr />
+                  { this.state.zipCode !== null ?
                   <button className="activator">Depth Chart</button>
+                  : <div />}
                 </div>
                 <div style={{
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
