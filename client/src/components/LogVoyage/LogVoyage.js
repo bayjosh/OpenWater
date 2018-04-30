@@ -20,9 +20,9 @@ class LogVoyage extends Component {
             
                 <Row >
                     <br/>
-                    <Input validate placeholder="Name your voyage here" s={12} label="Voyage Name"><Icon>directions_boat</Icon></Input>
+                    <Input validate placeholder="Name your voyage here" s={12} label="Name"><Icon>directions_boat</Icon></Input>
                     <Input label="Date" name='on' type='date' onChange={function (e, value) { console.log(value)}}><Icon>date_range</Icon></Input>
-                    <Input type="textarea" placeholder="Add a brief summary of your voyage here" label="Voyage Description" s={12}><Icon>create</Icon></Input>
+                    <Input type="textarea" placeholder="Add a brief summary of your voyage here" label="Description" s={12}><Icon>create</Icon></Input>
                     <Input validate s={6} type='select' icon="local_gas_station" label="Ending Fuel Level" defaultValue=''>
                         <option value="" disabled>Pick One</option>
                         <option value='1'>3/4 - Full</option>
