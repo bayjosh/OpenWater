@@ -41,7 +41,7 @@ class Dashboard extends Component {
       .then(result => {
         this.setState({ zipCode: result })
         console.log(this.state.zipCode)
-        // this.openDepthChart();
+        this.openDepthChart();
       })
   }
 

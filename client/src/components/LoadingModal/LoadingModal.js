@@ -43,7 +43,7 @@ class LoadingModal extends Component {
 
     modalMessageLoad = () => {
         console.log('hello')
-        const messageArr = ["...Gathering Marine Conditions...", "...Gathering Weather Forecast...", "...Gathering Docking Options..."];
+        const messageArr = ["...Forecasting Marine Conditions...", "...Assembling Weather Forecast...", "...Gathering Docking Options...", "...Finding Nautical Charts...", "...Running Out of Excuses..."];
         // document.getElementById('modal-message').innerText = messageArr[0]
         if (this.state.modalIsOpen){
                     setTimeout(() => {
@@ -55,6 +55,14 @@ class LoadingModal extends Component {
                             setTimeout(() => {
                                 if (this.state.modalIsOpen) {
                                 document.getElementById('modal-message').innerHTML = messageArr[2]
+                                setTimeout(() => {
+                                    if (this.state.modalIsOpen) {
+                                    document.getElementById('modal-message').innerHTML = messageArr[3]
+                                    setTimeout(() => {
+                                        if (this.state.modalIsOpen) {
+                                        document.getElementById('modal-message').innerHTML = messageArr[4]
+                                    }}, 4000)
+                                }}, 4000)
                             }}, 4000)
                         }}, 4000)
                     }}, 0)
