@@ -9,7 +9,7 @@ class LogVoyage extends Component {
         this.state = {
             voyageName: "",
             voyageDate: "",
-            voyageDesription: "",
+            voyageDescription: "",
             voyageFuel: "",
             voyageMileageStart: 0,
             voyageMileageEnd: 0
@@ -24,7 +24,7 @@ class LogVoyage extends Component {
         axios.post("http://localhost:5000/saveVoyage", {
             name: this.state.voyageName,
             date: this.state.voyageDate,
-            description: this.state.voyageDesription,
+            description: this.state.voyageDescription,
             fuel: this.state.voyageFuel,
             mileageStart: this.state.voyageMileageStart,
             mileageEnd: this.state.voyageMileageEnd,
@@ -33,6 +33,12 @@ class LogVoyage extends Component {
 
     render() {
         return (
+
+
+            // <Modal
+            //     trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
+            // >
+            // </Modal>
 
             <Modal
                 header='Log A Voyage'

@@ -45,30 +45,35 @@ class LoadingModal extends Component {
         console.log('hello')
         const messageArr = ["...Forecasting Marine Conditions...", "...Assembling Weather Forecast...", "...Gathering Docking Options...", "...Finding Nautical Charts...", "...Running Out of Excuses..."];
         // document.getElementById('modal-message').innerText = messageArr[0]
-        if (this.state.modalIsOpen){
+        if (this.state.modalIsOpen) {
+            setTimeout(() => {
+                if (this.state.modalIsOpen) {
+                    document.getElementById('modal-message').innerHTML = messageArr[0];
                     setTimeout(() => {
                         if (this.state.modalIsOpen) {
-                        document.getElementById('modal-message').innerHTML = messageArr[0];
-                        setTimeout(() => {
-                            if (this.state.modalIsOpen) {
                             document.getElementById('modal-message').innerHTML = messageArr[1];
                             setTimeout(() => {
                                 if (this.state.modalIsOpen) {
-                                document.getElementById('modal-message').innerHTML = messageArr[2]
-                                setTimeout(() => {
-                                    if (this.state.modalIsOpen) {
-                                    document.getElementById('modal-message').innerHTML = messageArr[3]
+                                    document.getElementById('modal-message').innerHTML = messageArr[2]
                                     setTimeout(() => {
                                         if (this.state.modalIsOpen) {
-                                        document.getElementById('modal-message').innerHTML = messageArr[4]
-                                    }}, 4000)
-                                }}, 4000)
-                            }}, 4000)
-                        }}, 4000)
-                    }}, 0)
-
+                                            document.getElementById('modal-message').innerHTML = messageArr[3]
+                                            setTimeout(() => {
+                                                if (this.state.modalIsOpen) {
+                                                    document.getElementById('modal-message').innerHTML = messageArr[4]
+                                                }
+                                            }, 4000)
+                                        }
+                                    }, 4000)
+                                }
+                            }, 4000)
+                        }
+                    }, 4000)
                 }
-        }   
+            }, 0)
+
+        }
+    }
 
 
     getLocation = () => {
@@ -110,7 +115,7 @@ class LoadingModal extends Component {
 
                         <h4 ref={subtitle => this.subtitle = subtitle}>Fetching info for {this.state.city}, {this.state.lState}</h4>
                         <hr />
-                        <h6 id="modal-message"></h6>
+                        <h6 id="modal-message">Loading...</h6>
                     </div>
 
                 </Modal>
