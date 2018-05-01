@@ -29,7 +29,9 @@ class Dashboard extends Component {
   //   }
   // }
 
-
+  componentDidMount(){
+    document.querySelector('body').style.overflow = "scroll"
+  }
   onChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
     API.getZipCode(this.state.lat, this.state.lon).then(res => {

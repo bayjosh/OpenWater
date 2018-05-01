@@ -50,7 +50,7 @@
   height: 100%;
   width: 100%;
   z-index: -2;
- -webkit-animation: zoomin 6s ease-out, blurIn 1.5s;
+ -webkit-animation: zoomin 12s linear;
  animation-fill-mode: forwards;
 }
 
