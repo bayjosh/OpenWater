@@ -43,7 +43,9 @@ class LogVoyage extends Component {
             <Modal
                 header='Log A Voyage'
                 trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
-                actions={<Button modal="close" onClick={this.saveVoyage}><Icon left>check_circle</Icon>Save This Voyage</Button>}>
+                actions={<Button modal="close" onClick={this.saveVoyage}
+                ><Icon left>check_circle</Icon>Save This Voyage</Button>} modalOptions={{complete: () => document.querySelector('body').style.overflow = "scroll" }}>
+                
 
                 <Row >
                     <br />
