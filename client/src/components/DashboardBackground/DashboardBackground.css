@@ -23,7 +23,7 @@
 }
 
 #blur-in-background {
-  -webkit-animation: blurIn 0.75s ease-in
+  /* -webkit-animation: blurIn 0.75s ease-in */
 }
 
 .dashboard {
