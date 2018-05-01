@@ -13,6 +13,13 @@ var db = require("./models");
 var logger = require("morgan");
 app.use(logger("dev"));
 
+
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+//allow sessions
+app.use(session({ secret: 'app', cookie: { maxAge: 6 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000 } }));
+app.use(cookieParser());
+
 // Use body-parser for handling form submissions
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -143,7 +150,6 @@ app.post("/saveVoyage", function (req, res) {
 
     db.Voyage.create(voyage)
         .then(function (dbVoyage) {
-            // console.log(result)
             res.send("Yayyy");
         })
         .catch(function (err) {

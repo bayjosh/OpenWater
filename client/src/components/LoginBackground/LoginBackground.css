@@ -7,9 +7,9 @@
   }
 }
 
-#destination-background-zoom {
+#login-background-zoom {
   text-align: center;
-  background: url("../../images/dock.png") center fixed
+  background: url("../../images/river1.jpg") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
@@ -41,9 +41,9 @@
   }
 }
 
-#destination-background-initZoom {
+#login-background-initZoom {
   text-align: center;
-  background: url("../../images/dock.png") center fixed
+  background: url("../../images/river1.jpg") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;

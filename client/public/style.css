@@ -4,23 +4,8 @@ Home Page Design
 
 ////////////////////////////////////////////////*/
 
-#saved-trips {
-  float: left;
-  color: white;
-  font-size: 18px;
-  opacity: 0.8;
-  font-family: "Nanum Myeongjo", serif;
-  margin: 20px 0 0 20px;
-  font-weight: bold;
-  z-index: 1;
-}
 
-#trip-name-form {
-  padding-top: 115px;
-  text-align: center;
-}
-
-#trip-name-input {
+#continueAsGuestButton {
   width: 30%;
   color: white;
   size: 60px;
@@ -30,73 +15,54 @@ Home Page Design
   border-radius: 25px;
 }
 
-#trip-name-header {
+#login {
+  width: 30%;
+  color: white;
+  size: 60px;
+  font-family: "Slabo 27px", serif;
+  text-align: center;
+  background-color: rgba(145, 174, 194, 0.952);
+  border-radius: 25px;
+}
+
+#homeHeader {
   color: white;
   font-size: 80px;
   font-family: "Amatic SC", cursive;
   font-weight: bold;
   margin-bottom: 0;
   margin-top: 0;
+  text-align: center;
 }
 
-#logo {
-  margin-top: 40px;
-  height: 90px;
-  width: 90px;
-  filter: invert(100%);
-}
-
-#logo2 {
-  width: 400px;
-  height: 200px;
-  float: left;
-  margin-top: 90px;
-}
 
 /*////////////////////////////////////////////////// 
 
-Destination Page Design
+Login Page Design
 
 //////////////////////////////////////////////////*/
-.destination{
+.login{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center
 }
-.destination-container {
+.loginContainer {
   width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
 }
-#destination-form{
+#loginForm{
   width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
 }
-  
-#saved-trips {
-  float: left;
-  color: white;
-  font-size: 18px;
-  opacity: 0.8;
-  font-family: "Nanum Myeongjo", serif;
-  margin: 20px 0 0 20px;
-  font-weight: bold;
-  z-index: 3
-}
 
-#destination-form {
-  padding-top: 115px;
-  text-align: center;
-  margin-right: 0;
-}
-
-#origin-input {
+#usernameInput {
   width: 90%;
   color: white;
   size: 50px;
@@ -105,7 +71,7 @@ Destination Page Design
   text-align: center;
 }
 
-#origin-header {
+#usernameHeader {
   color: white;
   font-size: 80px;
   font-family: "Amatic SC", cursive;
@@ -113,7 +79,7 @@ Destination Page Design
   margin-bottom: 0;
 }
 
-#destination-input {
+#passwordInput {
   width: 90%;
   color: white;
   size: 50px;
@@ -122,24 +88,10 @@ Destination Page Design
   text-align: center;
 }
 
-#destination-header {
+#passwordHeader {
   color: white;
   font-size: 80px;
   font-family: "Amatic SC", cursive;
   font-weight: bold;
   margin-bottom: 0;
-}
-
-#logo {
-  margin-top: 40px;
-  height: 90px;
-  width: 90px;
-  filter: invert(100%);
-}
-
-#logo2 {
-  width: 400px;
-  height: 200px;
-  float: left;
-  margin-top: 90px;
 }
