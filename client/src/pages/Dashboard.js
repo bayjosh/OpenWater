@@ -175,7 +175,7 @@ class Dashboard extends Component {
                       <h3>Marine Forecast</h3>
                     </span>{" "}
                     <hr />
-                    <NOAAWeather zipCode={this.state.zipCode}
+                    <NOAAWeather lat={this.state.lat} lon={this.state.lon}
                       handleModalLoad={this.handleModalLoad} />
                   </div>
                 </div>
