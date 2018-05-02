@@ -50,51 +50,124 @@ app.use(function (req, res, next) {
     next();
 });
 
-
+let info = {}
 app.post('/weatherScrape', function (req, res) {
     const Nightmare = require('nightmare')
     const nightmare = Nightmare({
-        typeInterval: 10
     });
-    let zip = req.body.zip
+    let zoneId = "";
+    let lat = req.body.latlon.lat
+    let lon = req.body.latlon.lon
     nightmare
-        .goto('https://www.wunderground.com/MAR/')
-        .type('#marineSearch', zip)
-        .click('[value=Go]')
-        .wait(('div.content')[1])
-        .evaluate(() => {
-            if (document.querySelectorAll('div.title')[1] && document.querySelectorAll('div.title')[1].children[0].textContent == "Small Craft Advisory") {
-                var SCAheader = "Small Craft Advisory"
-                var SCAtext = document.querySelectorAll('div.content')[2].textContent
-                var SCAissued = document.querySelectorAll('div.title')[1].children[1].textContent
-            } //added small craft advisory only if there is one
-            var selector = document.querySelectorAll('div.content')[1]
-            var forecastTime = document.querySelector('[class=title]').textContent
-            var headers = [];
-            var warnings = [];
-            var zoneNames = [];
-            var texts = [];
-            for (var i = 0; i < selector.childElementCount; i++) {
-                if (selector.children[i].tagName == 'H5') {
-                    headers.push(selector.children[i].textContent);
-                } else if (selector.children[i].className === "marine-warning") {
-                    for (var j = 0; j < selector.children[i].childElementCount; j++) {
-                        warnings.push(selector.children[i].children[j].textContent);
-                    }
-                } else if (selector.children[i].className === 'marine-warning-location') {
-                    zoneNames.push(selector.children[i].textContent);
-                } else if (selector.children[i].className == "") {
-                    texts.push(selector.children[i].textContent)
-                }
-
-            }
-            return { headers, warnings, zoneNames, texts, forecastTime, SCAtext, SCAheader, SCAissued }
-        })
+        .goto(`http://marine.weather.gov/MapClick.php?site=LOT&lat=${lat}&lon=${lon}`)
+        .click('#seven-day-forecast-body a')
+        .wait('.row-forecast .forecast-label b')
+        .url()
         .end()
-        .then(result => { res.json(result) })
+        .then(result => {
+            var el = result.split('=')[1].split('#')[0];
+            zoneId = el;
+            var URL = `http://www.marineweatherbybluefin.com/reverse-proxy?id=${zoneId}&pro=1&source=aws&uri=offshoreweather/forecast.php`;
+            console.log('URL: '+URL)
+            request(URL, function (error, response, html) {
+                if (error) throw error
+                var $ = cheerio.load(html);
+                var warning = "";
+                var forecastTime = "";
+                var affectedZones = [];
+                var headers = [];
+                var texts = [];
+                $('div.section').each(function (i, element) {
+
+                    if ($(element).find($('p.light')).text() != "") {
+                        forecastTime = $(element).find($('p.light')).text()
+                        if (forecastTime.charAt(3) === ' ') {
+                            forecastTime = forecastTime.substr(0, 1) + ':' + forecastTime.substr(1)
+                        } else {
+                            forecastTime = forecastTime.substr(0, 2) + ':' + forecastTime.substr(2)
+                        }
+                        affectedZones = $(element).find($('p.light')).prev().text().split(', ')
+                    }
+                    if (forecastTime != undefined) {
+                        forecastTime = forecastTime
+                    }
+                    if (affectedZones != undefined) {
+                        affectedZones = affectedZones
+                    }
+                    if ($(element).hasClass('warning')) {
+                        warning = $(element).parent().find($('.warning')).children().text()
+                    }
+                    if (warning != undefined) {
+                        warning = warning
+                    }
+                    if ($(element).hasClass('even') || $(element).hasClass('odd')) {
+                        var header = $(element).find($('.title')).text()
+                        var text = $(element).find($('.title')).next().text()
+                        headers.push(header)
+                        texts.push(text)
+                        if (header === '') {
+                            headers.pop(header)
+                        }
+                        if (text === '') {
+                            texts.pop(text)
+                        }
+                        // we can change those if we want, only to exclude the long typo ones that jen doesnt even look at
+                    }
+                })
+                headers.splice(0,1)
+                texts.splice(0,1)
+                info.warning = warning;
+                info.affectedZones = affectedZones;
+                info.forecastTime = forecastTime;
+                info.headers = headers;
+                info.texts = texts;
+                console.log(info)
+                res.json(info)
+                
+            })  
+        })
         .catch(error => {
             console.error('Search failed:', error)
         })
+    // let zip = req.body.zip
+    // nightmare
+    //     .goto('https://www.wunderground.com/MAR/')
+    //     .type('#marineSearch', zip)
+    //     .click('[value=Go]')
+    //     .wait(('div.content')[1])
+    //     .evaluate(() => {
+    //         if (document.querySelectorAll('div.title')[1] && document.querySelectorAll('div.title')[1].children[0].textContent == "Small Craft Advisory") {
+    //             var SCAheader = "Small Craft Advisory"
+    //             var SCAtext = document.querySelectorAll('div.content')[2].textContent
+    //             var SCAissued = document.querySelectorAll('div.title')[1].children[1].textContent
+    //         } //added small craft advisory only if there is one
+    //         var selector = document.querySelectorAll('div.content')[1]
+    //         var forecastTime = document.querySelector('[class=title]').textContent
+    //         var headers = [];
+    //         var warnings = [];
+    //         var zoneNames = [];
+    //         var texts = [];
+    //         for (var i = 0; i < selector.childElementCount; i++) {
+    //             if (selector.children[i].tagName == 'H5') {
+    //                 headers.push(selector.children[i].textContent);
+    //             } else if (selector.children[i].className === "marine-warning") {
+    //                 for (var j = 0; j < selector.children[i].childElementCount; j++) {
+    //                     warnings.push(selector.children[i].children[j].textContent);
+    //                 }
+    //             } else if (selector.children[i].className === 'marine-warning-location') {
+    //                 zoneNames.push(selector.children[i].textContent);
+    //             } else if (selector.children[i].className == "") {
+    //                 texts.push(selector.children[i].textContent)
+    //             }
+
+    //         }
+    //         return { headers, warnings, zoneNames, texts, forecastTime, SCAtext, SCAheader, SCAissued }
+    //     })
+    //     .end()
+    //     .then(result => { res.json(result) })
+    //     .catch(error => {
+    //         console.error('Search failed:', error)
+    //     })
 
 })
 
