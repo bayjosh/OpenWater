@@ -8,6 +8,7 @@ import AirWeather from "../components/AirWeather";
 import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
 import LogVoyage from "../components/LogVoyage";
+import { Link } from "react-router-dom";
 
 
 class Dashboard extends Component {
@@ -29,7 +30,7 @@ class Dashboard extends Component {
   //   }
   // }
 
-  componentDidMount(){
+  componentDidMount() {
     document.querySelector('body').style.overflow = "scroll"
   }
   onChange = (lati, long) => {
@@ -181,17 +182,17 @@ class Dashboard extends Component {
                 </div>
 
                 <LogVoyage />
-                {/* <span>
-                  <button
-                    style={{ width: `42vh` }}
-                    className="btn waves-effect waves-light"
-                  >
-                    View Logs
+
+                <Link to="/voyages"><button
+                  style={{ width: `42vh` }}
+                  className="btn waves-effect waves-light"
+                >
+                  View Logs
                   </button>
-                </span>*/}
+                </Link>
+
               </div>
             </div>
-
             <div
               id="air-weather"
               style={{

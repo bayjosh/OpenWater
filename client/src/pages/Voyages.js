@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 // import "../App.css";
 // import axios from "axios";
 
@@ -17,6 +18,8 @@ class Voyages extends Component {
 
     componentDidMount() {
         this.loadVoyages().then(voyages => this.setState({ voyages }));
+        document.querySelector('body').style.overflow = "scroll"
+
     }
 
     loadVoyages = () => {
@@ -98,6 +101,14 @@ class Voyages extends Component {
     render() {
         return (
             <div className="container">
+                <Link to="/dashboard"><button
+                    style={{ width: `42vh` }}
+                    className="btn waves-effect waves-light"
+                >
+                    Back to Dash
+                  </button>
+                </Link>
+
                 {this.state.voyages.map(v => (
                     <div className="card blue-grey darken-1" data-id={v._id} key={v._id}>
                         <h5>{v.name}</h5>
