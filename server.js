@@ -68,7 +68,7 @@ app.post('/weatherScrape', function (req, res) {
             var el = result.split('=')[1].split('#')[0];
             zoneId = el;
             var URL = `http://www.marineweatherbybluefin.com/reverse-proxy?id=${zoneId}&pro=1&source=aws&uri=offshoreweather/forecast.php`;
-            console.log('URL: '+URL)
+            console.log('URL: ' + URL)
             request(URL, function (error, response, html) {
                 if (error) throw error
                 var $ = cheerio.load(html);
@@ -114,8 +114,8 @@ app.post('/weatherScrape', function (req, res) {
                         // we can change those if we want, only to exclude the long typo ones that jen doesnt even look at
                     }
                 })
-                headers.splice(0,1)
-                texts.splice(0,1)
+                headers.splice(0, 1)
+                texts.splice(0, 1)
                 info.warning = warning;
                 info.affectedZones = affectedZones;
                 info.forecastTime = forecastTime;
@@ -123,8 +123,8 @@ app.post('/weatherScrape', function (req, res) {
                 info.texts = texts;
                 console.log(info)
                 res.json(info)
-                
-            })  
+
+            })
         })
         .catch(error => {
             console.error('Search failed:', error)
@@ -228,6 +228,12 @@ app.post("/saveVoyage", function (req, res) {
         .catch(function (err) {
             res.json(err);
         });
+});
+
+app.get("/api/voyages", function (req, res) {
+    db.Voyage.find({}, function (error, response) {
+        res.send(response);
+    });
 });
 
 
