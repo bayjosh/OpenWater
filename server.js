@@ -260,6 +260,18 @@ app.get("/api/charts/:lat/:lon", function (req, res) {
         })
 });
 
+app.delete("/api/voyages/delete/:id", function (req, res) {
+    var _id = req.params.id;
+    db.Voyage.remove(
+        {
+            _id: _id
+        },
+        function (err, removed) {
+            res.json(_id);
+        }
+    );
+});
+
 
 
 

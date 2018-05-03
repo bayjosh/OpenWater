@@ -30,21 +30,35 @@ class Voyages extends Component {
     //     return fetch(`http://localhost:4025/api/articles/${id}`).then(res => res.json());
     // };
 
-    // removeVoyage = event => {
-    //     event.preventDefault();
-    //     debugger;
-    //     let deleteID = event.target.parentElement.getAttribute("data-id");
-    //     fetch(`http://localhost:5000/api/voyages/${deleteID}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(res => res.json())
-    //         .then(oldArticleID => {
-    //             let articles = this.state.articles.filter(
-    //                 (article, i) => article._id !== oldArticleID
-    //             );
-    //             this.setState({ articles });
-    //         });
-    // };
+    removeVoyage = event => {
+        event.preventDefault();
+        let deleteID = event.target.parentElement.parentElement.getAttribute("data-id")
+        fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(oldVoyageID => {
+                let voyages = this.state.voyages.filter(
+                    (voyage, i) => voyage._id !== oldVoyageID
+                );
+                this.setState({ voyages });
+            });
+    };
+
+    iconRemoveVoyage = event => {
+        event.preventDefault();
+        let deleteID = event.target.parentElement.parentElement.parentElement.getAttribute("data-id")
+        fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(oldVoyageID => {
+                let voyages = this.state.voyages.filter(
+                    (voyage, i) => voyage._id !== oldVoyageID
+                );
+                this.setState({ voyages });
+            });
+    };
 
     // loadNoteForm = id => {
     //     this.setState({ updateNote: true }, () => {
@@ -110,7 +124,7 @@ class Voyages extends Component {
                   </button>
                 </Link>
 
-                {this.state.voyages.reverse().map(v => (
+                {this.state.voyages.map(v => (
                     <div className="card cyan lighten-4" data-id={v._id} key={v._id}>
                         <h5>Voyage: {v.name}</h5>
                         <h5>Sailing date: {v.date}</h5>
@@ -119,6 +133,9 @@ class Voyages extends Component {
                         <h5>Starting Mileage: {v.mileageStart}</h5>
                         <h5>Ending Mileage: {v.mileageEnd}</h5>
                         <h5>Total Trip Distance: {v.voyageDistance}</h5>
+                        <div className="right-align">
+                            <button className="btn red" onClick={this.removeVoyage}><i className="material-icons" onClick={this.iconRemoveVoyage}>delete</i> </button>
+                        </div>
                     </div>
                 ))}
             </div>
