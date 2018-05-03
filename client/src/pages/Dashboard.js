@@ -9,6 +9,7 @@ import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
 import LogVoyage from "../components/LogVoyage";
 import { Link } from "react-router-dom";
+import { Modal } from 'react-materialize'
 
 
 class Dashboard extends Component {
@@ -146,10 +147,18 @@ class Dashboard extends Component {
                   {/* </div> */}
                   <hr />
                   {this.state.zipCode !== null ?
-                  <div>
-                    <button className="activator">Depth Overlay</button>
-                    <a target="_blank" href={this.state.chartsURL}><button>NOAA Nautical Charts</button></a>
-                    </div>
+                  <div style={{display: `flex`, flexDirection: `row`, justifyContent: ` space-evenly`}}>  
+                  <button className="btn activator">Depth Overlay</button>
+                          {this.state.chartsURL !== "" ?
+                          <a target="_blank" href={this.state.chartsURL}>
+                          <button className="btn">NOAA Nautical Charts</button>
+                          </a> :
+                          <Modal
+                          header='NOAA Charts Currently Unavailable'
+                          trigger={<button className="btn">NOAA Nautical Charts</button>}
+                          modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
+                          </Modal>}
+                  </div>
                     : <div />}
                 </div>
                 <div style={{
@@ -196,8 +205,7 @@ class Dashboard extends Component {
                 <LogVoyage />
 
                 <Link to="/voyages"><button
-                  style={{ width: `42vh` }}
-                  className="btn waves-effect waves-light"
+                  className="btn"
                 >
                   View Logs
                   </button>
