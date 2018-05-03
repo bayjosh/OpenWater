@@ -9,7 +9,7 @@
   
   #register-background-zoom {
     text-align: center;
-    background: url("../../images/city.JPG") center fixed
+    background: url("../../images/registerBackground.jpg") center fixed
       no-repeat;
     background-size: cover;
     position: absolute;
@@ -43,7 +43,7 @@
   
   #register-background-initZoom {
     text-align: center;
-    background: url("../../images/city.JPG") center fixed
+    background: url("../../images/registerBackground.jpg") center fixed
       no-repeat;
     background-size: cover;
     position: absolute;
@@ -62,3 +62,57 @@
       -webkit-transform: scale(1.3);
     }
   }
+
+  .input-field {
+    margin-bottom: 0;
+  }
+
+  .registerHeader {
+    font-size: 40px;
+    color: rgb(96, 190, 245);
+    text-align: center;
+    padding-top: 5%;
+    text-shadow: 1px 1px 3px #fdfdfd;
+    font-family: 'Berkshire Swash', cursive;
+  }
+
+  #signUp {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.753);
+  }
+
+  #registerInput {
+    
+    color: white;
+    
+  }
+
+  .registerButton {
+    background-color: rgb(40, 162, 233);
+    border: 1px solid white;
+    margin-bottom: 5%;
+    border-radius: 25px;
+  }
+
+  .registerButton:hover {
+    color: rgb(40, 162, 233);
+    background-color: white;
+  }
+
+
+  #registerContainer {
+    margin-top: 25%;
+    background-color: rgba(0, 0, 0, 0.719);
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+padding: 0 20px;
+  }
+
+
+
+  
+
+
+ 

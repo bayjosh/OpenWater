@@ -39,59 +39,49 @@ class Register extends Component {
         return (
             <div>
                 <RegisterBackground />
-                <div className="register">
+                <div className="register container" style={{ textAlign: "center" }}>
+                    <div className="row">
+                        <div className="col m8 offset-m2">
+                            <div id="registerContainer">
+                                <form id="registerForm" onSubmit={this.registerSubmit}>
+                                    <p id="firstNameHeader" className="registerHeader">Open Water</p>
+                                    <div class="row">
+                                        <div className="col m6">
+                                            <div className="input-field">
+                                                <input placeholder="First Name" autoFocus="autofocus" id="registerInput" type="text" class="validate" />
+                                            </div>
+                                        </div>
+                                        <div className="col m6">
+                                            <div className="input-field">
+                                                <input placeholder="Last Name" autoFocus="autofocus" id="registerInput" type="text" class="validate" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col m6">
+                                            <div className="input-field">
+                                                <input placeholder="E-Mail" autoFocus="autofocus" id="registerInput" type="text" class="validate" />
+                                            </div>
+                                        </div>
+                                        <div className="col m6">
+                                            <div className="input-field" style={{ paddingBottom: "20px" }}>
+                                                <input placeholder="Password" autoFocus="autofocus" id="registerInput" type="password" class="validate" />
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    <div className="registerContainer">
-                        <form id="registerForm" onSubmit={this.registerSubmit}>
-                            <p id="firstNameHeader" className="registerHeader">First Name:</p>
-                            <input
-                                autoFocus="autofocus"
-                                style={{ fontSize: "50px" }}
-                                id="usernameInputRegister"
-                                className="registerInput"
-                                type="text"
-                                required
-                            />
-                            <p id="lastNameHeader" className="registerHeader">Last Name</p>
-                            <input
-                                style={{ fontSize: "50px" }}
-                                id="usernameInputRegister"
-                                type="text"
-                                className="registerInput"
-                                required
-                            />
-                            <p id="emailHeader" className="registerHeader">Email:</p>
-                            <input
-                                style={{ fontSize: "50px" }}
-                                id="usernameInputRegister"
-                                type="text"
-                                className="registerInput"
-                                required
-                            />
-                            <p id="usernameHeaderRegister" className="registerHeader">Username:</p>
-                            <input
-                                style={{ fontSize: "50px" }}
-                                id="usernameInputRegister"
-                                type="text"
-                                className="registerInput"
-                                required
-                            />
-                            <p id="passwordHeaderRegister" className="registerHeader">Password:</p>
-                            <input
-                                style={{ fontSize: "50px" }}
-                                id="passwordInputRegister"
-                                type="text"
-                                className="registerInput"
-                                required
-                            />
-                            <button type="submit" style={{ visibility: `hidden` }}></button>
-                        </form>
-                        {this.state.fireRedirect && <Redirect to="/dashboard" />}
+                                    <button type="submit" className="waves-effect waves-light btn registerButton"  >Register</button>
+                                </form>
+                                {this.state.fireRedirect && <Redirect to="/dashboard" />}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         );
+
     }
+
 }
 
 export default Register;
