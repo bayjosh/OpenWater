@@ -29,6 +29,10 @@ const voyageSchema = new Schema({
         type: Number,
     },
 
+    voyageDistance: {
+        type: Number,
+    },
+
     dateSaved: {
         type: Date,
         default: Date.now

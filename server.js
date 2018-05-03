@@ -211,7 +211,7 @@ app.post('/dockwaScrape', function (req, res) {
 //Saving Voyages to Mongo 
 
 app.post("/saveVoyage", function (req, res) {
-    console.log(req.body)
+    console.log("req.body:", req.body)
     var voyage = {};
     voyage.name = req.body.name;
     voyage.date = req.body.date;
@@ -219,11 +219,12 @@ app.post("/saveVoyage", function (req, res) {
     voyage.fuel = req.body.fuel;
     voyage.mileageStart = req.body.mileageStart;
     voyage.mileageEnd = req.body.mileageEnd;
+    voyage.voyageDistance = req.body.voyageDistance;
 
 
     db.Voyage.create(voyage)
         .then(function (dbVoyage) {
-            res.send("Yayyy");
+            res.end();
         })
         .catch(function (err) {
             res.json(err);
@@ -237,9 +238,9 @@ app.get("/api/voyages", function (req, res) {
 });
 
 app.get("/api/charts/:lat/:lon", function (req, res) {
-    console.log('lat and lon: '+req.params.lat, req.params.lon)
+    console.log('lat and lon: ' + req.params.lat, req.params.lon)
     const Nightmare = require('nightmare')
-    const nightmare = Nightmare({ typeInterval: 10});
+    const nightmare = Nightmare({ typeInterval: 10 });
     let lat = req.params.lat;
     let lon = req.params.lon;
     nightmare

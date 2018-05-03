@@ -30,10 +30,11 @@ class Voyages extends Component {
     //     return fetch(`http://localhost:4025/api/articles/${id}`).then(res => res.json());
     // };
 
-    // removeArticle = event => {
+    // removeVoyage = event => {
     //     event.preventDefault();
+    //     debugger;
     //     let deleteID = event.target.parentElement.getAttribute("data-id");
-    //     fetch(`http://localhost:4025/api/articles/${deleteID}`, {
+    //     fetch(`http://localhost:5000/api/voyages/${deleteID}`, {
     //         method: "DELETE"
     //     })
     //         .then(res => res.json())
@@ -109,14 +110,15 @@ class Voyages extends Component {
                   </button>
                 </Link>
 
-                {this.state.voyages.map(v => (
-                    <div className="card blue-grey darken-1" data-id={v._id} key={v._id}>
-                        <h5>{v.name}</h5>
-                        <h5>{v.date}</h5>
+                {this.state.voyages.reverse().map(v => (
+                    <div className="card cyan lighten-4" data-id={v._id} key={v._id}>
+                        <h5>Voyage: {v.name}</h5>
+                        <h5>Sailing date: {v.date}</h5>
                         <h5>{v.description}</h5>
-                        <h5>{v.fuel}</h5>
-                        <h5>{v.mileageStart}</h5>
-                        <h5>{v.mileageEnd}</h5>
+                        <h5>Fuel remaining: {v.fuel}</h5>
+                        <h5>Starting Mileage: {v.mileageStart}</h5>
+                        <h5>Ending Mileage: {v.mileageEnd}</h5>
+                        <h5>Total Trip Distance: {v.voyageDistance}</h5>
                     </div>
                 ))}
             </div>

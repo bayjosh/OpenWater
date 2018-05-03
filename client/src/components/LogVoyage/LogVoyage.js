@@ -12,13 +12,14 @@ class LogVoyage extends Component {
             voyageDescription: "",
             voyageFuel: "",
             voyageMileageStart: 0,
-            voyageMileageEnd: 0
+            voyageMileageEnd: 0,
+            voyageDistance: 0
         };
     }
 
     saveVoyage = event => {
         event.preventDefault();
-        this.setState({ isOpen: false })
+        this.setState({ isOpen: false, voyageDistance: this.state.voyageMileageEnd - this.state.voyageMileageStart })
         // let name = event.target.parentElement.parentElement.firstChild.children[1].children[1].children[1].value;
 
         axios.post("http://localhost:5000/saveVoyage", {
@@ -28,10 +29,14 @@ class LogVoyage extends Component {
             fuel: this.state.voyageFuel,
             mileageStart: this.state.voyageMileageStart,
             mileageEnd: this.state.voyageMileageEnd,
+            voyageDistance: this.state.voyageDistance
         });
     };
 
     render() {
+
+        let distance = parseInt(this.state.voyageMileageEnd - this.state.voyageMileageStart)
+
         return (
 
 
@@ -44,8 +49,8 @@ class LogVoyage extends Component {
                 header='Log A Voyage'
                 trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
                 actions={<Button modal="close" onClick={this.saveVoyage}
-                ><Icon left>check_circle</Icon>Save This Voyage</Button>} modalOptions={{complete: () => document.querySelector('body').style.overflow = "scroll" }}>
-                
+                ><Icon left>check_circle</Icon>Save This Voyage</Button>} modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
+
 
                 <Row >
                     <br />
@@ -60,8 +65,14 @@ class LogVoyage extends Component {
                         <option value='Empty - 1/4'>Empty - 1/4 </option>
                     </Input>
                     <Input s={3} label="Starting Mileage" onChange={(e, value) => { this.setState({ voyageMileageStart: value }) }} />
-                    <Input s={3} label="Ending Mileage" onChange={(e, value) => { this.setState({ voyageMileageEnd: value }) }} />
+                    <Input s={3} label="Ending Mileage" onChange={(e, value) => {
+                        this.setState({ voyageMileageEnd: value })
+                    }} />
+
                 </Row>
+                {distance < 0 ? <p>Voyage distance: 0</p> : <p className="right-align">Voyage distance: {distance}</p>}
+
+
                 <Button s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
 
 
