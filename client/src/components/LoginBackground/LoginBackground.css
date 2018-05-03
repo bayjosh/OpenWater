@@ -9,7 +9,7 @@
 
 #login-background-zoom {
   text-align: center;
-  background: url("../../images/river1.jpg") center fixed
+  background: url("../../images/loginBackground.png") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
@@ -43,14 +43,14 @@
 
 #login-background-initZoom {
   text-align: center;
-  background: url("../../images/river1.jpg") center fixed
+  background: url("../../images/loginBackground.png") center fixed
     no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: -2;
- -webkit-animation: zoomin 12s linear;
+ -webkit-animation: zoomin 12s ease-out;
  animation-fill-mode: forwards;
 }
 
@@ -63,6 +63,53 @@
   }
 }
 
-.loginContainer {
-  padding-top: 400px;
+.input-field {
+  margin-bottom: 0;
+}
+
+.loginHeader {
+  font-size: 40px;
+  color: rgb(96, 190, 245);
+  text-align: center;
+  padding-top: 5%;
+  text-shadow: 1px 1px 3px #fdfdfd;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+#signUp {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.651);
+}
+
+#loginInput {
+  
+  color: white;
+  
+}
+
+#loginInput:focus {
+  border-bottom: rgb(40, 162, 233);
+}
+
+.signinButton {
+  background-color: rgb(40, 162, 233);
+  border: 1px solid white;
+  margin-bottom: 5%;
+  border-radius: 25px;
+}
+
+.signinButton:hover {
+  color: rgb(40, 162, 233);
+  background-color: white;
+}
+
+
+#signinContainer {
+  margin-top: 25%;
+  background-color: rgba(0, 0, 0, 0.719);
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+padding: 0 20px;
 }

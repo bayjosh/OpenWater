@@ -45,6 +45,7 @@ class Register extends Component {
                             <div id="registerContainer">
                                 <form id="registerForm" onSubmit={this.registerSubmit}>
                                     <p id="firstNameHeader" className="registerHeader">Open Water</p>
+                                    <p id="signUp">Sign Up Below.</p>
                                     <div class="row">
                                         <div className="col m6">
                                             <div className="input-field">
@@ -53,19 +54,19 @@ class Register extends Component {
                                         </div>
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="Last Name" autoFocus="autofocus" id="registerInput" type="text" class="validate" />
+                                                <input placeholder="Last Name" id="registerInput" type="text" class="validate" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="E-Mail" autoFocus="autofocus" id="registerInput" type="text" class="validate" />
+                                                <input placeholder="E-Mail" id="registerInput" type="text" class="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">
-                                            <div className="input-field" style={{ paddingBottom: "20px" }}>
-                                                <input placeholder="Password" autoFocus="autofocus" id="registerInput" type="password" class="validate" />
+                                            <div className="input-field" style={{ paddingBottom: "5%" }}>
+                                                <input placeholder="Password" id="registerInput" type="password" class="validate" />
                                             </div>
                                         </div>
                                     </div>
