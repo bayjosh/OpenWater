@@ -8,6 +8,8 @@ import AirWeather from "../components/AirWeather";
 import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
 import LogVoyage from "../components/LogVoyage";
+import { Link } from "react-router-dom";
+import { Modal } from 'react-materialize'
 
 
 class Dashboard extends Component {
@@ -19,7 +21,8 @@ class Dashboard extends Component {
       lat: null,
       lon: null,
       zipCode: null,
-      forecastTime: ""
+      forecastTime: "",
+      chartsURL: ""
     };
   }
 
@@ -29,7 +32,9 @@ class Dashboard extends Component {
   //   }
   // }
 
-
+  componentDidMount() {
+    document.querySelector('body').style.overflow = "scroll"
+  }
   onChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
     API.getZipCode(this.state.lat, this.state.lon).then(res => {
@@ -43,11 +48,19 @@ class Dashboard extends Component {
         this.setState({ zipCode: result })
         console.log(this.state.zipCode)
         this.openDepthChart();
+        this.openNOAACharts();
       })
   }
 
   handleModalLoad = (forecastTime) => {
     this.setState({ forecastTime: forecastTime })
+  }
+
+  openNOAACharts = () => {
+    this.loadChartsURL().then(res => this.setState({ chartsURL: res }))
+  }
+  loadChartsURL = () => {
+    return fetch(`http://localhost:5000/api/charts/${this.state.lat}/${this.state.lon}`).then(res => res.json());
   }
 
   openDepthChart = () => {
@@ -134,14 +147,25 @@ class Dashboard extends Component {
                   {/* </div> */}
                   <hr />
                   {this.state.zipCode !== null ?
-                    <button className="activator">Depth Chart</button>
+                  <div style={{display: `flex`, flexDirection: `row`, justifyContent: ` space-evenly`}}>  
+                  <button className="btn activator">Depth Overlay</button>
+                          {this.state.chartsURL !== "" ?
+                          <a target="_blank" href={this.state.chartsURL}>
+                          <button className="btn">NOAA Nautical Charts</button>
+                          </a> :
+                          <Modal
+                          header='NOAA Charts Currently Unavailable'
+                          trigger={<button className="btn">NOAA Nautical Charts</button>}
+                          modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
+                          </Modal>}
+                  </div>
                     : <div />}
                 </div>
                 <div style={{
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
                 }} className="card-reveal">
                   <span className="card-title"><i className="right">Back to Map</i></span>
-                  <div style={{ textAlign: `center`, color: `white` }} id="real-title">Depth Chart</div>
+                  <div style={{ textAlign: `center`, color: `white` }} id="real-title"><h3>Depth Overlay</h3></div>
                   <hr />
                   <div style={{ height: `100%` }} id='iframe'></div>
                 </div>
@@ -173,23 +197,22 @@ class Dashboard extends Component {
                       <h3>Marine Forecast</h3>
                     </span>{" "}
                     <hr />
-                    <NOAAWeather zipCode={this.state.zipCode}
+                    <NOAAWeather lat={this.state.lat} lon={this.state.lon}
                       handleModalLoad={this.handleModalLoad} />
                   </div>
                 </div>
 
                 <LogVoyage />
-                {/* <span>
-                  <button
-                    style={{ width: `42vh` }}
-                    className="btn waves-effect waves-light"
-                  >
-                    View Logs
+
+                <Link to="/voyages"><button
+                  className="btn"
+                >
+                  View Logs
                   </button>
-                </span>*/}
+                </Link>
+
               </div>
             </div>
-
             <div
               id="air-weather"
               style={{

@@ -2,6 +2,9 @@ import React from "react"
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
+const image = require('../../images/smallanchor.png')
+
+
 const MapWindow = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCw1e-uu8VD-vsFQDzMXlHkiN_XL5N8YFg&libraries=geometry,drawing,places",
@@ -20,7 +23,7 @@ const MapWindow = compose(
     onClick={props.onGoogleMapClick}
 
   >
-    {props.isMarkerShown && <Marker position={{ lat: props.markerPositionLat, lng: props.markerPositionLon }} onClick={props.onMarkerClick} />}
+    {props.isMarkerShown && <Marker position={{ lat: props.markerPositionLat, lng: props.markerPositionLon }} onClick={props.onMarkerClick} icon={image} />}
   </GoogleMap>
 )
 

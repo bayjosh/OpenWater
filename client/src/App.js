@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
+import Voyages from "./pages/Voyages";
+
 
 
 
@@ -17,6 +19,7 @@ const App = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/voyages" component={Voyages} />
       {/* <Footer /> */}
     </div>
   </Router>

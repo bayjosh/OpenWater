@@ -3,26 +3,27 @@
 Home Page Design
 
 ////////////////////////////////////////////////*/
-
-
-#continueAsGuestButton {
-  width: 30%;
-  color: white;
-  size: 60px;
-  font-family: "Slabo 27px", serif;
-  text-align: center;
-  background-color: rgba(145, 174, 194, 0.952);
-  border-radius: 25px;
+body {
+  overflow: hidden;
 }
-
-#login {
-  width: 30%;
-  color: white;
-  size: 60px;
-  font-family: "Slabo 27px", serif;
+.home-content {
   text-align: center;
-  background-color: rgba(145, 174, 194, 0.952);
+  padding-top: 8%;
+}
+#continueAsGuestButton,
+#loginButton {
+  width: 40%;
+  color: white;
+  font-family: "Slabo 27px", serif;
+  font-size: 150%;
+  background-color: rgba(145, 174, 194, 0.918);
   border-radius: 25px;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  margin-top: 3%;
+  -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
 }
 
 #homeHeader {
@@ -31,7 +32,6 @@ Home Page Design
   font-family: "Amatic SC", cursive;
   font-weight: bold;
   margin-bottom: 0;
-  margin-top: 40px;
   margin-top: 0;
   text-align: center;
 }

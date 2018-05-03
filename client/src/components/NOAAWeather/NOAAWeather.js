@@ -6,13 +6,11 @@ class NOAAWeather extends Component {
         super(props);
         this.state = {
             forecastTime: "",
-            zoneNames: [],
+            affectedZones: [],
             headers: [],
             texts: [],
-            warnings: [],
-            SCAheader: "",
-            SCAtext: "",
-            SCAissued: ""
+            warning: "",
+        
         };
     }
 
@@ -23,7 +21,7 @@ class NOAAWeather extends Component {
     //     }
     // }
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.zipCode !== 0 && prevProps.zipCode !== this.props.zipCode) {
+        if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
             this.loadWeather();
         }
     }
@@ -33,27 +31,26 @@ class NOAAWeather extends Component {
 
 
     loadWeather = () => {
-        let zip = this.props.zipCode
+        let latlon = {lat: this.props.lat,
+            lon: this.props.lon}
         return fetch('http://localhost:5000/weatherScrape', {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ zip }),
+            body: JSON.stringify({ latlon }),
         })
             .then(res => res.json())
             .then(res => {
-                // console.log(res)
+                console.log(res)
                 this.setState({
                     forecastTime: res.forecastTime,
-                    zoneNames: res.zoneNames,
+                    affectedZones: res.affectedZones,
                     headers: res.headers,
                     texts: res.texts,
-                    warnings: res.warnings,
-                    SCAheader: res.SCAheader,
-                    SCAtext: res.SCAtext,
-                    SCAissued: res.SCAissued
+                    warning: res.warning,
+                    
                 })
                 console.log(res.forecastTime)
                 this.props.handleModalLoad(this.state.forecastTime)
@@ -63,19 +60,23 @@ class NOAAWeather extends Component {
     render() {
         return (
             <div className="NOAAWeather">
-                <h5 style={{ textAlign: `center` }}>Marine Zones: </h5>{this.state.zoneNames.map((el, i) => (
-                    <h4 key={i}>
+                <h5 style={{ textAlign: `center` }}>Applicable Marine Zones: </h5>
+                <ul>
+                {this.state.affectedZones.map((el, i) => (
+                    <li key={i}>
                         {el}
-                    </h4>
+                    </li>
                 ))}
+                </ul>
                 <hr />
                 <h5>WARNINGS</h5>
-                <h6>{this.state.SCAheader}</h6>
-                <p>{this.state.SCAissued}</p>
-                <p> {this.state.SCAtext}</p>
+                {this.state.warning === '' ?
+                    <h6>Smooth Sailing! No warnings to report.</h6> :
+                <h6>{this.state.warning}</h6>
+                }
                 <hr />
 
-                <p>{this.state.forecastTime}</p>
+                <p><b>Last updated: </b>{this.state.forecastTime}</p>
                 <div>
 
                     {this.state.headers.map((el, i) => (

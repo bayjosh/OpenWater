@@ -108,14 +108,14 @@ class LoadingModal extends Component {
                     // onRequestClose={this.closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
-                    ariaHideApp={false}
+                    // ariaHideApp={false}
+                    modalOptions={{ dismissible: true }}
                 >
                     <div className="center-align">
                         <LoadingWheel />
-
                         <h4 ref={subtitle => this.subtitle = subtitle}>Fetching info for {this.state.city}, {this.state.lState}</h4>
                         <hr />
-                        <h6 id="modal-message">Loading...</h6>
+                        <h5 id="modal-message"></h5>
                     </div>
 
                 </Modal>
