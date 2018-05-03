@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import HomeBackground from "../components/NameBackground";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 class Home extends Component {
   constructor() {
@@ -19,7 +19,7 @@ class Home extends Component {
   logIn = event => {
     event.preventDefault();
     setTimeout(() => {
-      this.setState({loginRedirect: true})
+      this.setState({ loginRedirect: true })
     }, 500);
   }
   render() {
@@ -39,6 +39,8 @@ class Home extends Component {
               className="waves-effect btn-large waves-light btn"
               id="continueAsGuestButton"
               type="button">Continue As Guest</button>
+
+            <h4><b>Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</b></h4>
 
             {this.state.loginRedirect && <Redirect to="/login" />}
             {this.state.continueRedirect && <Redirect to="/dashboard" />}

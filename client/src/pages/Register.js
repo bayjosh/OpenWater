@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RegisterBackground from "../components/RegisterBackground";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 class Register extends Component {
     constructor() {
@@ -46,33 +46,37 @@ class Register extends Component {
                                 <form id="registerForm" onSubmit={this.registerSubmit}>
                                     <p id="firstNameHeader" className="registerHeader">Open Water</p>
                                     <p id="signUp">Sign Up Below.</p>
-                                    <div class="row">
+                                    <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="First Name" autoFocus="autofocus" id="registerInput" type="text" class="validate" />
+                                                <input placeholder="First Name" autoFocus="autofocus" id="registerInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="Last Name" id="registerInput" type="text" class="validate" />
+                                                <input placeholder="Last Name" id="registerInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="E-Mail" id="registerInput" type="text" class="validate" />
+                                                <input placeholder="E-Mail" id="registerInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">
                                             <div className="input-field" style={{ paddingBottom: "5%" }}>
-                                                <input placeholder="Password" id="registerInput" type="password" class="validate" />
+                                                <input placeholder="Password" id="registerInput" type="password" className="validate" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <button type="submit" className="waves-effect waves-light btn registerButton"  >Register</button>
+                                    <br />
+                                    <Link to="/"><button type="button" className="waves-effect waves-light btn registerButton"> Back to Home </button></Link>
                                 </form>
+
+
                                 {this.state.fireRedirect && <Redirect to="/dashboard" />}
                             </div>
                         </div>

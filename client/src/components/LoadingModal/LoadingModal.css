@@ -1,17 +1,17 @@
-@-webkit-keyframes slideInLeft {
+@-webkit-keyframes slideInL {
     0% {
       -webkit-transform: translateX(-100%);
       visibility: visible;
     }
   
     50% {
-      -webkit-transform: translateX(0);
+      -webkit-transform: translateX(0%);
       visibility: visible;
     }
-    /* 100% {
+    100% {
       -webkit-transform: translateX(100%);
       visibility: visible;
-    } */
+    }
   }
 
   /* @-webkit-keyframes slideOutRight {
@@ -26,7 +26,7 @@
   } */
 
   #modal-message{
-    -webkit-animation: slideInLeft 4s infinite;
+    -webkit-animation: slideInL 4s infinite;
 
   }
  

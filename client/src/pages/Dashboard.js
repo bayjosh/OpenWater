@@ -147,18 +147,18 @@ class Dashboard extends Component {
                   {/* </div> */}
                   <hr />
                   {this.state.zipCode !== null ?
-                  <div style={{display: `flex`, flexDirection: `row`, justifyContent: ` space-evenly`}}>  
-                  <button className="btn activator">Depth Overlay</button>
-                          {this.state.chartsURL !== "" ?
-                          <a target="_blank" href={this.state.chartsURL}>
+                    <div style={{ display: `flex`, flexDirection: `row`, justifyContent: ` space-evenly` }}>
+                      <button className="btn activator">Depth Overlay</button>
+                      {this.state.chartsURL !== "" ?
+                        <a target="_blank" href={this.state.chartsURL}>
                           <button className="btn">NOAA Nautical Charts</button>
-                          </a> :
-                          <Modal
+                        </a> :
+                        <Modal
                           header='NOAA Charts Currently Unavailable'
                           trigger={<button className="btn">NOAA Nautical Charts</button>}
                           modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
-                          </Modal>}
-                  </div>
+                        </Modal>}
+                    </div>
                     : <div />}
                 </div>
                 <div style={{

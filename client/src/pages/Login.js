@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LoginBackground from "../components/LoginBackground";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 class Login extends Component {
@@ -56,6 +56,8 @@ class Login extends Component {
 
 
                   <button type="submit" className="waves-effect waves-light btn signinButton">Login</button>
+                  <br />
+                  <Link to="/"><button type="button" className="waves-effect waves-light btn registerButton"> Back to Home </button></Link>
                 </form>
                 {this.state.fireRedirect && <Redirect to="/dashboard" />}
               </div>
