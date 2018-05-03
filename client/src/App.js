@@ -11,13 +11,14 @@ import Voyages from "./pages/Voyages";
 
 
 
+
 const App = () => (
   <Router>
     <div>
       {/* <Nav /> */}
       <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={Login} />
       <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/voyages" component={Voyages} />
       {/* <Footer /> */}

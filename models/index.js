@@ -1,4 +1,4 @@
 module.exports = {
     Voyage: require('./voyage'),
-    User: require('.user')
+    User: require('./user')
 };

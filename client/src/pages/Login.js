@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LoginBackground from "../components/LoginBackground";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+
 class Login extends Component {
   constructor() {
     super();
@@ -35,20 +36,20 @@ class Login extends Component {
           <div className="row">
             <div className="col m8 offset-m2">
               <div id="signinContainer">
-                <form id="registerForm" onSubmit={this.registerSubmit}>
+                <form id="registerForm" onSubmit={this.loginSubmit}>
                   <p id="firstNameHeader" className="loginHeader">Open Water</p>
                   <p id="signUp">Welcome back. Please login.</p>
                   <div class="row">
                     <div className="col m12">
                       <div className="input-field">
-                        <input placeholder="Username" autoFocus="autofocus" id="loginInput" type="text" class="validate" />
+                        <input placeholder="E-Mail" autoFocus="autofocus" id="loginInput" type="text" class="validate" />
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col m12">
                       <div className="input-field">
-                        <input placeholder="Password" id="loginInput" type="text" class="validate" />
+                        <input placeholder="Password" id="loginInput" type="password" class="validate" />
                       </div>
                     </div>
                   </div>
@@ -106,6 +107,6 @@ class Login extends Component {
 //     </div>
 //   );
 // }
-// }
+
 
 export default Login;
