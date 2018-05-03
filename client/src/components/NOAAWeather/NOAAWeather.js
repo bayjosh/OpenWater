@@ -76,7 +76,7 @@ class NOAAWeather extends Component {
                 }
                 <hr />
 
-                <p>Last updated: {this.state.forecastTime}</p>
+                <p><b>Last updated: </b>{this.state.forecastTime}</p>
                 <div>
 
                     {this.state.headers.map((el, i) => (

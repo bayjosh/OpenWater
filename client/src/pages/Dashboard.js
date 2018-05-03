@@ -20,7 +20,8 @@ class Dashboard extends Component {
       lat: null,
       lon: null,
       zipCode: null,
-      forecastTime: ""
+      forecastTime: "",
+      chartsURL: ""
     };
   }
 
@@ -46,11 +47,19 @@ class Dashboard extends Component {
         this.setState({ zipCode: result })
         console.log(this.state.zipCode)
         this.openDepthChart();
+        this.openNOAACharts();
       })
   }
 
   handleModalLoad = (forecastTime) => {
     this.setState({ forecastTime: forecastTime })
+  }
+
+  openNOAACharts = () => {
+    this.loadChartsURL().then(res => this.setState({ chartsURL: res }))
+  }
+  loadChartsURL = () => {
+    return fetch(`http://localhost:5000/api/charts/${this.state.lat}/${this.state.lon}`).then(res => res.json());
   }
 
   openDepthChart = () => {
@@ -137,14 +146,17 @@ class Dashboard extends Component {
                   {/* </div> */}
                   <hr />
                   {this.state.zipCode !== null ?
-                    <button className="activator">Depth Chart</button>
+                  <div>
+                    <button className="activator">Depth Overlay</button>
+                    <a target="_blank" href={this.state.chartsURL}><button>NOAA Nautical Charts</button></a>
+                    </div>
                     : <div />}
                 </div>
                 <div style={{
                   backgroundColor: `rgba(145, 174, 194, 0.952)`
                 }} className="card-reveal">
                   <span className="card-title"><i className="right">Back to Map</i></span>
-                  <div style={{ textAlign: `center`, color: `white` }} id="real-title">Depth Chart</div>
+                  <div style={{ textAlign: `center`, color: `white` }} id="real-title"><h3>Depth Overlay</h3></div>
                   <hr />
                   <div style={{ height: `100%` }} id='iframe'></div>
                 </div>

@@ -121,7 +121,7 @@ app.post('/weatherScrape', function (req, res) {
                 info.forecastTime = forecastTime;
                 info.headers = headers;
                 info.texts = texts;
-                console.log(info)
+                // console.log(info)
                 res.json(info)
 
             })
@@ -234,6 +234,29 @@ app.get("/api/voyages", function (req, res) {
     db.Voyage.find({}, function (error, response) {
         res.send(response);
     });
+});
+
+app.get("/api/charts/:lat/:lon", function (req, res) {
+    console.log('lat and lon: '+req.params.lat, req.params.lon)
+    const Nightmare = require('nightmare')
+    const nightmare = Nightmare({ typeInterval: 10});
+    let lat = req.params.lat;
+    let lon = req.params.lon;
+    nightmare
+        .goto('http://www.charts.noaa.gov/InteractiveCatalog/nrnc.shtml')
+        .select('#searchDropDown1', 'latlon')
+        .type('#searchText1', `${lat},${lon}`)
+        .click('#searchButton1')
+        .wait(2000)
+        .evaluate(() => {
+            var URL = document.querySelector('[title="Download/View PDF Version"]').getAttribute('href');
+            return URL
+        })
+        .end()
+        .then(result => { res.json(result) })
+        .catch(error => {
+            console.error('Search failed:', error)
+        })
 });
 
 
