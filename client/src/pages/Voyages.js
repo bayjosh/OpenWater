@@ -128,7 +128,7 @@ class Voyages extends Component {
                     <div className="card cyan lighten-4" data-id={v._id} key={v._id}>
                         <h5>Voyage: {v.name}</h5>
                         <h5>Sailing date: {v.date}</h5>
-                        <h5>{v.description}</h5>
+                        <h5>Description: {v.description}</h5>
                         <h5>Fuel remaining: {v.fuel}</h5>
                         <h5>Starting Mileage: {v.mileageStart}</h5>
                         <h5>Ending Mileage: {v.mileageEnd}</h5>

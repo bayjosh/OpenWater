@@ -70,7 +70,7 @@ class LogVoyage extends Component {
                     }} />
 
                 </Row>
-                {distance < 0 ? <p>Voyage distance: 0</p> : <p className="right-align">Voyage distance: {distance}</p>}
+                {distance < 0 ? <p className="right-align">Voyage distance: 0</p> : <p className="right-align">Voyage distance: {distance}</p>}
 
 
                 <Button s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>

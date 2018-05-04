@@ -14,6 +14,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        overflow: 'hidden',
+        borderRadius: '25px'
     }
 };
 
@@ -100,16 +102,24 @@ class LoadingModal extends Component {
 
     render() {
         return (
-            <div>
+            <div id="loadModal">
                 {/* <button onClick={this.openModal}>Open Modal</button> */}
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
-                    // onRequestClose={this.closeModal}
+                    onRequestClose={this.closeModal}
                     style={customStyles}
-                    contentLabel="Example Modal"
                     // ariaHideApp={false}
-                    modalOptions={{ dismissible: true }}
+                    /*
+                      Boolean indicating if the overlay should close the modal
+                    */
+                    shouldCloseOnOverlayClick={true}
+                    /*
+                      Boolean indicating if pressing the esc key should close the modal
+                      Note: By disabling the esc key from closing the modal you may introduce an accessibility issue.
+                    */
+                    shouldCloseOnEsc={true}
+                
                 >
                     <div className="center-align">
                         <LoadingWheel />
