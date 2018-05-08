@@ -19,18 +19,27 @@ class LogVoyage extends Component {
 
     saveVoyage = event => {
         event.preventDefault();
-        this.setState({ isOpen: false, voyageDistance: this.state.voyageMileageEnd - this.state.voyageMileageStart })
-        // let name = event.target.parentElement.parentElement.firstChild.children[1].children[1].children[1].value;
 
-        axios.post("http://localhost:5000/saveVoyage", {
-            name: this.state.voyageName,
-            date: this.state.voyageDate,
-            description: this.state.voyageDescription,
-            fuel: this.state.voyageFuel,
-            mileageStart: this.state.voyageMileageStart,
-            mileageEnd: this.state.voyageMileageEnd,
-            voyageDistance: this.state.voyageDistance
-        });
+        setTimeout(() => {
+            this.setState({ isOpen: false, voyageDistance: this.state.voyageMileageEnd - this.state.voyageMileageStart })
+            setTimeout(() => {
+                axios.post("http://localhost:5000/saveVoyage", {
+                    name: this.state.voyageName,
+                    date: this.state.voyageDate,
+                    description: this.state.voyageDescription,
+                    fuel: this.state.voyageFuel,
+                    mileageStart: this.state.voyageMileageStart,
+                    mileageEnd: this.state.voyageMileageEnd,
+                    voyageDistance: this.state.voyageDistance
+                });
+
+            }, 1);
+        }, 0);
+
+
+
+
+
     };
 
     render() {
