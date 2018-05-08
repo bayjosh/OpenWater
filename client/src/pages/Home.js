@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomeBackground from "../components/NameBackground";
+import HomeBackground from "../components/HomeBackground";
 import { Redirect, Link } from "react-router-dom";
 
 class Home extends Component {
@@ -40,7 +40,7 @@ class Home extends Component {
               id="continueAsGuestButton"
               type="button">Continue As Guest</button>
 
-            <h4><b>Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</b></h4>
+            <p id="registerTextContainer"><b>Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</b></p>
 
             {this.state.loginRedirect && <Redirect to="/login" />}
             {this.state.continueRedirect && <Redirect to="/dashboard" />}

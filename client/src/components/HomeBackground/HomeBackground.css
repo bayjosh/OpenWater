@@ -1,0 +1,33 @@
+#home-background-initZoom {
+  text-align: center;
+  background: url("../../images/dock2.jpg") center fixed
+    no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  -webkit-animation: zoomin 15s ease-out;
+   animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes zoomin {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.15);
+  }
+}
+
+#registerTextContainer {
+  color:#e0e0e0;
+  text-align: center;
+  width: 40%;
+  margin-left: 30%;
+  background-color: rgba(0, 0, 0, 0.719);
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+}
