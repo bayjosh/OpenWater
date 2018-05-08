@@ -119,8 +119,11 @@ class LoadingModal extends Component {
                       Note: By disabling the esc key from closing the modal you may introduce an accessibility issue.
                     */
                     shouldCloseOnEsc={true}
-                
+
                 >
+                    <div className="right-align">
+                        <button onClick={this.closeModal}>x</button>
+                    </div>
                     <div className="center-align">
                         <LoadingWheel />
                         <h4 ref={subtitle => this.subtitle = subtitle}>Fetching info for {this.state.city}, {this.state.lState}</h4>

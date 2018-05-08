@@ -2,7 +2,7 @@ import React from "react"
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const image = require('../../images/smallAnchor.png')
+const image = require('../../images/smallanchor.png')
 
 
 const MapWindow = compose(
