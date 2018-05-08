@@ -13,7 +13,8 @@ class LogVoyage extends Component {
             voyageFuel: "",
             voyageMileageStart: 0,
             voyageMileageEnd: 0,
-            voyageDistance: 0
+            voyageDistance: 0,
+            totalDistance: 0
         };
     }
 
@@ -23,6 +24,7 @@ class LogVoyage extends Component {
         setTimeout(() => {
             this.setState({ isOpen: false, voyageDistance: this.state.voyageMileageEnd - this.state.voyageMileageStart })
             setTimeout(() => {
+                this.setState({ totalDistance: this.state.totalDistance + this.state.voyageDistance })
                 axios.post("http://localhost:5000/saveVoyage", {
                     name: this.state.voyageName,
                     date: this.state.voyageDate,

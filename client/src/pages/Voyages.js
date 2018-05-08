@@ -1,13 +1,32 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
 // import "../App.css";
 // import axios from "axios";
+
+const customStyles = {
+    overlay: {
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        overflow: 'hidden',
+        borderRadius: '25px'
+    }
+};
 
 class Voyages extends Component {
     constructor(props) {
         super(props);
         this.state = {
             voyages: [],
+            totalDistance: 0,
+            isRemoveModalOpen: false,
+            deleteID: ""
             // updateNote: false,
             // insertNoteId: "",
             // insertNoteHeadline: "",
@@ -30,25 +49,27 @@ class Voyages extends Component {
     //     return fetch(`http://localhost:4025/api/articles/${id}`).then(res => res.json());
     // };
 
-    removeVoyage = event => {
-        event.preventDefault();
-        let deleteID = event.target.parentElement.parentElement.getAttribute("data-id")
-        fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
-            method: "DELETE"
-        })
-            .then(res => res.json())
-            .then(oldVoyageID => {
-                let voyages = this.state.voyages.filter(
-                    (voyage, i) => voyage._id !== oldVoyageID
-                );
-                this.setState({ voyages });
-            });
-    };
 
-    iconRemoveVoyage = event => {
+
+    openRemoveModal = event => {
         event.preventDefault();
-        let deleteID = event.target.parentElement.parentElement.parentElement.getAttribute("data-id")
-        fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
+        this.setState({ isRemoveModalOpen: true })
+        let deleteID;
+
+        if (event.target.tagName === "I") {
+            deleteID = event.target.parentElement.parentElement.parentElement.getAttribute("data-id")
+            this.setState({ deleteID: deleteID })
+
+        } else if (event.target.tagName === "BUTTON") {
+            deleteID = event.target.parentElement.parentElement.getAttribute("data-id")
+            this.setState({ deleteID: deleteID })
+
+        }
+    }
+
+    deleteVoyage = () => {
+
+        fetch(`http://localhost:5000/api/voyages/delete/${this.state.deleteID}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -57,8 +78,40 @@ class Voyages extends Component {
                     (voyage, i) => voyage._id !== oldVoyageID
                 );
                 this.setState({ voyages });
-            });
-    };
+            })
+            .then(this.setState({ isRemoveModalOpen: false }));
+
+    }
+
+    // removeVoyage = event => {
+    //     event.preventDefault();
+    //     let deleteID = event.target.parentElement.parentElement.getAttribute("data-id")
+    //     fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
+    //         method: "DELETE"
+    //     })
+    //         .then(res => res.json())
+    //         .then(oldVoyageID => {
+    //             let voyages = this.state.voyages.filter(
+    //                 (voyage, i) => voyage._id !== oldVoyageID
+    //             );
+    //             this.setState({ voyages });
+    //         });
+    // };
+
+    // iconRemoveVoyage = event => {
+    //     event.preventDefault();
+    //     let deleteID = event.target.parentElement.parentElement.parentElement.getAttribute("data-id")
+    //     fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
+    //         method: "DELETE"
+    //     })
+    //         .then(res => res.json())
+    //         .then(oldVoyageID => {
+    //             let voyages = this.state.voyages.filter(
+    //                 (voyage, i) => voyage._id !== oldVoyageID
+    //             );
+    //             this.setState({ voyages });
+    //         });
+    // };
 
     // loadNoteForm = id => {
     //     this.setState({ updateNote: true }, () => {
@@ -124,6 +177,22 @@ class Voyages extends Component {
                   </button>
                 </Link>
 
+                <p>Total Distance Traveled: {this.state.totalDistance}</p>
+
+                <Modal
+                    isOpen={this.state.isRemoveModalOpen}
+                    onRequestClose={this.closeModal}
+                    shouldCloseOnOverlayClick={true}
+                    shouldCloseOnEsc={true}
+                    style={customStyles}
+                >
+                    <div className="center-align">
+                        <h3>Permanently cast this voyage to the bottom of the ocean???</h3>
+                        <button onClick={this.deleteVoyage} className="btn red">Yes</button>
+                        <button onClick={() => this.setState({ isRemoveModalOpen: false })} className="btn">No, take me back</button>
+                    </div>
+                </Modal>
+
                 {this.state.voyages.map(v => (
                     <div className="card cyan lighten-4" data-id={v._id} key={v._id}>
                         <h5>Voyage: {v.name}</h5>
@@ -134,7 +203,7 @@ class Voyages extends Component {
                         <h5>Ending Mileage: {v.mileageEnd}</h5>
                         <h5>Total Trip Distance: {v.voyageDistance}</h5>
                         <div className="right-align">
-                            <button className="btn red" onClick={this.removeVoyage}><i className="material-icons" onClick={this.iconRemoveVoyage}>delete</i> </button>
+                            <button className="btn red" onClick={this.openRemoveModal}><i className="material-icons" onClick={this.openRemoveModal}>delete</i> </button>
                         </div>
                     </div>
                 ))}
