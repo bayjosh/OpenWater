@@ -38,7 +38,6 @@ class Login extends Component {
               <div id="signinContainer">
                 <form id="registerForm" onSubmit={this.loginSubmit}>
                   <p id="firstNameHeader" className="loginHeader">Open Water</p>
-                  <p id="signUp">Welcome back. Please login.</p>
                   <div class="row">
                     <div className="col m12">
                       <div className="input-field">

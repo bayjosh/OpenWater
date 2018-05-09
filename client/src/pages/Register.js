@@ -45,7 +45,6 @@ class Register extends Component {
                             <div id="registerContainer">
                                 <form id="registerForm" onSubmit={this.registerSubmit}>
                                     <p id="firstNameHeader" className="registerHeader">Open Water</p>
-                                    <p id="signUp">Sign Up Below.</p>
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
