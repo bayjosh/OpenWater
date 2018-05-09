@@ -40,7 +40,7 @@ class Home extends Component {
               id="continueAsGuestButton"
               type="button">Continue As Guest</button>
 
-            <p id="registerTextContainer"><b>Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</b></p>
+            <p id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
 
             {this.state.loginRedirect && <Redirect to="/login" />}
             {this.state.continueRedirect && <Redirect to="/dashboard" />}

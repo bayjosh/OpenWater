@@ -57,10 +57,17 @@ class LogVoyage extends Component {
             // </Modal>
 
             <Modal
-                header='Log A Voyage'
+                header='Log a Voyage'
                 trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
-                actions={<Button modal="close" onClick={this.saveVoyage}
-                ><Icon left>check_circle</Icon>Save This Voyage</Button>} modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
+                actions={<Button modal="close" onClick={this.saveVoyage}>
+                    <Icon left>check_circle</Icon>Save This Voyage</Button>} modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}
+                fixedFooter
+                style={{ borderRadius: `25px`, overflow: `scroll` }}
+
+            >
+                <Row className="right-align">
+                    <Button className="right-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
+                </Row>
 
 
                 <Row >
@@ -84,7 +91,7 @@ class LogVoyage extends Component {
                 {distance < 0 ? <p className="right-align">Voyage distance: 0</p> : <p className="right-align">Voyage distance: {distance}</p>}
 
 
-                <Button s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
+
 
 
             </Modal>
