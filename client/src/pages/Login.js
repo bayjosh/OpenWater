@@ -37,18 +37,19 @@ class Login extends Component {
             <div className="col m8 offset-m2">
               <div id="signinContainer">
                 <form id="registerForm" onSubmit={this.loginSubmit}>
-                  <p id="firstNameHeader" className="loginHeader">Open Water</p>
-                  <div class="row">
+                  <img id="firstNameHeader" src="../images/OWlogo.png" />
+                  {/* <p id="firstNameHeader" className="loginHeader">Open Water</p> */}
+                  <div className="row">
                     <div className="col m12">
                       <div className="input-field">
-                        <input placeholder="E-Mail" autoFocus="autofocus" id="loginInput" type="text" class="validate" />
+                        <input placeholder="E-Mail" autoFocus="autofocus" id="loginEmailInput" type="text" className="validate" />
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col m12">
                       <div className="input-field">
-                        <input placeholder="Password" id="loginInput" type="password" class="validate" />
+                        <input placeholder="Password" id="loginPasswordInput" type="password" className="validate" />
                       </div>
                     </div>
                   </div>
