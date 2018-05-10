@@ -29,7 +29,10 @@ class Home extends Component {
         <HomeBackground />
         <div className="home">
           <div className="container home-content">
-            <p id="homeHeader">Start your voyage</p>
+            <div className="center-align">
+              <img src={require("../images/OWlogo.png")} style={{ height: `200px`, width: `275px` }} />
+            </div>
+            {/* <p id="homeHeader">Start your voyage</p> */}
             <button
               onClick={this.logIn}
               className="waves-effect btn-large waves-light btn"

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
+import Nav from "../components/Nav"
 // import "../App.css";
 // import axios from "axios";
 
@@ -168,45 +169,49 @@ class Voyages extends Component {
 
     render() {
         return (
-            <div className="container">
-                <Link to="/dashboard"><button
-                    style={{ width: `42vh` }}
-                    className="btn waves-effect waves-light"
-                >
-                    Back to Dash
+            <div>
+                <Nav />
+                <div className="container">
+
+                    <Link to="/dashboard"><button
+                        style={{ width: `42vh` }}
+                        className="btn waves-effect waves-light"
+                    >
+                        Back to Dash
                   </button>
-                </Link>
+                    </Link>
 
-                <p>Total Distance Traveled: {this.state.totalDistance}</p>
+                    <p>Total Distance Traveled: {this.state.totalDistance}</p>
 
-                <Modal
-                    isOpen={this.state.isRemoveModalOpen}
-                    onRequestClose={this.closeModal}
-                    shouldCloseOnOverlayClick={true}
-                    shouldCloseOnEsc={true}
-                    style={customStyles}
-                >
-                    <div className="center-align">
-                        <h3>Permanently cast this voyage to the bottom of the ocean???</h3>
-                        <button onClick={this.deleteVoyage} className="btn red">Yes</button>
-                        <button onClick={() => this.setState({ isRemoveModalOpen: false })} className="btn">No, take me back</button>
-                    </div>
-                </Modal>
-
-                {this.state.voyages.map(v => (
-                    <div className="card cyan lighten-4" data-id={v._id} key={v._id}>
-                        <h5>Voyage: {v.name}</h5>
-                        <h5>Sailing date: {v.date}</h5>
-                        <h5>Description: {v.description}</h5>
-                        <h5>Fuel remaining: {v.fuel}</h5>
-                        <h5>Starting Mileage: {v.mileageStart}</h5>
-                        <h5>Ending Mileage: {v.mileageEnd}</h5>
-                        <h5>Total Trip Distance: {v.voyageDistance}</h5>
-                        <div className="right-align">
-                            <button className="btn red" onClick={this.openRemoveModal}><i className="material-icons" onClick={this.openRemoveModal}>delete</i> </button>
+                    <Modal
+                        isOpen={this.state.isRemoveModalOpen}
+                        onRequestClose={this.closeModal}
+                        shouldCloseOnOverlayClick={true}
+                        shouldCloseOnEsc={true}
+                        style={customStyles}
+                    >
+                        <div className="center-align">
+                            <h3>Permanently cast this voyage to the bottom of the ocean???</h3>
+                            <button onClick={this.deleteVoyage} className="btn red">Yes</button>
+                            <button onClick={() => this.setState({ isRemoveModalOpen: false })} className="btn">No, take me back</button>
                         </div>
-                    </div>
-                ))}
+                    </Modal>
+
+                    {this.state.voyages.map(v => (
+                        <div className="vCard" data-id={v._id} key={v._id}>
+                            <h5>Voyage: {v.name}</h5>
+                            <h5>Sailing date: {v.date}</h5>
+                            <h5>Description: {v.description}</h5>
+                            <h5>Fuel remaining: {v.fuel}</h5>
+                            <h5>Starting Mileage: {v.mileageStart}</h5>
+                            <h5>Ending Mileage: {v.mileageEnd}</h5>
+                            <h5>Total Trip Distance: {v.voyageDistance}</h5>
+                            <div className="right-align">
+                                <button className="btn red" onClick={this.openRemoveModal}><i className="material-icons" onClick={this.openRemoveModal}>delete</i> </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         )
     }

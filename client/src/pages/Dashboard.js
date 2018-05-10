@@ -10,6 +10,7 @@ import LoadingModal from "../components/LoadingModal";
 import LogVoyage from "../components/LogVoyage";
 import { Link } from "react-router-dom";
 import { Modal } from 'react-materialize'
+import Nav from "../components/Nav"
 
 
 class Dashboard extends Component {
@@ -79,7 +80,9 @@ class Dashboard extends Component {
 
   render() {
     return (
+
       <div id="blur-in-background">
+        <Nav />
         <div>
           <DashboardBackground />
           <div id="header-background"> </div>

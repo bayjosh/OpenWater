@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RegisterBackground from "../components/RegisterBackground";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
+import Nav from "../components/Nav"
 class Register extends Component {
     constructor() {
         super();
@@ -39,6 +40,7 @@ class Register extends Component {
         return (
             <div>
                 <RegisterBackground />
+                <Nav />
                 <div className="register container" style={{ textAlign: "center" }}>
                     <div className="row">
                         <div className="col m8 offset-m2">

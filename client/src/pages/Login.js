@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LoginBackground from "../components/LoginBackground";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
+import Nav from "../components/Nav"
 
 class Login extends Component {
   constructor() {
@@ -32,13 +33,13 @@ class Login extends Component {
     return (
       <div>
         <LoginBackground />
+        <Nav />
         <div className="register container" style={{ textAlign: "center" }}>
           <div className="row">
             <div className="col m8 offset-m2">
               <div id="signinContainer">
                 <form id="registerForm" onSubmit={this.loginSubmit}>
-                  <img id="firstNameHeader" src="../images/OWlogo.png" />
-                  {/* <p id="firstNameHeader" className="loginHeader">Open Water</p> */}
+                  <p id="firstNameHeader" className="loginHeader">Login</p>
                   <div className="row">
                     <div className="col m12">
                       <div className="input-field">
