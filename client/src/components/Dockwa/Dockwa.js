@@ -9,16 +9,6 @@ class Dockwa extends Component {
         };
     }
 
-
-// shouldComponentUpdate(nextProps, nextState){
-//     return nextProps.lat !== this.props.lat
-// }
-// componentWillReceiveProps(nextProps) {
-//   console.log(nextProps)
-//   if (this.props.lat !==0){// && nextProps.zipCode !== this.props.zipCode){
-//     this.loadDockwa()
-//   }
-// }
     componentDidUpdate(prevProps, prevState) {
         if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
             this.loadDockwa()
@@ -43,7 +33,6 @@ class Dockwa extends Component {
                     DockwaInfo: res,
                 })
             })
-
     }
 
     render() {
@@ -61,7 +50,7 @@ class Dockwa extends Component {
                             <h5>{el.name}</h5>
                             <h6>{el.price}</h6>
                             <img className="responsive-img" style={{
-                                borderRadius: `25px`
+                                borderRadius: `25px`, width: `100%`, height: `55vh`
                             }} src={el.pictureStyle} alt="dockwa-img" />
                         </a>
                     ))}

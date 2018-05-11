@@ -1,30 +1,20 @@
 #Dashboard-background {
-    /* background: url("../../images/dashboardbackground2.png") fixed center no-repeat; */
-    /* background-color: white; */
-    background: url('../../images/topography.png');
-    position: absolute;
+  background: url('../../images/topography.png') fixed center;
+  position: absolute;
   width: 100%;
   height: 100%;
   z-index: -2;
-  opacity: 0.8;
-  padding-bottom: 30px;
-  /* background-color: rgba(255, 255, 255, 0.753); */
-  
 }
 
 @-webkit-keyframes blurIn {
   0% {
     -webkit-filter: blur(100px)
-    
   }
   100% {
     -webkit-filter: blur(0px)
   }
 }
 
-#blur-in-background {
-  /* -webkit-animation: blurIn 0.75s ease-in */
-}
 
 .dashboard {
   margin-top: 45px;
@@ -48,17 +38,6 @@ margin-bottom: 25px;
 box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
 }
 
-#docking-area {
-  background-color: rgba(145, 174, 194, 0.952);
-  height: 100%;
-  text-align: center;
-  border-radius: 25px;
-  padding-bottom: 40px;
-  -webkit-box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
--moz-box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
-box-shadow: 6px 7px 20px -3px rgba(0,0,0,0.75);
-  
-}
 
 h1 {
   color: white;

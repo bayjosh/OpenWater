@@ -14,17 +14,6 @@
     }
   }
 
-  /* @-webkit-keyframes slideOutRight {
-    from {
-      -webkit-transform: translate3d(0, 0, 0);
-      visibility: visible;
-    }
-  
-    to {
-      -webkit-transform: translate3d(100%, 0, 0);
-    }
-  } */
-
   #modal-message{
     -webkit-animation: slideInL 4s infinite;
   }
