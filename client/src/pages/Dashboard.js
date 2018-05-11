@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import DashboardBackground from "../components/DashboardBackground";
-// import { Redirect } from "react-router-dom";
 import MapComponent from "../components/Map";
 import NOAAWeather from "../components/NOAAWeather";
 import Dockwa from "../components/Dockwa";
@@ -27,15 +26,11 @@ class Dashboard extends Component {
     };
   }
 
-  // componentDidUpdate() {
-  //   if (this.state.lat !== 0) {
-  //     this.openDepthChart()
-  //   }
-  // }
-
+  // Allows for scrolling
   componentDidMount() {
     document.querySelector('body').style.overflow = "scroll"
   }
+
   onChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
     API.getZipCode(this.state.lat, this.state.lon).then(res => {
@@ -81,203 +76,124 @@ class Dashboard extends Component {
   render() {
     return (
 
-      <div id="blur-in-background">
+
+      <div>
         <Nav />
-        <div>
-          <DashboardBackground />
-          <div id="header-background"> </div>
-          <h1
-            style={{
-              margin: `0`,
-              opacity: `1`,
-              textAlign: `center`,
-              marginBottom: `40px`,
-              padding: `10px 0 10px 0`
-            }}
+        <DashboardBackground />
+        <LoadingModal
+          lat={this.state.lat}
+          lon={this.state.lon}
+          zipCode={this.state.zipCode}
+          forecastTime={this.state.forecastTime}
+        />
+
+        <div className="dashboard"
+          style={{
+            display: `flex`,
+            flexDirection: `row`,
+            alignItems: `center`,
+            justifyContent: `space-evenly`,
+            flexWrap: `wrap`,
+            padding: `2.5%`,
+            height: `100vh`,
+            width: `100vw`
+          }}>
+          <div
+            id="map-card"
+            className="card darken-1"
+            style={{ width: `100%`, height: `150%` }}
           >
-            Dashboard
-          </h1>
-
-
-          <LoadingModal
-            lat={this.state.lat}
-            lon={this.state.lon}
-            zipCode={this.state.zipCode}
-            forecastTime={this.state.forecastTime}
-          />
-
-          <div className="dashboard">
-            <div
-              id="weather-map"
-              style={{
-                display: `flex`,
-                flexDirection: `row`,
-                alignItems: `center`,
-                justifyContent: `space-evenly`,
-                marginBottom: `45px`
-              }}
-            >
-              <div
-                id="map-card"
-                style={{
-                  width: `45vw`,
-                  alignSelf: `flex-start`,
-                  height: `100vh`,
-                  margin: `0`,
-                  borderRadius: `25px`,
-                  backgroundColor: `rgba(145, 174, 194, 0.952)`
-                }}
-                className="card darken-1"
-              >
-                <div className="card-content white-text" style={{ height: `100%` }}>
-                  <span className="card-title" style={{ textAlign: `center` }}>
-                    <h3>Location</h3>
-                  </span>
-                  <hr />
-                  {/* <div
-                    id="map-card-content"
-                    style={{
-                      display: `flex`,
-                      justifyContent: `center`,
-                      alignItems: `center`,
-                      marginTop: `20px`
-                    }}
-                  > */}
-                  <MapComponent
-                    isMarkerShown={false}
-                    onChange={this.onChange}
-                  />
-                  {/* </div> */}
-                  <hr />
-                  {this.state.zipCode !== null ?
-                    <div style={{ display: `flex`, flexDirection: `row`, justifyContent: ` space-evenly` }}>
-                      <button className="btn activator">Depth Overlay</button>
-                      {this.state.chartsURL !== "" ?
-                        <a target="_blank" href={this.state.chartsURL}>
-                          <button className="btn">NOAA Nautical Charts</button>
-                        </a> :
-                        <Modal
-                          header='NOAA Charts Currently Unavailable'
-                          trigger={<button className="btn">NOAA Nautical Charts</button>}
-                          modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
-                        </Modal>}
-                    </div>
-                    : <div />}
-                </div>
-                <div style={{
-                  backgroundColor: `rgba(145, 174, 194, 0.952)`
-                }} className="card-reveal">
-                  <span className="card-title"><i className="right">Back to Map</i></span>
-                  <div style={{ textAlign: `center`, color: `white` }} id="real-title"><h3>Depth Overlay</h3></div>
-                  <hr />
-                  <div style={{ height: `100%` }} id='iframe'></div>
-                </div>
-              </div>
-              <div
-                style={{
-                  display: `flex`,
-                  width: `45vw`,
-                  flexWrap: `wrap`
-                }}
-              >
-                <div
-                  id="weather"
-                  style={{
-                    width: `45vw`,
-                    alignSelf: `flex-start`,
-                    margin: `0`,
-                    borderRadius: `25px`,
-                    height: `100%`,
-                    backgroundColor: `rgba(145, 174, 194, 0.952)`
-                  }}
-                  className="card darken-1"
-                >
-                  <div className="card-content white-text">
-                    <span
-                      className="card-title"
-                      style={{ textAlign: `center`, color: `white` }}
-                    >
-                      <h3>Marine Forecast</h3>
-                    </span>{" "}
-                    <hr />
-                    <NOAAWeather lat={this.state.lat} lon={this.state.lon}
-                      handleModalLoad={this.handleModalLoad} />
-                  </div>
-                </div>
-
-                <LogVoyage />
-
-                <Link to="/voyages"><button
-                  className="btn"
-                >
-                  View Logs
-                  </button>
-                </Link>
-
-              </div>
-            </div>
-            <div
-              id="air-weather"
-              style={{
-                width: `100%`,
-                alignSelf: `flex-start`,
-                margin: `10px`,
-                borderRadius: `25px`,
-                height: `100%`,
-                backgroundColor: `rgba(145, 174, 194, 0.952)`
-              }}
-              className="card darken-1"
-            >
-              <div className="card-content white-text">
-                <span
-                  className="card-title"
-                  style={{ textAlign: `center`, color: `white` }}
-                >
-                  <h3>Weather Forecast</h3>
-                </span>{" "}
+            <div className="card-content" style={{ height: `95%` }}>
+              <div className="card-title">
+                <h3>Location</h3>
                 <hr />
-                <AirWeather zipCode={this.state.zipCode} />
+                <button className="btn activator">Depth Overlay</button>
               </div>
-            </div>
-
-            <div id="docking-area">
-              <h3 style={{ color: `white`, padding: `35px 0 20px 0` }}>
-                Docking Options
-              </h3>
-              <hr />
-              <div
-                id="Dockwa"
-                style={{
-                  width: `100%`,
-                  alignSelf: `flex-start`,
-                  margin: `0`,
-                  borderRadius: `25px`,
-                  justifyContent: `center`
-                }}
-              >
-                <Dockwa lat={this.state.lat} lon={this.state.lon} />
-              </div>
-              <div
-                className="card-action"
-                style={{
-                  borderRadius: `25px`,
-                  textAlign: `center`
-                }}
+              <MapComponent
+                isMarkerShown={false}
+                onChange={this.onChange}
               />
+
+              {/* Depth Overlay stuff */}
+
+            </div>
+            <div className="card-reveal">
+              <span className="card-title"><i className="right">Back to Map</i></span>
+              <div style={{ textAlign: `center`, color: `black` }} id="real-title"><h3>Depth Overlay</h3></div>
+              <hr />
+              <div style={{ height: `95%` }} id='iframe'></div>
             </div>
           </div>
-          <footer
-            id="dashboard-footer"
-            style={{
-              textAlign: `center`,
-              color: `black`,
-              height: `125px`,
-              paddingTop: `55px`
-            }}
+
+          <div
+            id="weather"
+            className="card darken-1"
+            style={{ width: `100%` }}
           >
-            <h6>Open Water</h6>
-            <p>Copyright © 2018 Coder Boiz Inc.</p>
-          </footer>
+            <div className="card-content" style={{ height: `95%` }}>
+              <div
+                className="card-title"
+              >
+                <h3>Marine Forecast</h3>
+              </div>
+              <hr />
+              <NOAAWeather lat={this.state.lat} lon={this.state.lon}
+                handleModalLoad={this.handleModalLoad} />
+            </div>
+          </div>
+
+          <div
+            id="air-weather"
+            className="card darken-1"
+            style={{ width: `100%` }}
+          >
+            <div className="card-content" style={{ height: `95%` }}>
+              <div
+                className="card-title"
+              >
+                <h3>Weather Forecast</h3>
+              </div>
+              <hr />
+              <AirWeather zipCode={this.state.zipCode} />
+            </div>
+          </div>
+
+          <div id="dockwa-area" className="card darken-1" style={{ width: `100%` }}>
+            <div className="card-content" style={{ height: `95%` }}>
+              <div
+                className="card-title"
+              >
+                <h3>Docking Options</h3>
+                <hr />
+                <div>
+                  <Dockwa lat={this.state.lat} lon={this.state.lon} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <LogVoyage />
+
+          <Link to="/voyages"><button
+            className="btn"
+          >
+            View Logs
+        </button>
+          </Link>
+
+          {/* ================ */}
+          {/* NOAA charts button*/}
+          {/* ====================== */}
+          {this.state.chartsURL !== "" ?
+            <a target="_blank" href={this.state.chartsURL}>
+              <button className="btn">NOAA Nautical Charts</button>
+            </a> :
+            <Modal
+              header='NOAA Charts Currently Unavailable'
+              trigger={<button className="btn">NOAA Nautical Charts</button>}
+              modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
+            </Modal>}
+
         </div>
       </div>
     );

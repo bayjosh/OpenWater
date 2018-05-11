@@ -66,7 +66,7 @@ class LogVoyage extends Component {
 
             >
                 <Row className="right-align">
-                    <Button className="right-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
+                    <Button className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
                 </Row>
 
 
