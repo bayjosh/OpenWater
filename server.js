@@ -56,8 +56,7 @@ let info = {}
 //Post request to scrape marine conditions
 app.post('/weatherScrape', function (req, res) {
     const Nightmare = require('nightmare')
-    const nightmare = Nightmare({
-    });
+    const nightmare = Nightmare({});
     let zoneId = "";
     let lat = req.body.latlon.lat
     let lon = req.body.latlon.lon
@@ -146,9 +145,7 @@ app.post('/weatherScrape', function (req, res) {
 //Post request to scrape docking options
 app.post('/dockwaScrape', function (req, res) {
     const Nightmare = require('nightmare')
-    const nightmare = Nightmare({
-        typeInterval: 10
-    })
+    const nightmare = Nightmare({ typeInterval: 10 })
     //Use lat and lon sent from front-end
     nightmare
         .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=8`)
@@ -241,20 +238,12 @@ app.get("/api/charts/:lat/:lon", function (req, res) {
 app.delete("/api/voyages/delete/:id", function (req, res) {
     var _id = req.params.id;
     db.Voyage.remove(
-        {
-            _id: _id
-        },
+        { _id: _id },
         function (err, removed) {
             res.json(_id);
         }
     );
 });
-
-
-
-
-
-
 
 
 

@@ -14,7 +14,6 @@ class Register extends Component {
     //Method to handle submit of user registration
     registerSubmit = event => {
         event.preventDefault();
-
         let firstName = event.target[0].value;
         let lastName = event.target[1].value;
         let email = event.target[2].value;
@@ -32,11 +31,7 @@ class Register extends Component {
 
         //Update state to trigger redirect to dashboard
         this.setState({ fireRedirect: true });
-
-
     };
-
-
 
     render() {
         return (
@@ -79,17 +74,15 @@ class Register extends Component {
                                     <Link to="/"><button type="button" className="waves-effect waves-light btn registerButton"> Back to Home </button></Link>
                                 </form>
 
-
                                 {this.state.fireRedirect && <Redirect to="/dashboard" />}
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         );
-
     }
-
 }
 
 export default Register;

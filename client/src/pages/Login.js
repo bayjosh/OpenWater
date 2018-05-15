@@ -58,21 +58,20 @@ class Login extends Component {
                     </div>
                   </div>
 
-
                   <button type="submit" className="waves-effect waves-light btn signinButton">Login</button>
                   <br />
                   <Link to="/"><button type="button" className="waves-effect waves-light btn registerButton"> Back to Home </button></Link>
                 </form>
+
                 {this.state.fireRedirect && <Redirect to="/dashboard" />}
+
               </div>
             </div>
           </div>
         </div>
       </div >
     );
-
   }
-
 }
 
 export default Login;

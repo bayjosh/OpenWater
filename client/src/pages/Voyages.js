@@ -73,9 +73,7 @@ class Voyages extends Component {
             .then(res => res.json())
             //Filter out deleted voyage from display 
             .then(oldVoyageID => {
-                let voyages = this.state.voyages.filter(
-                    (voyage, i) => voyage._id !== oldVoyageID
-                );
+                let voyages = this.state.voyages.filter((voyage, i) => voyage._id !== oldVoyageID);
                 this.setState({ voyages });
             })
             //Close modal
@@ -89,29 +87,20 @@ class Voyages extends Component {
                 <Nav />
                 <div className="container">
 
-                    <Link to="/dashboard"><button
-                        style={{ width: `42vh` }}
-                        className="btn waves-effect waves-light"
-                    >
-                        Back to Dash
-                  </button>
+                    <Link to="/dashboard">
+                        <button style={{ width: `42vh` }} className="btn waves-effect waves-light"> Back to Dash</button>
                     </Link>
 
                     <p>Total Distance Traveled: {this.state.totalDistance}</p>
 
-                    <Modal
-                        isOpen={this.state.isRemoveModalOpen}
-                        onRequestClose={this.closeModal}
-                        shouldCloseOnOverlayClick={true}
-                        shouldCloseOnEsc={true}
-                        style={customStyles}
-                    >
+                    <Modal isOpen={this.state.isRemoveModalOpen} onRequestClose={this.closeModal} shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true} style={customStyles}>
                         <div className="center-align">
                             <h3>Permanently cast this voyage to the bottom of the ocean???</h3>
                             <button onClick={this.deleteVoyage} className="btn red">Yes</button>
                             <button onClick={() => this.setState({ isRemoveModalOpen: false })} className="btn">No, take me back</button>
                         </div>
                     </Modal>
+
                     {/* Loop through voyages array to display all data */}
                     {this.state.voyages.map(v => (
                         <div className="vCard" data-id={v._id} key={v._id}>
@@ -127,6 +116,7 @@ class Voyages extends Component {
                             </div>
                         </div>
                     ))}
+
                 </div>
             </div>
         )
