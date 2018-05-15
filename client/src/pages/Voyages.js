@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import Nav from "../components/Nav"
-// import "../App.css";
-// import axios from "axios";
 
 const customStyles = {
     overlay: {
@@ -37,30 +35,29 @@ class Voyages extends Component {
     }
 
     componentDidMount() {
+        //Call voyages ajax request and set state with response
         this.loadVoyages().then(voyages => this.setState({ voyages }));
+        //Allow page to scroll
         document.querySelector('body').style.overflow = "scroll"
-
     }
 
     loadVoyages = () => {
+        //Get request to display all voyages in database
         return fetch("http://localhost:5000/api/voyages").then(res => res.json());
     };
 
-    // findArticle = id => {
-    //     return fetch(`http://localhost:4025/api/articles/${id}`).then(res => res.json());
-    // };
-
-
-
     openRemoveModal = event => {
         event.preventDefault();
+        //On click, open modal to confirm delete
         this.setState({ isRemoveModalOpen: true })
         let deleteID;
 
+        //If user clicks on delete button ICON, grab id of selected voyage and update state
         if (event.target.tagName === "I") {
             deleteID = event.target.parentElement.parentElement.parentElement.getAttribute("data-id")
             this.setState({ deleteID: deleteID })
 
+            //If user clicks on delete BUTTON, grab id of selected voyage and update state
         } else if (event.target.tagName === "BUTTON") {
             deleteID = event.target.parentElement.parentElement.getAttribute("data-id")
             this.setState({ deleteID: deleteID })
@@ -69,50 +66,78 @@ class Voyages extends Component {
     }
 
     deleteVoyage = () => {
-
+        //Delete method to remove selected voyage from database
         fetch(`http://localhost:5000/api/voyages/delete/${this.state.deleteID}`, {
             method: "DELETE"
         })
             .then(res => res.json())
+            //Filter out deleted voyage from display 
             .then(oldVoyageID => {
                 let voyages = this.state.voyages.filter(
                     (voyage, i) => voyage._id !== oldVoyageID
                 );
                 this.setState({ voyages });
             })
+            //Close modal
             .then(this.setState({ isRemoveModalOpen: false }));
 
     }
 
-    // removeVoyage = event => {
-    //     event.preventDefault();
-    //     let deleteID = event.target.parentElement.parentElement.getAttribute("data-id")
-    //     fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(res => res.json())
-    //         .then(oldVoyageID => {
-    //             let voyages = this.state.voyages.filter(
-    //                 (voyage, i) => voyage._id !== oldVoyageID
-    //             );
-    //             this.setState({ voyages });
-    //         });
-    // };
+    render() {
+        return (
+            <div>
+                <Nav />
+                <div className="container">
 
-    // iconRemoveVoyage = event => {
-    //     event.preventDefault();
-    //     let deleteID = event.target.parentElement.parentElement.parentElement.getAttribute("data-id")
-    //     fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(res => res.json())
-    //         .then(oldVoyageID => {
-    //             let voyages = this.state.voyages.filter(
-    //                 (voyage, i) => voyage._id !== oldVoyageID
-    //             );
-    //             this.setState({ voyages });
-    //         });
-    // };
+                    <Link to="/dashboard"><button
+                        style={{ width: `42vh` }}
+                        className="btn waves-effect waves-light"
+                    >
+                        Back to Dash
+                  </button>
+                    </Link>
+
+                    <p>Total Distance Traveled: {this.state.totalDistance}</p>
+
+                    <Modal
+                        isOpen={this.state.isRemoveModalOpen}
+                        onRequestClose={this.closeModal}
+                        shouldCloseOnOverlayClick={true}
+                        shouldCloseOnEsc={true}
+                        style={customStyles}
+                    >
+                        <div className="center-align">
+                            <h3>Permanently cast this voyage to the bottom of the ocean???</h3>
+                            <button onClick={this.deleteVoyage} className="btn red">Yes</button>
+                            <button onClick={() => this.setState({ isRemoveModalOpen: false })} className="btn">No, take me back</button>
+                        </div>
+                    </Modal>
+                    {/* Loop through voyages array to display all data */}
+                    {this.state.voyages.map(v => (
+                        <div className="vCard" data-id={v._id} key={v._id}>
+                            <h5>Voyage: {v.name}</h5>
+                            <h5>Sailing date: {v.date}</h5>
+                            <h5>Description: {v.description}</h5>
+                            <h5>Fuel remaining: {v.fuel}</h5>
+                            <h5>Starting Mileage: {v.mileageStart}</h5>
+                            <h5>Ending Mileage: {v.mileageEnd}</h5>
+                            <h5>Total Trip Distance: {v.voyageDistance}</h5>
+                            <div className="right-align">
+                                <button className="btn red" onClick={this.openRemoveModal}><i className="material-icons" onClick={this.openRemoveModal}>delete</i> </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+}
+export default Voyages;
+
+
+//===================
+//POTENTIAL UPDATE METHODS
+//==================
 
     // loadNoteForm = id => {
     //     this.setState({ updateNote: true }, () => {
@@ -167,53 +192,41 @@ class Voyages extends Component {
     //     //   });
     // };
 
-    render() {
-        return (
-            <div>
-                <Nav />
-                <div className="container">
+    // findArticle = id => {
+    //     return fetch(`http://localhost:4025/api/articles/${id}`).then(res => res.json());
+    // }
 
-                    <Link to="/dashboard"><button
-                        style={{ width: `42vh` }}
-                        className="btn waves-effect waves-light"
-                    >
-                        Back to Dash
-                  </button>
-                    </Link>
 
-                    <p>Total Distance Traveled: {this.state.totalDistance}</p>
+//===================
+//OLD REMOVE METHODS
+//==================
 
-                    <Modal
-                        isOpen={this.state.isRemoveModalOpen}
-                        onRequestClose={this.closeModal}
-                        shouldCloseOnOverlayClick={true}
-                        shouldCloseOnEsc={true}
-                        style={customStyles}
-                    >
-                        <div className="center-align">
-                            <h3>Permanently cast this voyage to the bottom of the ocean???</h3>
-                            <button onClick={this.deleteVoyage} className="btn red">Yes</button>
-                            <button onClick={() => this.setState({ isRemoveModalOpen: false })} className="btn">No, take me back</button>
-                        </div>
-                    </Modal>
+// removeVoyage = event => {
+    //     event.preventDefault();
+    //     let deleteID = event.target.parentElement.parentElement.getAttribute("data-id")
+    //     fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
+    //         method: "DELETE"
+    //     })
+    //         .then(res => res.json())
+    //         .then(oldVoyageID => {
+    //             let voyages = this.state.voyages.filter(
+    //                 (voyage, i) => voyage._id !== oldVoyageID
+    //             );
+    //             this.setState({ voyages });
+    //         });
+    // };
 
-                    {this.state.voyages.map(v => (
-                        <div className="vCard" data-id={v._id} key={v._id}>
-                            <h5>Voyage: {v.name}</h5>
-                            <h5>Sailing date: {v.date}</h5>
-                            <h5>Description: {v.description}</h5>
-                            <h5>Fuel remaining: {v.fuel}</h5>
-                            <h5>Starting Mileage: {v.mileageStart}</h5>
-                            <h5>Ending Mileage: {v.mileageEnd}</h5>
-                            <h5>Total Trip Distance: {v.voyageDistance}</h5>
-                            <div className="right-align">
-                                <button className="btn red" onClick={this.openRemoveModal}><i className="material-icons" onClick={this.openRemoveModal}>delete</i> </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        )
-    }
-}
-export default Voyages;
+    // iconRemoveVoyage = event => {
+    //     event.preventDefault();
+    //     let deleteID = event.target.parentElement.parentElement.parentElement.getAttribute("data-id")
+    //     fetch(`http://localhost:5000/api/voyages/delete/${deleteID}`, {
+    //         method: "DELETE"
+    //     })
+    //         .then(res => res.json())
+    //         .then(oldVoyageID => {
+    //             let voyages = this.state.voyages.filter(
+    //                 (voyage, i) => voyage._id !== oldVoyageID
+    //             );
+    //             this.setState({ voyages });
+    //         });
+    // };
