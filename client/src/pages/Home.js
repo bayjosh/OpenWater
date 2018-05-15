@@ -10,20 +10,27 @@ class Home extends Component {
       continueRedirect: false
     }
   }
-  continue = event => {
+
+  //Method to handle redirect to dashboard
+  handleContinueAsGuest = event => {
     event.preventDefault();
+    //Why setTimeout????????
     setTimeout(() => {
       this.setState({ continueRedirect: true })
     }, 500);
   }
-  logIn = event => {
+
+  //Method to handle redirect to login
+  handleLogIn = event => {
     event.preventDefault();
+    //Why setTimeout????????
     setTimeout(() => {
       this.setState({ loginRedirect: true })
     }, 500);
   }
-  render() {
 
+
+  render() {
     return (
       <div>
         <HomeBackground />
@@ -34,11 +41,11 @@ class Home extends Component {
             </div>
             {/* <p id="homeHeader">Start your voyage</p> */}
             <button
-              onClick={this.logIn}
+              onClick={this.handleLogIn}
               className="waves-effect btn-large waves-light btn"
               id="loginButton">Log In</button>
             <button
-              onClick={this.continue}
+              onClick={this.handleContinueAsGuest}
               className="waves-effect btn-large waves-light btn"
               id="continueAsGuestButton"
               type="button">Continue As Guest</button>

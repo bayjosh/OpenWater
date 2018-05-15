@@ -27,16 +27,20 @@ class Dashboard extends Component {
     };
   }
 
-  // Allows for scrolling
   componentDidMount() {
+    // Allow for page scrolling
     document.querySelector('body').style.overflow = "scroll"
+    // Marine traffic??????
     postscribe('#script', "<script src='//www.marinetraffic.com/js/embed.js' type='text/javascript'></script>")
     postscribe('#script', "<script type='text/javascript'>width='100%'; height='450';	 border='1';	shownames='false';	latitude='37.4460';	 longitude='24.9467';	zoom='9';	maptype='1';trackvessel='0'; fleet='';</script>")
   }
 
-  onChange = (lati, long) => {
+  //Method to handle changes to map component (new click on the map)
+  onMapChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
+    //API call to retrieve zip code from lat and lon
     API.getZipCode(this.state.lat, this.state.lon).then(res => {
+      //Only return the colloquial zip code
       for (var i = 0; i < res.data.results[0].address_components.length; i++) {
         if (res.data.results[0].address_components[i].types[0] === "postal_code") {
           return res.data.results[0].address_components[i].long_name
@@ -45,12 +49,13 @@ class Dashboard extends Component {
     })
       .then(result => {
         this.setState({ zipCode: result })
-        console.log(this.state.zipCode)
-        this.openDepthChart();
+        //Prepare depth overlay with new lat and lon - but doesn't trigger????
+        this.openDepthOverlay();
+        //Prepare depth charts with new lat and lon - but doesn't trigger????
         this.openNOAACharts();
       })
   }
-
+  //Why are we passing forecastTime here????????
   handleModalLoad = (forecastTime) => {
     this.setState({ forecastTime: forecastTime })
   }
@@ -62,7 +67,8 @@ class Dashboard extends Component {
     return fetch(`http://localhost:5000/api/charts/${this.state.lat}/${this.state.lon}`).then(res => res.json());
   }
 
-  openDepthChart = () => {
+  //How does iframe work with render below????
+  openDepthOverlay = () => {
     let iframe = document.createElement('iframe')
     iframe.setAttribute('width', '100%')
     iframe.setAttribute('height', "90%")
@@ -77,6 +83,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    //???????????:
     // let width = '100%';
     // let height = '450';
     // let border = '1';
@@ -88,48 +95,25 @@ class Dashboard extends Component {
     // let fleet = '';
     // let trackvessel = '0';
     return (
-
-
       <div>
         <Nav />
         <DashboardBackground />
-        <LoadingModal
-          lat={this.state.lat}
-          lon={this.state.lon}
-          zipCode={this.state.zipCode}
-          forecastTime={this.state.forecastTime}
-        />
+        <LoadingModal lat={this.state.lat} lon={this.state.lon} zipCode={this.state.zipCode} forecastTime={this.state.forecastTime} />
 
-        <div className="dashboard"
-          style={{
-            display: `flex`,
-            flexDirection: `row`,
-            alignItems: `center`,
-            justifyContent: `space-evenly`,
-            flexWrap: `wrap`,
-            padding: `2.5%`,
-            height: `100vh`,
-            width: `100vw`
-          }}>
-          <div
-            id="map-card"
-            className="card darken-1"
-            style={{ width: `100%`, height: `150%` }}
-          >
+        {/* Flex-box styling for whole page */}
+        <div className="dashboard" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-evenly`, flexWrap: `wrap`, padding: `2.5%`, height: `100vh`, width: `100vw` }}>
+
+          {/* Location/Map card */}
+          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%` }}>
             <div className="card-content" style={{ height: `95%` }}>
               <div className="card-title">
                 <h3>Location</h3>
                 <hr />
-                <button className="btn activator">Depth Overlay</button>
               </div>
-              <MapComponent
-                isMarkerShown={false}
-                onChange={this.onChange}
-              />
-
-              {/* Depth Overlay stuff */}
-
+              <MapComponent isMarkerShown={false} onChange={this.onMapChange} />
             </div>
+            {/* Depth Overlay Reveal */}
+            <button className="btn activator">Depth Overlay</button>
             <div className="card-reveal">
               <span className="card-title"><i className="right">Back to Map</i></span>
               <div style={{ textAlign: `center`, color: `black` }} id="real-title"><h3>Depth Overlay</h3></div>
@@ -138,15 +122,10 @@ class Dashboard extends Component {
             </div>
           </div>
 
-          <div
-            id="weather"
-            className="card darken-1"
-            style={{ width: `100%` }}
-          >
+          {/* Marine Conditions Card */}
+          <div id="weather" className="card darken-1" style={{ width: `100%` }}>
             <div className="card-content" style={{ height: `95%` }}>
-              <div
-                className="card-title"
-              >
+              <div className="card-title">
                 <h3>Marine Forecast</h3>
               </div>
               <hr />
@@ -155,15 +134,10 @@ class Dashboard extends Component {
             </div>
           </div>
 
-          <div
-            id="air-weather"
-            className="card darken-1"
-            style={{ width: `100%` }}
-          >
+          {/* Air Weather Forecast Card */}
+          <div id="air-weather" className="card darken-1" style={{ width: `100%` }}>
             <div className="card-content" style={{ height: `95%` }}>
-              <div
-                className="card-title"
-              >
+              <div className="card-title">
                 <h3>Weather Forecast</h3>
               </div>
               <hr />
@@ -171,11 +145,10 @@ class Dashboard extends Component {
             </div>
           </div>
 
+          {/* Docking Options Card */}
           <div id="dockwa-area" className="card darken-1" style={{ width: `100%` }}>
             <div className="card-content" style={{ height: `95%` }}>
-              <div
-                className="card-title"
-              >
+              <div className="card-title">
                 <h3>Docking Options</h3>
                 <hr />
                 <div>
@@ -185,18 +158,15 @@ class Dashboard extends Component {
             </div>
           </div>
 
+          {/* Button to log a voyage in the database */}
           <LogVoyage />
 
-          <Link to="/voyages"><button
-            className="btn"
-          >
-            View Logs
-        </button>
+          {/* Link to view voyages */}
+          <Link to="/voyages">
+            <button className="btn"> View Voyages </button>
           </Link>
 
-          {/* ================ */}
-          {/* NOAA charts button*/}
-          {/* ====================== */}
+          {/* Button to open depth charts in new tab*/}
           {this.state.chartsURL !== "" ?
             <a target="_blank" href={this.state.chartsURL}>
               <button className="btn">NOAA Nautical Charts</button>
@@ -207,11 +177,11 @@ class Dashboard extends Component {
               modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
             </Modal>}
 
-          <div id='script'style={{}}>
-          </div>
+          {/* Div to hold marine traffic iframe */}
+          <div id='script' style={{}}></div>
+
         </div>
-        </div>
-        
+      </div>
     );
   }
 }

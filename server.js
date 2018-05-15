@@ -214,7 +214,7 @@ app.get("/api/voyages", function (req, res) {
     });
 });
 
-//Get request to access lat/lon data and scrape marine depth charts
+//Get request to scrape and open marine depth chart data in new tab
 app.get("/api/charts/:lat/:lon", function (req, res) {
     const Nightmare = require('nightmare')
     const nightmare = Nightmare({ typeInterval: 10 });
