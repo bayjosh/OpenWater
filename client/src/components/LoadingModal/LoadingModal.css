@@ -3,7 +3,6 @@
       -webkit-transform: translateX(-100%);
       visibility: visible;
     }
-  
     50% {
       -webkit-transform: translateX(0%);
       visibility: visible;

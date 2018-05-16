@@ -2,9 +2,10 @@ import React from "react"
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
+//Custom marker
 const image = require('../../images/smallanchor.png')
 
-
+//Create MapWindow stateless component
 const MapWindow = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCw1e-uu8VD-vsFQDzMXlHkiN_XL5N8YFg&libraries=geometry,drawing,places",
@@ -17,13 +18,10 @@ const MapWindow = compose(
 
 
 )((props) =>
-  <GoogleMap
-    defaultZoom={5}
-    defaultCenter={{ lat: 44.837979309495736, lng: -83.28125581028485 }}
-    onClick={props.onGoogleMapClick}
+  <GoogleMap defaultZoom={5} defaultCenter={{ lat: 44.837979309495736, lng: -83.28125581028485 }} onClick={props.onGoogleMapClick}>
 
-  >
     {props.isMarkerShown && <Marker position={{ lat: props.markerPositionLat, lng: props.markerPositionLon }} onClick={props.onMarkerClick} icon={image} />}
+
   </GoogleMap>
 )
 
@@ -37,19 +35,18 @@ class MapComponent extends React.PureComponent {
     }
   }
 
-
-
+  //Method to display marker
   handleMarkerClick = () => {
     this.setState({ isMarkerShown: false })
   }
 
+  //Method to capture lat and lon position of user click
   handleGoogleMapClick = (event) => {
     let lat = event.latLng.lat()
     let lon = event.latLng.lng()
     this.setState({ isMarkerShown: true, markerPositionLat: lat, markerPositionLon: lon })
     this.props.onChange(this.state.markerPositionLat, this.state.markerPositionLon);
   }
-
 
   render() {
     return (

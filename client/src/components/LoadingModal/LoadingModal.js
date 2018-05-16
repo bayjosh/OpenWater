@@ -19,9 +19,6 @@ const customStyles = {
     }
 };
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-// Modal.setAppElement('#yourAppElement')
-
 class LoadingModal extends Component {
     constructor(props) {
         super(props);
@@ -34,19 +31,21 @@ class LoadingModal extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        //Only get location and launch modal if new user click on map registered
         if (this.props.zipCode !== 0 && prevProps.zipCode !== this.props.zipCode) {
             this.getLocation();
             this.openModal();
-
+            //Once forecastTime is different from previous, marine data is ready, close modal
         } else if (this.props.forecastTime !== prevProps.forecastTime) {
             this.closeModal();
         }
     }
 
+    //Method to display loading messages
     modalMessageLoad = () => {
-        console.log('hello')
         const messageArr = ["...Forecasting Marine Conditions...", "...Assembling Weather Forecast...", "...Gathering Docking Options...", "...Finding Nautical Charts...", "...Running Out of Excuses..."];
-        // document.getElementById('modal-message').innerText = messageArr[0]
+        //Frequent checks to see if modal is still open (data still loading); If so, display next loading message
+        //SetTimeout of zero again????
         if (this.state.modalIsOpen) {
             setTimeout(() => {
                 if (this.state.modalIsOpen) {
@@ -73,13 +72,12 @@ class LoadingModal extends Component {
                     }, 4000)
                 }
             }, 0)
-
         }
     }
 
-
     getLocation = () => {
         let zip = this.props.zipCode
+        //API call to get "city, state" from zipcode
         API.getLocation(zip).then(res => {
             this.setState({ city: res.data[0].LocalizedName, lState: res.data[0].AdministrativeArea.ID })
         })
@@ -90,6 +88,7 @@ class LoadingModal extends Component {
     }
 
     afterOpenModal = () => {
+        //?????
         // references are now sync'd and can be accessed.
         // this.subtitle.style.color = '#f00';
         this.modalMessageLoad();
@@ -103,34 +102,27 @@ class LoadingModal extends Component {
     render() {
         return (
             <div id="loadModal">
-                {/* <button onClick={this.openModal}>Open Modal</button> */}
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
-                    // ariaHideApp={false}
-                    /*
-                      Boolean indicating if the overlay should close the modal
-                    */
+                    // ariaHideApp={false} ????
                     shouldCloseOnOverlayClick={true}
-                    /*
-                      Boolean indicating if pressing the esc key should close the modal
-                      Note: By disabling the esc key from closing the modal you may introduce an accessibility issue.
-                    */
-                    shouldCloseOnEsc={true}
+                    shouldCloseOnEsc={true}>
 
-                >
                     <div className="right-align">
                         <button onClick={this.closeModal}>x</button>
                     </div>
+
                     <div className="center-align">
                         <LoadingWheel />
+                        {/* We're using refs???? */}
                         <h4 ref={subtitle => this.subtitle = subtitle}>Fetching info for {this.state.city}, {this.state.lState}</h4>
                         <hr />
+                        {/* h5 where loading messages appear */}
                         <h5 id="modal-message"></h5>
                     </div>
-
                 </Modal>
             </div>
         );
