@@ -1,7 +1,7 @@
 {
-  "name": "OpenRoad",
+  "name": "OpenWater",
   "version": "1.0.0",
-  "description": "Road trip helper full-stack MERN application",
+  "description": "Boat trip planner full-stack MERN application",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/bayjosh/OpenRoad/issues"
   },
-  "homepage": "https://github.com/bayjosh/OpenRoad#readme",
+  "homepage": "https://github.com/bayjosh/OpenWater#readme",
   "dependencies": {
     "animate.css": "^3.6.1",
     "body-parser": "^1.18.2",
