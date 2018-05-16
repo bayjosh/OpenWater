@@ -18,12 +18,15 @@ class LogVoyage extends Component {
         };
     }
 
+    //Method to handle click of "Save Voyage" button
     saveVoyage = event => {
         event.preventDefault();
-
+        //Close modal and calculate voyage distance
+        //Why do we need a setTimeout of zero????
         setTimeout(() => {
             this.setState({ isOpen: false, voyageDistance: this.state.voyageMileageEnd - this.state.voyageMileageStart })
             setTimeout(() => {
+                //Calcuate total distance of all voyages user has logged????
                 this.setState({ totalDistance: this.state.totalDistance + this.state.voyageDistance })
                 axios.post("http://localhost:5000/saveVoyage", {
                     name: this.state.voyageName,
@@ -34,44 +37,30 @@ class LogVoyage extends Component {
                     mileageEnd: this.state.voyageMileageEnd,
                     voyageDistance: this.state.voyageDistance
                 });
-
             }, 1);
         }, 0);
-
-
-
-
-
     };
 
     render() {
-
+        //Global variable to calculate voyage distance as integer
         let distance = parseInt(this.state.voyageMileageEnd - this.state.voyageMileageStart)
 
         return (
-
-
-            // <Modal
-            //     trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
-            // >
-            // </Modal>
-
             <Modal
                 header='Log a Voyage'
                 trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
                 actions={<Button modal="close" onClick={this.saveVoyage}>
                     <Icon left>check_circle</Icon>Save This Voyage</Button>} modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}
                 fixedFooter
-                style={{ borderRadius: `25px`, overflow: `scroll` }}
+                style={{ borderRadius: `25px`, overflow: `scroll` }}>
 
-            >
                 <Row className="right-align">
                     <Button className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
                 </Row>
 
-
                 <Row >
                     <br />
+                    {/* Form inputs and setting state with each value */}
                     <Input validate placeholder="Name your voyage here" s={12} label="Name" onChange={(e, value) => { this.setState({ voyageName: value }) }}><Icon>directions_boat</Icon></Input>
                     <Input label="Date" name='on' type='date' onChange={(e, value) => { this.setState({ voyageDate: value }) }}><Icon>date_range</Icon></Input>
                     <Input type="textarea" placeholder="Add a brief summary of your voyage here" label="Description" s={12} onChange={(e, value) => { this.setState({ voyageDescription: value }) }}><Icon>create</Icon></Input>
@@ -83,39 +72,12 @@ class LogVoyage extends Component {
                         <option value='Empty - 1/4'>Empty - 1/4 </option>
                     </Input>
                     <Input s={3} label="Starting Mileage" onChange={(e, value) => { this.setState({ voyageMileageStart: value }) }} />
-                    <Input s={3} label="Ending Mileage" onChange={(e, value) => {
-                        this.setState({ voyageMileageEnd: value })
-                    }} />
-
+                    <Input s={3} label="Ending Mileage" onChange={(e, value) => { this.setState({ voyageMileageEnd: value }) }} />
                 </Row>
+
+                {/* If voyage distance calculates less than zero, display zero */}
                 {distance < 0 ? <p className="right-align">Voyage distance: 0</p> : <p className="right-align">Voyage distance: {distance}</p>}
-
-
-
-
-
             </Modal>
-            // <div className="voyageInfo">
-            // <span>
-            //     <button
-            //         className="btn waves-effect modal-trigger waves-light"
-            //         style={{ width: `42vh`, margin: `0 10px 0 20px` }}
-            //         data-target="#voyageModal"
-            //     >
-            //         Log a Voyage
-            //       </button>
-            // </span>
-            //     <div id="voyageModal" className="modal">
-            //         <div className="modal-content">
-            //             <h4>Log A Voyage</h4>
-            //             <p>A bunch of text</p>
-            //         </div>
-            //         <div className="modal-footer">
-            //             <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-            //         </div>
-            //     </div>
-            // </div>
-
         )
     }
 }

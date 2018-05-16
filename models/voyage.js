@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Schema to create voyages collection
 const voyageSchema = new Schema({
     name: {
         type: String,

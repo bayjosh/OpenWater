@@ -10,37 +10,30 @@ class NOAAWeather extends Component {
             headers: [],
             texts: [],
             warning: "",
-
         };
     }
 
-
-    // componentDidUpdate() {
-    //     if (this.props.zipCode !== 0) {
-    //         this.loadWeather()
-    //     }
-    // }
     componentDidUpdate(prevProps, prevState) {
+        //Only load weather if user has clicked somewhere new on the map
         if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
             this.loadWeather();
         }
     }
 
+    //Method to change all caps to more legible format
     titleCase = (str) => {
         if (str !== undefined) {
             let splitStr = str.toLowerCase().split(' ');
             for (var i = 0; i < splitStr.length; i++) {
-                // You do not need to check if i is larger than splitStr length, as your for does that for you
-                // Assign it back to the array
                 splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
             }
-            // Directly return the joined string
             return splitStr.join(' ');
         } else {
             return str
         }
     }
 
+    //Method to separate applicable marine zones with a divider
     loopMarineZones = (arg) => {
         for (var i = 0; i < this.state.affectedZones.length; i++) {
             if (i !== this.state.affectedZones.length - 1) {
@@ -51,12 +44,13 @@ class NOAAWeather extends Component {
     }
 
 
-
+    //Method to load marine conditions
     loadWeather = () => {
         let latlon = {
             lat: this.props.lat,
             lon: this.props.lon
         }
+        //Post request to scrape marine conditions with lat/lon from user click
         return fetch('http://localhost:5000/weatherScrape', {
             method: "POST",
             headers: {
@@ -67,16 +61,14 @@ class NOAAWeather extends Component {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 this.setState({
                     forecastTime: res.forecastTime,
                     affectedZones: res.affectedZones,
                     headers: res.headers,
                     texts: res.texts,
                     warning: res.warning,
-
                 })
-                console.log(res.forecastTime)
+                //Why are we doing this again?????
                 this.props.handleModalLoad(this.state.forecastTime)
             })
     }
@@ -85,22 +77,24 @@ class NOAAWeather extends Component {
         let marineZone = ""
         return (
             <div className="NOAAWeather">
+                {/* If user has clicked on map, render data. Otherwise display empty div #noMarineData */}
                 {this.props.lat !== null ?
                     <div>
                         <h5 style={{ textAlign: `center` }}>Applicable Marine Zones: </h5>
                         {this.loopMarineZones(marineZone)}
                         <hr />
                         <h5>WARNINGS</h5>
+                        {/* If marine conditions include a warning, display warning */}
                         {this.state.warning === '' ?
                             <h6>Smooth Sailing! No warnings to report.</h6> :
                             <h6>{this.state.warning}</h6>
                         }
                         <hr />
-
                         <p><b>Last updated: </b>{this.state.forecastTime}</p>
                         <div style={{ width: `100%`, display: `flex`, flexWrap: `wrap`, flexDirection: `row`, justifyContent: `center` }}>
-
+                            {/* Map through marine condition headers */}
                             {this.state.headers.map((el, i) => (
+                                // If header includes "night", display header along with previous header to pair night and day together
                                 el.indexOf("NIGHT") !== -1 ?
                                     <div style={{ border: `black 1px solid`, overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                         <h4 >
@@ -120,6 +114,7 @@ class NOAAWeather extends Component {
                                             {this.state.texts[i]}
                                         </p>
                                     </div>
+                                    // Otherwise, display empty div #?????
                                     :
                                     <div key={i}>
                                         {/* <h5 >
@@ -129,14 +124,15 @@ class NOAAWeather extends Component {
                                             {this.state.texts[i]}
                                         </p> */}
                                     </div>
-
                             ))}
                         </div>
                     </div>
-                    : <div />}
+
+                    //Empty div #noMarineData
+                    : <div id="noMarineData" />}
+
             </div>
         );
     }
-
 }
 export default NOAAWeather;

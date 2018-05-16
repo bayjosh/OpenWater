@@ -1,7 +1,6 @@
 #login-background-initZoom {
   text-align: center;
-  background: url("../../images/loginBackground.png") center fixed
-    no-repeat;
+  background: url("../../images/loginBackground.png") center fixed no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
@@ -39,9 +38,7 @@
 }
 
 #loginInput {
-  
   color: white;
-  
 }
 
 #loginInput:focus {
@@ -60,13 +57,12 @@
   background-color: white;
 }
 
-
 #signinContainer {
   margin-top: 25%;
   background-color: rgba(0, 0, 0, 0.719);
   border-radius: 10px;
   -webkit-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
-padding: 0 20px;
+  -moz-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+  padding: 0 20px;
 }

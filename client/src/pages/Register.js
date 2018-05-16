@@ -11,15 +11,16 @@ class Register extends Component {
             fireRedirect: false
         };
     }
+    //Method to handle submit of user registration
     registerSubmit = event => {
         event.preventDefault();
-
         let firstName = event.target[0].value;
         let lastName = event.target[1].value;
         let email = event.target[2].value;
         let username = event.target[3].value;
         let password = event.target[4].value;
 
+        //Post method to insert user data into database
         axios.post("http://localhost:5000/register", {
             username: username,
             password: password,
@@ -28,13 +29,9 @@ class Register extends Component {
             email: email
         });
 
-
+        //Update state to trigger redirect to dashboard
         this.setState({ fireRedirect: true });
-
-
     };
-
-
 
     render() {
         return (
@@ -77,17 +74,15 @@ class Register extends Component {
                                     <Link to="/"><button type="button" className="waves-effect waves-light btn registerButton"> Back to Home </button></Link>
                                 </form>
 
-
                                 {this.state.fireRedirect && <Redirect to="/dashboard" />}
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         );
-
     }
-
 }
 
 export default Register;

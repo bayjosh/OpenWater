@@ -12,18 +12,21 @@ class Login extends Component {
       fireRedirect: false
     };
   }
+
+  //Method to handle user login
   loginSubmit = event => {
     event.preventDefault();
 
     let username = event.target[0].value;
     let password = event.target[1].value;
 
+    //Post request to capture user login credentials
     axios.post("http://localhost:5000/login", {
       username: username,
       password: password
     });
 
-
+    //Update state to trigger redirect to dashboard
     this.setState({ fireRedirect: true });
 
 
@@ -55,24 +58,30 @@ class Login extends Component {
                     </div>
                   </div>
 
-
                   <button type="submit" className="waves-effect waves-light btn signinButton">Login</button>
                   <br />
                   <Link to="/"><button type="button" className="waves-effect waves-light btn registerButton"> Back to Home </button></Link>
                 </form>
+
                 {this.state.fireRedirect && <Redirect to="/dashboard" />}
+
               </div>
             </div>
           </div>
         </div>
       </div >
     );
-
   }
-
 }
 
+export default Login;
 
+
+
+
+// ==========================
+// ??????????????????
+// =====================
 
 
 // render() {
@@ -110,6 +119,3 @@ class Login extends Component {
 //     </div>
 //   );
 // }
-
-
-export default Login;

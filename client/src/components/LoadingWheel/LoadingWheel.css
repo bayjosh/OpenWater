@@ -1,9 +1,8 @@
-
 #wheel{
     width: 150px;
     height: 150px;
     z-index: 30;
-     -webkit-animation: spin 10s infinite;
+    -webkit-animation: spin 10s infinite;
 }
 
 @-webkit-keyframes spin {

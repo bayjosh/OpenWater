@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Schema to create users collection
 const userSchema = new Schema({
     firstname: {
         type: String,
@@ -24,7 +25,6 @@ const userSchema = new Schema({
         required: true
         // required: true
     }
-
 });
 
 const User = mongoose.model("User", userSchema);

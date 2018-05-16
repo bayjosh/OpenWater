@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import Nav from "./components/Nav";
-// import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Voyages from "./pages/Voyages";
+// import Nav from "./components/Nav";
+// import Footer from "./components/Footer";
 
 
 
