@@ -8,10 +8,9 @@ import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
 import LogVoyage from "../components/LogVoyage";
 import { Link } from "react-router-dom";
-import { Modal } from 'react-materialize'
-import Nav from "../components/Nav"
-import postscribe from "postscribe"
-
+import { Modal } from 'react-materialize';
+import Nav from "../components/Nav";
+import MarineTraffic from "../components/MarineTraffic";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -30,8 +29,6 @@ class Dashboard extends Component {
   // Allows for scrolling
   componentDidMount() {
     document.querySelector('body').style.overflow = "scroll"
-    postscribe('#script', "<script src='//www.marinetraffic.com/js/embed.js' type='text/javascript'></script>")
-    postscribe('#script', "<script type='text/javascript'>width='100%'; height='450';	 border='1';	shownames='false';	latitude='37.4460';	 longitude='24.9467';	zoom='9';	maptype='1';trackvessel='0'; fleet='';</script>")
   }
 
   onChange = (lati, long) => {
@@ -77,19 +74,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    // let width = '100%';
-    // let height = '450';
-    // let border = '1';
-    // let shownames = 'false';
-    // let latitude = '37.4460';
-    // let longitude = '24.9467';
-    // let zoom = '9';
-    // let maptype ='1';
-    // let fleet = '';
-    // let trackvessel = '0';
     return (
-
-
       <div>
         <Nav />
         <DashboardBackground />
@@ -207,8 +192,7 @@ class Dashboard extends Component {
               modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
             </Modal>}
 
-          <div id='script'style={{}}>
-          </div>
+        <MarineTraffic lat={this.state.lat} lon={this.state.lon} />
         </div>
         </div>
         
