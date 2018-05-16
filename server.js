@@ -245,6 +245,39 @@ app.delete("/api/voyages/delete/:id", function (req, res) {
     );
 });
 
+// Login routes to verify or create user
+
+app.get('/checkuser', function (req, res) {
+    db.users.find(req.query, { password: 0 }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    })
+})
+
+app.get('/getuser/:id', function (req, res) {
+    db.users.find({ _id: mongojs.ObjectId(req.params.id) }, { password: 0 }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    })
+})
+
+app.get('/checkdup', function (req, res) {
+    db.users.find({ $or: [{ 'name': req.query.name }, { 'email': req.query.email }] }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    })
+})
+
+app.post('/createuser', function (req, res) {
+    db.users.insert({ 'name': req.body.name, 'password': req.body.pass, 'email': req.body.email }, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+        db.flow.insert({ 'userId': result._id, 'name': result.name, 'date': new Date(), 'action': 'joined', 'target': 'ShowFlow' }, function (err, result) {
+            if (err) throw err;
+        })
+    })
+})
+
 
 
 //===========================

@@ -3,8 +3,8 @@ import HomeBackground from "../components/HomeBackground";
 import { Redirect, Link } from "react-router-dom";
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loginRedirect: false,
       continueRedirect: false
@@ -19,7 +19,7 @@ class Home extends Component {
   }
 
   //Method to handle redirect to login
-  handleLogIn = event => {
+  handleLogin = event => {
     event.preventDefault();
     //Why setTimeout????????
     setTimeout(() => { this.setState({ loginRedirect: true }) }, 500);
@@ -41,7 +41,7 @@ class Home extends Component {
             </div>
             {/* <p id="homeHeader">Start your voyage</p> */}
 
-            <button onClick={this.handleLogIn} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
+            <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
             <button onClick={this.handleContinueAsGuest} className="waves-effect btn-large waves-light btn" id="continueAsGuestButton" type="button">Continue As Guest</button>
             <p id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
 
