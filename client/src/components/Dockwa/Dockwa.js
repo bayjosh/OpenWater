@@ -45,7 +45,7 @@ class Dockwa extends Component {
                         <a key={i} style={{ color: `black`, width: `30%`, border: `white 1px solid`, marginBottom: `8px`, borderRadius: `25px` }} target="_blank" href={el.URL}>
                             <h5>{el.name}</h5>
                             <h6>{el.price}</h6>
-                            <img className="responsive-img" style={{ borderRadius: `25px`, width: `100%`, height: `55vh` }} src={el.pictureStyle} alt="dockwa-img" />
+                            <img className="responsive-img" style={{ borderRadius: `25px`, width: `100%`, height: `50vh` }} src={el.pictureStyle} alt="dockwa-img" />
                         </a>
                     ))}
                 </div>

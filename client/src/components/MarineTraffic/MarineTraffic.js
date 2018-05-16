@@ -18,12 +18,12 @@ class MarineTraffic extends Component {
 
     loadTraffic= () => {
         document.querySelector('#script').innerHTML = '';
-        postscribe('#script', "<script src='//www.marinetraffic.com/js/embed.js' type='text/javascript'></script>")
-        postscribe('#script', `<script type='text/javascript'>width='100%'; height='450'; border='1' shownames='false';	latitude='${this.props.lat}'; longitude='${this.props.lon}'; zoom='10'; maptype='1'; trackvessel='0'; fleet=''; </script>`)
+        postscribe('#script', `<script type='text/javascript'>width='100%'; height='450'; border='1'; shownames='false'; latitude='${this.props.lat}'; longitude='${this.props.lon}'; zoom='8'; maptype='1'; trackvessel='0'; fleet=''; </script>`)
+        postscribe('#script', "<script src='https://www.marinetraffic.com/js/embed.js' type='text/javascript'></script>")
     }
     render(){
         return (
-            <div id='script' style={{}}>
+            <div id='script'>
             </div>
         )
     }
