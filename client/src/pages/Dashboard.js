@@ -29,12 +29,6 @@ class Dashboard extends Component {
   componentDidMount() {
     // Allow for page scrolling
     document.querySelector('body').style.overflow = "scroll"
-<<<<<<< HEAD
-=======
-    // Marine traffic??????
-    postscribe('#script', "<script src='//www.marinetraffic.com/js/embed.js' type='text/javascript'></script>")
-    postscribe('#script', "<script type='text/javascript'>width='100%'; height='450';	 border='1';	shownames='false';	latitude='37.4460';	 longitude='24.9467';	zoom='9';	maptype='1';trackvessel='0'; fleet='';</script>")
->>>>>>> d395914dd613d5497a43325505d4c23ac721e338
   }
 
   //Method to handle changes to map component (new click on the map)
@@ -85,20 +79,6 @@ class Dashboard extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-=======
-    //???????????:
-    // let width = '100%';
-    // let height = '450';
-    // let border = '1';
-    // let shownames = 'false';
-    // let latitude = '37.4460';
-    // let longitude = '24.9467';
-    // let zoom = '9';
-    // let maptype ='1';
-    // let fleet = '';
-    // let trackvessel = '0';
->>>>>>> d395914dd613d5497a43325505d4c23ac721e338
     return (
       <div>
         <Nav />
@@ -181,15 +161,10 @@ class Dashboard extends Component {
               trigger={<button className="btn">NOAA Nautical Charts</button>}
               modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
             </Modal>}
-
-<<<<<<< HEAD
+            
+        {/* Marine Traffic Component */}
         <MarineTraffic lat={this.state.lat} lon={this.state.lon} />
-        </div>
-=======
-          {/* Div to hold marine traffic iframe */}
-          <div id='script' style={{}}></div>
 
->>>>>>> d395914dd613d5497a43325505d4c23ac721e338
         </div>
       </div>
     );
