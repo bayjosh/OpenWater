@@ -52,7 +52,7 @@ class LogVoyage extends Component {
                 actions={<Button modal="close" onClick={this.saveVoyage}>
                     <Icon left>check_circle</Icon>Save This Voyage</Button>} modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}
                 fixedFooter
-                style={{ borderRadius: `25px`, overflow: `scroll` }}>
+                style={{ borderRadius: `25px` }}>
 
                 <Row className="right-align">
                     <Button className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
