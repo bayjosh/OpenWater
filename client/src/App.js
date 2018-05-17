@@ -50,7 +50,7 @@ class App extends Component {
               {/* <Nav /> */}
               <Route exact path="/" component={Home} />
               <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/login" render={(props) => (<Home handleLogin={this.handleLogin} {...props} />)} />
+              <Route exact path="/login" render={(props) => (<Login handleLogin={this.handleLogin} {...props} />)} />
               <Route exact path="/register" render={(props) => (<Register handleRegister={this.handleRegister} {...props} />)} />
               {/* <Footer /> */}
             </div>
