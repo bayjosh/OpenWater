@@ -7,8 +7,8 @@ class DepthOverlay extends Component {
         this.state = {
         };
     }
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
+    componentDidMount() {
+        if (this.props.depthClicked) {
             this.openDepthOverlay();
         }
     }

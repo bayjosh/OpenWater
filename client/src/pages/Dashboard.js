@@ -98,7 +98,7 @@ class Dashboard extends Component {
             <div className="card-reveal">
               <span onClick={this.backToMap} className="card-title"><i className="right material-icons">close</i></span>
               { this.state.depthClicked ?
-                <DepthOverlay lat={this.state.lat} lon={this.state.lon} /> : this.state.trafficClicked ? <MarineTraffic lat={this.state.lat} lon={this.state.lon} /> : <div></div>
+                <DepthOverlay depthClicked={this.state.depthClicked} lat={this.state.lat} lon={this.state.lon} /> : this.state.trafficClicked ? <MarineTraffic trafficClicked={this.state.trafficClicked} lat={this.state.lat} lon={this.state.lon} /> : <div></div>
               }
             </div>
           </div>

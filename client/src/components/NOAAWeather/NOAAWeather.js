@@ -37,10 +37,13 @@ class NOAAWeather extends Component {
     loopMarineZones = (arg) => {
         for (var i = 0; i < this.state.affectedZones.length; i++) {
             if (i !== this.state.affectedZones.length - 1) {
-                arg.concat(this.state.affectedZones[i]).concat(" | ")
+                arg = arg + this.state.affectedZones[i] + " | ";
+            } else {
+                arg = arg + this.state.affectedZones[i]
             }
         }
         return arg
+        
     }
 
 
@@ -79,14 +82,14 @@ class NOAAWeather extends Component {
             <div className="NOAAWeather">
                 {/* If user has clicked on map, render data. Otherwise display empty div #noMarineData */}
                 {this.props.lat !== null ?
-                    <div>
+                    (<div>
                         <h5 style={{ textAlign: `center` }}>Applicable Marine Zones: </h5>
                         {this.loopMarineZones(marineZone)}
                         <hr />
                         <h5>WARNINGS</h5>
                         {/* If marine conditions include a warning, display warning */}
                         {this.state.warning === '' ?
-                            <h6>Smooth Sailing! No warnings to report.</h6> :
+                            (<h6>Smooth Sailing! No warnings to report.</h6> ):
                             <h6>{this.state.warning}</h6>
                         }
                         <hr />
@@ -126,7 +129,7 @@ class NOAAWeather extends Component {
                                     </div>
                             ))}
                         </div>
-                    </div>
+                    </div>)
 
                     //Empty div #noMarineData
                     : <div id="noMarineData" />}
