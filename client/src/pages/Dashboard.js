@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { Modal } from 'react-materialize';
 import Nav from "../components/Nav";
 import MarineTraffic from "../components/MarineTraffic";
+import DepthOverlay from "../components/DepthOverlay";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -22,7 +23,9 @@ class Dashboard extends Component {
       lon: null,
       zipCode: null,
       forecastTime: "",
-      chartsURL: ""
+      chartsURL: "",
+      depthClicked: false,
+      trafficClicked: false
     };
   }
 
@@ -30,7 +33,16 @@ class Dashboard extends Component {
     // Allow for page scrolling
     document.querySelector('body').style.overflow = "scroll"
   }
+  backToMap = () => {
+    this.setState({ depthClicked: false, trafficClicked: false})
+  }
+  depthWasClicked = () => {
+    this.setState({depthClicked: true})
+  }
 
+  trafficWasClicked = () => {
+    this.setState({ trafficClicked: true })
+  }
   //Method to handle changes to map component (new click on the map)
   onMapChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
@@ -45,8 +57,6 @@ class Dashboard extends Component {
     })
       .then(result => {
         this.setState({ zipCode: result })
-        //Prepare depth overlay with new lat and lon - but doesn't trigger????
-        this.openDepthOverlay();
         //Prepare depth charts with new lat and lon - but doesn't trigger????
         this.openNOAACharts();
       })
@@ -61,21 +71,6 @@ class Dashboard extends Component {
   }
   loadChartsURL = () => {
     return fetch(`http://localhost:5000/api/charts/${this.state.lat}/${this.state.lon}`).then(res => res.json());
-  }
-
-  //How does iframe work with render below????
-  openDepthOverlay = () => {
-    let iframe = document.createElement('iframe')
-    iframe.setAttribute('width', '100%')
-    iframe.setAttribute('height', "90%")
-    iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.state.lat}/${this.state.lon}`)
-    iframe.setAttribute('frameborder', '0')
-    if (document.getElementById('iframe').children.length === 1) {
-      document.getElementById('iframe').removeChild(document.getElementById('iframe').children[0]);
-      document.getElementById('iframe').appendChild(iframe)
-    } else {
-      document.getElementById('iframe').appendChild(iframe)
-    }
   }
 
   render() {
@@ -98,12 +93,13 @@ class Dashboard extends Component {
               <MapComponent isMarkerShown={false} onChange={this.onMapChange} />
             </div>
             {/* Depth Overlay Reveal */}
-            <button className="btn activator">Depth Overlay</button>
+            <button onClick={this.depthWasClicked} className="btn activator">Depth Overlay</button>
+            <button onClick={this.trafficWasClicked} className="btn activator">Marine Traffic</button>
             <div className="card-reveal">
-              <span className="card-title"><i className="right">Back to Map</i></span>
-              <div style={{ textAlign: `center`, color: `black` }} id="real-title"><h3>Depth Overlay</h3></div>
-              <hr />
-              <div style={{ height: `95%` }} id='iframe'></div>
+              <span onClick={this.backToMap} className="card-title"><i className="right material-icons">close</i></span>
+              { this.state.depthClicked ?
+                <DepthOverlay lat={this.state.lat} lon={this.state.lon} /> : this.state.trafficClicked ? <MarineTraffic lat={this.state.lat} lon={this.state.lon} /> : <div></div>
+              }
             </div>
           </div>
 
@@ -161,9 +157,6 @@ class Dashboard extends Component {
               trigger={<button className="btn">NOAA Nautical Charts</button>}
               modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
             </Modal>}
-            
-        {/* Marine Traffic Component */}
-        <MarineTraffic lat={this.state.lat} lon={this.state.lon} />
 
         </div>
       </div>

@@ -45,7 +45,6 @@ class App extends Component {
     if (!this.state.loggedIn) {
       return (
         <div>
-          {/* <Home handleLogin={this.handleLogin} handleContinueAsGuest={this.handleCreateUser} /> */}
           <Router>
             <div>
               {/* <Nav /> */}
