@@ -21,11 +21,6 @@ class Dockwa extends Component {
         //Post request to scrape dockwa site with lat and lon
         return fetch('http://localhost:5000/dockwaScrape', {
             method: "POST",
-            //what's this for again????
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            },
             body: JSON.stringify({ lat, lon }),
         })
             .then(res => res.json())

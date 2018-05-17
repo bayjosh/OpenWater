@@ -45,7 +45,7 @@ class LoadingModal extends Component {
     modalMessageLoad = () => {
         const messageArr = ["...Forecasting Marine Conditions...", "...Assembling Weather Forecast...", "...Gathering Docking Options...", "...Finding Nautical Charts...", "...Running Out of Excuses..."];
         //Frequent checks to see if modal is still open (data still loading); If so, display next loading message
-        //SetTimeout of zero again????
+        //Initial setTimeout of zero to ensure that fires first
         if (this.state.modalIsOpen) {
             setTimeout(() => {
                 if (this.state.modalIsOpen) {
@@ -107,9 +107,10 @@ class LoadingModal extends Component {
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
-                    // ariaHideApp={false} ????
                     shouldCloseOnOverlayClick={true}
-                    shouldCloseOnEsc={true}>
+                    shouldCloseOnEsc={true}
+                    //To appease react-modal error
+                    ariaHideApp={false}>
 
                     <div className="right-align">
                         <button onClick={this.closeModal}>x</button>

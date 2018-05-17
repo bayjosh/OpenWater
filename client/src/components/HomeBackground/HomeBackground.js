@@ -2,8 +2,7 @@ import "./HomeBackground.css";
 import React from "react";
 
 const HomeBackground = props => (
-  //Why the ...props again????
-  <main id="home-background-initZoom" {...props} />
+  <main id="home-background-initZoom" />
 );
 
 export default HomeBackground;

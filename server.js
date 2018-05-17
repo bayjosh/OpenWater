@@ -82,8 +82,9 @@ app.post('/weatherScrape', function (req, res) {
                 var affectedZones = [];
                 var headers = [];
                 var texts = [];
-                //Loop through html sections that are not blank
+                //Loop through all divs with class "section"
                 $('div.section').each(function (i, element) {
+                    //Test to see if forecastTime exists in this div.section
                     if ($(element).find($('p.light')).text() != "") {
                         forecastTime = $(element).find($('p.light')).text()
                         //Add colon to timestamp
@@ -92,22 +93,25 @@ app.post('/weatherScrape', function (req, res) {
                         } else {
                             forecastTime = forecastTime.substr(0, 2) + ':' + forecastTime.substr(2)
                         }
+                        //Create array of affected marine zones (from string)
                         affectedZones = $(element).find($('p.light')).prev().text().split(', ')
                     }
-                    //????????
+                    //Only if forecastTime exists for this div.section, set forecastTime 
                     if (forecastTime != undefined) {
                         forecastTime = forecastTime
                     }
+                    //Only if affectedZones exists for this div.section, set affectedZones
                     if (affectedZones != undefined) {
                         affectedZones = affectedZones
                     }
+                    //Only if warning exists for this div.section, set warning
                     if ($(element).hasClass('warning')) {
                         warning = $(element).parent().find($('.warning')).children().text()
                     }
                     if (warning != undefined) {
                         warning = warning
                     }
-                    //?????????
+                    //Eliminate unnecessary data from these sections
                     if ($(element).hasClass('even') || $(element).hasClass('odd')) {
                         var header = $(element).find($('.title')).text()
                         var text = $(element).find($('.title')).next().text()
@@ -119,9 +123,9 @@ app.post('/weatherScrape', function (req, res) {
                         if (text === '') {
                             texts.pop(text)
                         }
-                        // we can change those if we want, only to exclude the long typo ones that jen doesnt even look at
                     }
                 })
+
                 headers.splice(0, 1)
                 texts.splice(0, 1)
 
@@ -132,7 +136,6 @@ app.post('/weatherScrape', function (req, res) {
                 info.headers = headers;
                 info.texts = texts;
                 res.json(info)
-
             })
         })
         //Check for errors

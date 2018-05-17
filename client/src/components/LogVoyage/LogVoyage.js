@@ -22,7 +22,7 @@ class LogVoyage extends Component {
     saveVoyage = event => {
         event.preventDefault();
         //Close modal and calculate voyage distance
-        //Why do we need a setTimeout of zero????
+        //Initial setTimeout of zero to ensure that fires first
         setTimeout(() => {
             this.setState({ isOpen: false, voyageDistance: this.state.voyageMileageEnd - this.state.voyageMileageStart })
             setTimeout(() => {
@@ -43,7 +43,7 @@ class LogVoyage extends Component {
 
     render() {
         //Global variable to calculate voyage distance as integer
-        let distance = parseInt(this.state.voyageMileageEnd - this.state.voyageMileageStart)
+        let distance = parseInt(this.state.voyageMileageEnd - this.state.voyageMileageStart, 10)
 
         return (
             <Modal

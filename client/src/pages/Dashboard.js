@@ -33,16 +33,21 @@ class Dashboard extends Component {
     // Allow for page scrolling
     document.querySelector('body').style.overflow = "scroll"
   }
+  //Brings user back to map from depth/traffic overlays
   backToMap = () => {
-    this.setState({ depthClicked: false, trafficClicked: false})
-  }
-  depthWasClicked = () => {
-    this.setState({depthClicked: true})
+    this.setState({ depthClicked: false, trafficClicked: false })
   }
 
+  //Opens depth overlay
+  depthWasClicked = () => {
+    this.setState({ depthClicked: true })
+  }
+
+  //Opens marine traffic overlay
   trafficWasClicked = () => {
     this.setState({ trafficClicked: true })
   }
+
   //Method to handle changes to map component (new click on the map)
   onMapChange = (lati, long) => {
     this.setState({ lat: lati, lon: long })
@@ -57,20 +62,15 @@ class Dashboard extends Component {
     })
       .then(result => {
         this.setState({ zipCode: result })
-        //Prepare depth charts with new lat and lon - but doesn't trigger????
-        this.openNOAACharts();
+        //Prepare depth charts by creating custom url and setting state
+        return fetch(`http://localhost:5000/api/charts/${this.state.lat}/${this.state.lon}`)
+          .then(res => res.json())
+          .then(res => this.setState({ chartsURL: res }));
       })
   }
-  //Why are we passing forecastTime here????????
+  //Method to allow forecastTime to update in state from data one level below (see NOAA weather props)
   handleModalLoad = (forecastTime) => {
     this.setState({ forecastTime: forecastTime })
-  }
-
-  openNOAACharts = () => {
-    this.loadChartsURL().then(res => this.setState({ chartsURL: res }))
-  }
-  loadChartsURL = () => {
-    return fetch(`http://localhost:5000/api/charts/${this.state.lat}/${this.state.lon}`).then(res => res.json());
   }
 
   render() {
@@ -97,9 +97,14 @@ class Dashboard extends Component {
             <button onClick={this.trafficWasClicked} className="btn activator">Marine Traffic</button>
             <div className="card-reveal">
               <span onClick={this.backToMap} className="card-title"><i className="right material-icons">close</i></span>
-              { this.state.depthClicked ?
-                <DepthOverlay depthClicked={this.state.depthClicked} lat={this.state.lat} lon={this.state.lon} /> : this.state.trafficClicked ? <MarineTraffic trafficClicked={this.state.trafficClicked} lat={this.state.lat} lon={this.state.lon} /> : <div></div>
-              }
+              {/* If depth button is clicked, display depth overlay */}
+              {this.state.depthClicked ?
+                <DepthOverlay depthClicked={this.state.depthClicked} lat={this.state.lat} lon={this.state.lon} />
+                // Otherwise, if traffic button is clicked, display traffic overlay
+                : this.state.trafficClicked ?
+                  <MarineTraffic trafficClicked={this.state.trafficClicked} lat={this.state.lat} lon={this.state.lon} />
+                  // Otherwise, stay on map
+                  : <div></div>}
             </div>
           </div>
 

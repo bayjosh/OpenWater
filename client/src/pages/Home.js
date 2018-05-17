@@ -14,17 +14,14 @@ class Home extends Component {
   //Method to handle redirect to dashboard
   handleContinueAsGuest = event => {
     event.preventDefault();
-    //Why setTimeout????????
-    setTimeout(() => { this.setState({ continueRedirect: true }) }, 500);
+    this.setState({ continueRedirect: true });
   }
 
   //Method to handle redirect to login
   handleLogin = event => {
     event.preventDefault();
-    //Why setTimeout????????
-    setTimeout(() => { this.setState({ loginRedirect: true }) }, 500);
+    this.setState({ loginRedirect: true });
   }
-
 
   render() {
     return (

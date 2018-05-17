@@ -43,7 +43,7 @@ class NOAAWeather extends Component {
             }
         }
         return arg
-        
+
     }
 
 
@@ -71,7 +71,7 @@ class NOAAWeather extends Component {
                     texts: res.texts,
                     warning: res.warning,
                 })
-                //Why are we doing this again?????
+                //Set state of forecastTime on DASHBOARD (one level up) to this.state.forecastTime (this level)
                 this.props.handleModalLoad(this.state.forecastTime)
             })
     }
@@ -89,7 +89,7 @@ class NOAAWeather extends Component {
                         <h5>WARNINGS</h5>
                         {/* If marine conditions include a warning, display warning */}
                         {this.state.warning === '' ?
-                            (<h6>Smooth Sailing! No warnings to report.</h6> ):
+                            (<h6>Smooth Sailing! No warnings to report.</h6>) :
                             <h6>{this.state.warning}</h6>
                         }
                         <hr />
@@ -99,7 +99,7 @@ class NOAAWeather extends Component {
                             {this.state.headers.map((el, i) => (
                                 // If header includes "night", display header along with previous header to pair night and day together
                                 el.indexOf("NIGHT") !== -1 ?
-                                    <div style={{ border: `black 1px solid`, overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
+                                    <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                         <h4 >
                                             <strong>
                                                 {this.titleCase(this.state.headers[i - 1])}
