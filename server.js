@@ -38,13 +38,14 @@ app.use(bodyParser.json());
 var mongoose = require("mongoose");
 var db = require("./models");
 
+// If deployed, use the deployed database. Otherwise use the local database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:/openWater_db";
+
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
-
-// If deployed, use the deployed database. Otherwise use the local database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:/openWater_db";
+mongoose.connect(MONGODB_URI)
+.catch(error => console.log(error));
 
 //Dependencies for scraping
 var request = require("request")
@@ -251,10 +252,12 @@ app.delete("/api/voyages/delete/:id", function (req, res) {
 // Login routes to verify or create user
 
 app.post('/checkuser', function (req, res) {
-    console.log(req.body)
-    db.Voyage.find({}).exec(function (err, result) {
+    debugger;
+    console.log('this is req.body.email: '+req.body.email)
+    
+    db.User.find(req.body, function (err, result) {
         if (err) throw err;
-        console.log(result)
+        console.log('this is the result: '+result)
         res.json(result);
     })
 })
@@ -263,11 +266,12 @@ app.get('/getuser/:id', function (req, res) {
     db.users.find({ _id: mongojs.ObjectId(req.params.id) }, { password: 0 }, function (err, result) {
         if (err) throw err;
         res.json(result);
+        
     })
 })
 
 app.get('/checkdup', function (req, res) {
-    db.users.find({ $or: [{ 'name': req.query.name }, { 'email': req.query.email }] }, function (err, result) {
+    db.User.find({ $or: [{ 'name': req.query.name }, { 'email': req.query.email }] }, function (err, result) {
         if (err) throw err;
         res.json(result);
     })

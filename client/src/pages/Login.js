@@ -31,12 +31,14 @@ class Login extends Component {
       .then(res => res.json())
       .then((res) => {
         console.log(res)
-        if (res.data.length > 0) {
+        if (res.length > 0) {
           this.setState({ fireRedirect: true }); this.props.handleLogin(event)
         } else {
           alert("invalid login")
         }
       })
+      .catch(error=>console.log(error));
+      
   }
 
 
