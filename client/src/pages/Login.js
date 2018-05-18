@@ -5,8 +5,8 @@ import axios from "axios";
 import Nav from "../components/Nav"
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       fireRedirect: false
@@ -17,20 +17,40 @@ class Login extends Component {
   loginSubmit = event => {
     event.preventDefault();
 
-    let username = event.target[0].value;
+    let email = event.target[0].value;
     let password = event.target[1].value;
 
-    //Post request to capture user login credentials
-    axios.post("http://localhost:5000/login", {
-      username: username,
-      password: password
-    });
+    return fetch('http://localhost:5000/checkuser', {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then(res => res.json())
+      .then((res) => {
+        console.log(res)
+        if (res.data.length > 0) {
+          this.setState({ fireRedirect: true }); this.props.handleLogin(event)
+        } else {
+          alert("invalid login")
+        }
+      })
+  }
 
-    //Update state to trigger redirect to dashboard
-    this.setState({ fireRedirect: true });
 
-
-  };
+  // return axios.get("http://localhost:5000/checkuser", {
+  //   params: { email, password }
+  // })
+  //   .then((res) => {
+  //     console.log(res)
+  //     if (res.data.length > 0) {
+  //       this.setState({ fireRedirect: true }); this.props.handleLogin(event)
+  //     } else {
+  //       alert("invalid login")
+  //     }
+  //   })
 
   render() {
     return (

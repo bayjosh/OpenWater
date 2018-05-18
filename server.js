@@ -250,9 +250,11 @@ app.delete("/api/voyages/delete/:id", function (req, res) {
 
 // Login routes to verify or create user
 
-app.get('/checkuser', function (req, res) {
-    db.users.find(req.query, { password: 0 }, function (err, result) {
+app.post('/checkuser', function (req, res) {
+    console.log(req.body)
+    db.Voyage.find({}).exec(function (err, result) {
         if (err) throw err;
+        console.log(result)
         res.json(result);
     })
 })

@@ -8,8 +8,6 @@ import Voyages from "./pages/Voyages";
 // import Nav from "./components/Nav";
 // import Footer from "./components/Footer";
 
-
-
 class App extends Component {
   constructor() {
     super();
@@ -23,21 +21,25 @@ class App extends Component {
     }
   }
 
-
-
   //Method to handle when user logs in
   handleLogin = event => {
-    event.preventDefault();
-    //query to get the rest of their info from mongo and set state to it
-    this.setState({ loggedIn: true })
+    event.preventDefault()
 
+    // let username = event.target[0].value;
+    // let password = event.target[1].value;
+
+    //Post request to capture user login credentials
+    // axios.post("http://localhost:5000/login", {
+    //   username: username,
+    //   password: password
+    // });
+    this.setState({ loggedIn: true })
   }
+
   //Method to handle when new user registers
   handleRegister = event => {
     event.preventDefault();
-    //post their registration info to mongo then get it and set state to it
     this.setState({ loggedIn: true })
-
   }
 
   render() {

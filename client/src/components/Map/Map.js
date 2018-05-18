@@ -18,7 +18,7 @@ const MapWindow = compose(
 
 
 )((props) =>
-  <GoogleMap defaultZoom={5} defaultCenter={{ lat: 44.837979309495736, lng: -83.28125581028485 }} onClick={props.onGoogleMapClick}>
+  <GoogleMap defaultZoom={8} defaultCenter={{ lat: 41.8781, lng: -87.6298 }} onClick={props.onGoogleMapClick}>
 
     {props.isMarkerShown && <Marker position={{ lat: props.markerPositionLat, lng: props.markerPositionLon }} onClick={props.onMarkerClick} icon={image} />}
 

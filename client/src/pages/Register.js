@@ -17,12 +17,10 @@ class Register extends Component {
         let firstName = event.target[0].value;
         let lastName = event.target[1].value;
         let email = event.target[2].value;
-        let username = event.target[3].value;
-        let password = event.target[4].value;
+        let password = event.target[3].value;
 
         //Post method to insert user data into database
         axios.post("http://localhost:5000/register", {
-            username: username,
             password: password,
             firstName: firstName,
             lastName: lastName,
