@@ -161,7 +161,8 @@ class Dashboard extends Component {
           <div>
               <Modal
               header='You must be logged in to log a voyage'  
-              trigger={<button className="btn">Log a Voyage</button>} >
+              trigger={<button className="btn">Log a Voyage</button>} 
+              modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
               <div style={{marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center`}}>
                     <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
                     <p style={{width: `55%`, marginLeft: `5%`}} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
@@ -170,7 +171,8 @@ class Dashboard extends Component {
               </Modal>
               <Modal
               header='You must be logged in to view saved voyages'
-              trigger={<button className="btn">View Voyages</button>} >
+              trigger={<button className="btn">View Voyages</button>}
+              modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
               <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
                     <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
                     <p style={{ width: `55%`, marginLeft: `5%` }}id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
