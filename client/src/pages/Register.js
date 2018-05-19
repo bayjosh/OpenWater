@@ -11,6 +11,10 @@ class Register extends Component {
             fireRedirect: false
         };
     }
+    componentDidMount() {
+        // disable page scrolling
+        document.querySelector('body').style.overflow = "hidden"
+    }
     //Method to handle submit of user registration
     registerSubmit = event => {
         event.preventDefault();

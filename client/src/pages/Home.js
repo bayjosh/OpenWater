@@ -11,6 +11,11 @@ class Home extends Component {
     }
   }
 
+  componentDidMount() {
+    // disable page scrolling
+    document.querySelector('body').style.overflow = "hidden"
+  }
+
   //Method to handle redirect to dashboard
   handleContinueAsGuest = event => {
     event.preventDefault();

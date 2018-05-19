@@ -2,6 +2,7 @@ import "./Nav.css";
 import React, { Component } from "react";
 import { Navbar, NavItem } from 'react-materialize';
 import { Link } from "react-router-dom";
+import "./Nav.css";
 
 class NavBar extends Component {
     constructor(props) {

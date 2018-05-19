@@ -29,6 +29,10 @@ class Login extends Component {
       modalIsOpen: false,
     };
   }
+  componentDidMount() {
+    // disable page scrolling
+    document.querySelector('body').style.overflow = "hidden"
+  }
 
   //Method to handle user login
   closeModal = () => {
