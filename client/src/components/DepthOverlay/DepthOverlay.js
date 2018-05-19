@@ -18,7 +18,7 @@ class DepthOverlay extends Component {
         let iframe = document.createElement('iframe')
         iframe.setAttribute('width', '100%')
         iframe.setAttribute('height', "90%")
-        iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#4.35/${this.props.lat}/${this.props.lon}`)
+        iframe.setAttribute('src', `http://fishing-app.gpsnauticalcharts.com/i-boating-fishing-web-app/fishing-marine-charts-navigation.html#8.35/${this.props.lat}/${this.props.lon}`)
         iframe.setAttribute('frameborder', '0')
         if (document.getElementById('iframe').children.length === 1) {
             document.getElementById('iframe').removeChild(document.getElementById('iframe').children[0]);
