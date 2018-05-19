@@ -7,7 +7,7 @@ import AirWeather from "../components/AirWeather";
 import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
 import LogVoyage from "../components/LogVoyage";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { Modal } from 'react-materialize';
 import Nav from "../components/Nav";
 import MarineTraffic from "../components/MarineTraffic";
@@ -19,13 +19,14 @@ class Dashboard extends Component {
 
     this.state = {
       fireRedirect: false,
+      loginButton: false,
       lat: null,
       lon: null,
       zipCode: null,
       forecastTime: "",
       chartsURL: "",
       depthClicked: false,
-      trafficClicked: false
+      trafficClicked: false,
     };
   }
 
@@ -36,6 +37,11 @@ class Dashboard extends Component {
   //Brings user back to map from depth/traffic overlays
   backToMap = () => {
     this.setState({ depthClicked: false, trafficClicked: false })
+  }
+
+  handleLogin = event => {
+    event.preventDefault();
+    this.setState({ loginRedirect: true });
   }
 
   //Opens depth overlay
@@ -143,14 +149,36 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
+        { this.props.loggedIn ?
+          <div>
+              <LogVoyage />
 
-          {/* Button to log a voyage in the database */}
-          <LogVoyage />
-
-          {/* Link to view voyages */}
-          <Link to="/voyages">
-            <button className="btn"> View Voyages </button>
-          </Link>
+              <Link to="/voyages">
+                <button className="btn"> View Voyages </button>
+              </Link>
+          </div>
+          :
+          <div>
+              <Modal
+              header='You must be logged in to log a voyage'  
+              trigger={<button className="btn">Log a Voyage</button>} >
+              <div style={{marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center`}}>
+                    <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
+                    <p style={{width: `55%`, marginLeft: `5%`}} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
+                    {this.state.loginRedirect && <Redirect to="/login" />}
+              </div>
+              </Modal>
+              <Modal
+              header='You must be logged in to view saved voyages'
+              trigger={<button className="btn">View Voyages</button>} >
+              <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
+                    <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
+                    <p style={{ width: `55%`, marginLeft: `5%` }}id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
+                    {this.state.loginRedirect && <Redirect to="/login" />}
+              </div>
+              </Modal>
+          </div>
+        }
 
           {/* Button to open depth charts in new tab*/}
           {this.state.chartsURL !== "" ?

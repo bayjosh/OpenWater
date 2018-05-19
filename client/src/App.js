@@ -67,7 +67,7 @@ class App extends Component {
             <div>
               {/* <Nav /> */}
               <Route exact path="/" component={Home} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} />)} />
               <Route exact path="/login" render={(props) => (<Login handleLogin={this.handleLogin} {...props} />)} />
               <Route exact path="/register" render={(props) => (<Register handleRegister={this.handleRegister} {...props} />)} />
               {/* <Footer /> */}
@@ -82,8 +82,8 @@ class App extends Component {
           <Router>
             <div>
               {/* <Nav /> */}
-              <Route exact path="/" component={Dashboard} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} />)} />
+              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} />)} />
               <Route exact path="/voyages" component={Voyages} />
               {/* <Footer /> */}
             </div>
