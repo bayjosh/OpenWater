@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 //Schema to create users collection
 const userSchema = new Schema({
-    firstname: {
+    firstName: {
         type: String,
         trim: true,
         required: true
     },
-    lastname: {
+    lastName: {
         type: String,
         trim: true,
         required: true

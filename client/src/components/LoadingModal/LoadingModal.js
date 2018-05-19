@@ -113,7 +113,7 @@ class LoadingModal extends Component {
                     ariaHideApp={false}>
 
                     <div className="right-align">
-                        <button onClick={this.closeModal}>x</button>
+                        <button style={{ height: `29px`, width: `29px`, padding: `1px` }} onClick={this.closeModal}><i className="material-icons">close</i></button>
                     </div>
 
                     <div className="center-align">

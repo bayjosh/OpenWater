@@ -67,13 +67,13 @@ Login Page Design
   align-content: center;
 }
 
-#usernameInput {
+#loginEmailInput {
   width: 90%;
   color: white;
   size: 50px;
-  border-bottom: 3px solid white;
+  border-bottom: 2px solid white;
   font-family: "Slabo 27px", serif;
-  text-align: center;
+  /* text-align: center; */
 }
 
 #usernameHeader {
@@ -84,13 +84,13 @@ Login Page Design
   margin-bottom: 0;
 }
 
-#passwordInput {
+#loginPasswordInput {
   width: 90%;
   color: white;
   size: 50px;
-  border-bottom: 3px solid white;
+  border-bottom: 2px solid white;
   font-family: "Slabo 27px", serif;
-  text-align: center;
+  /* text-align: center; */
 }
 
 #passwordHeader {

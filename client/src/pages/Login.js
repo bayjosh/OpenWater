@@ -3,17 +3,37 @@ import LoginBackground from "../components/LoginBackground";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav"
+import Modal from "react-modal"
+
+const customStyles = {
+  overlay: {
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    overflow: 'hidden',
+    borderRadius: '25px'
+  }
+};
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      fireRedirect: false
+      fireRedirect: false,
+      modalIsOpen: false,
     };
   }
 
   //Method to handle user login
+  closeModal = () => {
+    this.setState({modalIsOpen: false})
+  }
   loginSubmit = event => {
     event.preventDefault();
 
@@ -34,7 +54,9 @@ class Login extends Component {
         if (res.length > 0) {
           this.setState({ fireRedirect: true }); this.props.handleLogin(event)
         } else {
-          alert("invalid login")
+          this.setState({modalIsOpen: true})
+          document.getElementById('loginEmailInput').value = "";
+          document.getElementById('loginPasswordInput').value = "";
         }
       })
       .catch(error => console.log(error));
@@ -68,14 +90,14 @@ class Login extends Component {
                   <div className="row">
                     <div className="col m12">
                       <div className="input-field">
-                        <input placeholder="E-Mail" autoFocus="autofocus" id="loginEmailInput" type="text" className="validate" />
+                        <input placeholder="email" autoFocus="autofocus" id="loginEmailInput" type="text" className="validate" />
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col m12">
                       <div className="input-field">
-                        <input placeholder="Password" id="loginPasswordInput" type="password" className="validate" />
+                        <input placeholder="password" id="loginPasswordInput" type="password" className="validate" />
                       </div>
                     </div>
                   </div>
@@ -91,6 +113,23 @@ class Login extends Component {
             </div>
           </div>
         </div>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          shouldCloseOnOverlayClick={true}
+          shouldCloseOnEsc={true}
+          //To appease react-modal error
+          ariaHideApp={false}>
+          <div className="right-align">
+            <button style={{ height: `29px`, width: `29px`, padding: `1px` }} onClick={this.closeModal}><i className="material-icons" >close</i></button>
+          </div>
+          <div className="center-align">
+            <h3 style={{ marginTop: `0`}}>Invalid Login</h3>
+          </div>
+          <hr />
+          We do not have that email and password combination in our records.
+        </Modal>
       </div >
     );
   }

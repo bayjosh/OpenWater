@@ -256,26 +256,17 @@ app.post('/checkuser', function (req, res) {
 
     db.User.find(req.body, function (err, result) {
         if (err) throw err;
-        console.log('this is the result: ' + result)
         console.log('this is the result[0]: ' + result[0])
-        console.log('this is the result: ' + result._id)
-        console.log('this is the result[0]: ' + result[0]._id)
-        console.log("this is result[0].firstName: " + result[0].firstName)
-        console.log("this is result.firstName: " + result.firstName)
-        console.log("this is result[0].lastName: " + result[0].lastName)
-        console.log("this is result.lastName: " + result.lastName)
-        console.log("this is result[0].email: " + result[0].email)
-        console.log("this is result.email: " + result.email)
-        console.log("this is result[0].password: " + result[0].password)
-        console.log("this is result.password: " + result.password)
-        // if (result[0]._id != undefined) {
-        //     req.session.logged_in = true;
-        //     req.session.email = result[0].email
-        //     req.session.firstName = result[0].firstName
-        //     req.session.lastName = result[0].lastName
+        
+        if (result[0] != undefined) {
+            req.session.userId = result[0]._id
+            req.session.logged_in = true;
+            req.session.email = result[0].email
+            req.session.firstName = result[0].firstName
+            req.session.lastName = result[0].lastName
+        }
 
-        //     // console.log("this is session: " + req.session.firstName, req.session.lastName);
-        // }
+        console.log("this session belongs to: " + req.session.firstName, req.session.lastName + " logged_in = " + req.session.logged_in);
         res.json(result)
     })
 })
