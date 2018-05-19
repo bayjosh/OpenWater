@@ -84,7 +84,9 @@ class NOAAWeather extends Component {
                 {this.props.lat !== null ?
                     (<div>
                         <h5 style={{ textAlign: `center` }}>Applicable Marine Zones: </h5>
+                        <div style={{textAlign: `center`}}>
                         {this.loopMarineZones(marineZone)}
+                        </div>
                         <hr />
                         <h5>WARNINGS</h5>
                         {/* If marine conditions include a warning, display warning */}
@@ -119,14 +121,19 @@ class NOAAWeather extends Component {
                                     </div>
                                     // Otherwise, display empty div #?????
                                     :
-                                    <div key={i}>
-                                        {/* <h5 >
-                                            {el}
-                                        </h5>
-                                        <p>
-                                            {this.state.texts[i]}
-                                        </p> */}
-                                    </div>
+                                    i === this.state.headers.length - 1 ?
+                                        <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
+                                            <h4 >
+                                                <strong>
+                                                    {this.titleCase(this.state.headers[i])}
+                                                </strong>
+                                            </h4>
+                                            <p style={{ margin: `4%` }}>
+                                                {this.state.texts[i]}
+                                            </p>
+                                        </div>
+                                        :
+                                        <div />
                             ))}
                         </div>
                     </div>)
