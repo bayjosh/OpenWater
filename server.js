@@ -45,7 +45,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:/openWater_db"
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI)
-.catch(error => console.log(error));
+// .catch(error => console.log(error));
 
 //Dependencies for scraping
 var request = require("request")
@@ -252,13 +252,31 @@ app.delete("/api/voyages/delete/:id", function (req, res) {
 // Login routes to verify or create user
 
 app.post('/checkuser', function (req, res) {
-    debugger;
-    console.log('this is req.body.email: '+req.body.email)
-    
+    console.log('this is req.body.email: ' + req.body.email)
+
     db.User.find(req.body, function (err, result) {
         if (err) throw err;
-        console.log('this is the result: '+result)
-        res.json(result);
+        console.log('this is the result: ' + result)
+        console.log('this is the result[0]: ' + result[0])
+        console.log('this is the result: ' + result._id)
+        console.log('this is the result[0]: ' + result[0]._id)
+        console.log("this is result[0].firstName: " + result[0].firstName)
+        console.log("this is result.firstName: " + result.firstName)
+        console.log("this is result[0].lastName: " + result[0].lastName)
+        console.log("this is result.lastName: " + result.lastName)
+        console.log("this is result[0].email: " + result[0].email)
+        console.log("this is result.email: " + result.email)
+        console.log("this is result[0].password: " + result[0].password)
+        console.log("this is result.password: " + result.password)
+        // if (result[0]._id != undefined) {
+        //     req.session.logged_in = true;
+        //     req.session.email = result[0].email
+        //     req.session.firstName = result[0].firstName
+        //     req.session.lastName = result[0].lastName
+
+        //     // console.log("this is session: " + req.session.firstName, req.session.lastName);
+        // }
+        res.json(result)
     })
 })
 
@@ -266,7 +284,7 @@ app.get('/getuser/:id', function (req, res) {
     db.users.find({ _id: mongojs.ObjectId(req.params.id) }, { password: 0 }, function (err, result) {
         if (err) throw err;
         res.json(result);
-        
+
     })
 })
 

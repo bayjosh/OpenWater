@@ -37,8 +37,8 @@ class Login extends Component {
           alert("invalid login")
         }
       })
-      .catch(error=>console.log(error));
-      
+      .catch(error => console.log(error));
+
   }
 
 
