@@ -82,7 +82,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav loggedIn={this.props.loggedIn}/>
         <DashboardBackground />
         <LoadingModal lat={this.state.lat} lon={this.state.lon} zipCode={this.state.zipCode} forecastTime={this.state.forecastTime} />
 

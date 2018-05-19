@@ -153,7 +153,7 @@ app.post('/dockwaScrape', function (req, res) {
     //Use lat and lon sent from front-end
     nightmare
         .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=8`)
-        .wait('div.marina-card')
+        .wait('a.marina-card__wrapper')
         .evaluate(() => {
             //Define array for docking cards
             var marinaCards = []
