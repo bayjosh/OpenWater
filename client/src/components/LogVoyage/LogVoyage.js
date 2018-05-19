@@ -11,39 +11,39 @@ class LogVoyage extends Component {
             voyageDate: "",
             voyageDescription: "",
             voyageFuel: "",
-            voyageMileageStart: 0,
-            voyageMileageEnd: 0,
-            voyageDistance: 0,
-            totalDistance: 0
+            voyageHoursStart: 0,
+            voyageHoursEnd: 0,
+            voyageHours: 0,
+            totalHours: 0
         };
     }
 
     //Method to handle click of "Save Voyage" button
     saveVoyage = event => {
         event.preventDefault();
-        //Close modal and calculate voyage distance
+        //Close modal and calculate voyage hours
         //Initial setTimeout of zero to ensure that fires first
         setTimeout(() => {
-            this.setState({ isOpen: false, voyageDistance: this.state.voyageMileageEnd - this.state.voyageMileageStart })
+            this.setState({ isOpen: false, voyageHours: this.state.voyageHoursEnd - this.state.voyageHoursStart })
             setTimeout(() => {
-                //Calcuate total distance of all voyages user has logged????
-                this.setState({ totalDistance: this.state.totalDistance + this.state.voyageDistance })
+                //Calcuate total hours of all voyages user has logged????
+                this.setState({ totalHours: this.state.totalHours + this.state.voyageHours })
                 axios.post("http://localhost:5000/saveVoyage", {
                     name: this.state.voyageName,
                     date: this.state.voyageDate,
                     description: this.state.voyageDescription,
                     fuel: this.state.voyageFuel,
-                    mileageStart: this.state.voyageMileageStart,
-                    mileageEnd: this.state.voyageMileageEnd,
-                    voyageDistance: this.state.voyageDistance
+                    hoursStart: this.state.voyageHoursStart,
+                    hoursEnd: this.state.voyageHoursEnd,
+                    voyageHours: this.state.voyageHours
                 });
             }, 1);
         }, 0);
     };
 
     render() {
-        //Global variable to calculate voyage distance as integer
-        let distance = parseInt(this.state.voyageMileageEnd - this.state.voyageMileageStart, 10)
+        //Global variable to calculate voyage dours as integer
+        let hours = parseInt(this.state.voyageHoursEnd - this.state.voyageHoursStart, 10)
 
         return (
             <Modal
@@ -71,12 +71,12 @@ class LogVoyage extends Component {
                         <option value='1/4 - 1/2'>1/4 - 1/2</option>
                         <option value='Empty - 1/4'>Empty - 1/4 </option>
                     </Input>
-                    <Input s={3} label="Starting Mileage" onChange={(e, value) => { this.setState({ voyageMileageStart: value }) }} />
-                    <Input s={3} label="Ending Mileage" onChange={(e, value) => { this.setState({ voyageMileageEnd: value }) }} />
+                    <Input s={3} label="Starting Hours" onChange={(e, value) => { this.setState({ voyageHoursStart: value }) }} />
+                    <Input s={3} label="Ending Hours" onChange={(e, value) => { this.setState({ voyageHoursEnd: value }) }} />
                 </Row>
 
-                {/* If voyage distance calculates less than zero, display zero */}
-                {distance < 0 ? <p className="right-align">Voyage distance: 0</p> : <p className="right-align">Voyage distance: {distance}</p>}
+                {/* If voyage hours calculates less than zero, display zero */}
+                {hours < 0 ? <p className="right-align">Voyage length: 0 hrs</p> : <p className="right-align">Voyage length: {hours} hrs</p>}
             </Modal>
         )
     }

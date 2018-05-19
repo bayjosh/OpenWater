@@ -22,15 +22,15 @@ const voyageSchema = new Schema({
         type: String,
     },
 
-    mileageStart: {
+    hoursStart: {
         type: Number,
     },
 
-    mileageEnd: {
+    hoursEnd: {
         type: Number,
     },
 
-    voyageDistance: {
+    voyageHours: {
         type: Number,
     },
 

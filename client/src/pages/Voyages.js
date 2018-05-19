@@ -23,7 +23,7 @@ class Voyages extends Component {
         super(props);
         this.state = {
             voyages: [],
-            totalDistance: 0,
+            totalHours: 0,
             isRemoveModalOpen: false,
             deleteID: ""
             // updateNote: false,
@@ -91,7 +91,7 @@ class Voyages extends Component {
                         <button style={{ width: `42vh` }} className="btn waves-effect waves-light"> Back to Dash</button>
                     </Link>
 
-                    <p>Total Distance Traveled: {this.state.totalDistance}</p>
+                    <p>Total Time on the Boat: {this.state.totalHours}</p>
 
                     <Modal isOpen={this.state.isRemoveModalOpen} onRequestClose={this.closeModal} shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true} style={customStyles}>
                         <div className="center-align">
@@ -108,9 +108,9 @@ class Voyages extends Component {
                             <h5>Sailing date: {v.date}</h5>
                             <h5>Description: {v.description}</h5>
                             <h5>Fuel remaining: {v.fuel}</h5>
-                            <h5>Starting Mileage: {v.mileageStart}</h5>
-                            <h5>Ending Mileage: {v.mileageEnd}</h5>
-                            <h5>Total Trip Distance: {v.voyageDistance}</h5>
+                            <h5>Starting Hours: {v.hoursStart}</h5>
+                            <h5>Ending Hours: {v.hoursEnd}</h5>
+                            <h5>Total Trip Length: {v.voyageHours} hrs</h5>
                             <div className="right-align">
                                 <button className="btn red" onClick={this.openRemoveModal}><i className="material-icons" onClick={this.openRemoveModal}>delete</i> </button>
                             </div>

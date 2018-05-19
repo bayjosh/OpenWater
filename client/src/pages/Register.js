@@ -45,24 +45,24 @@ class Register extends Component {
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="First Name" autoFocus="autofocus" id="registerInput" type="text" className="validate" />
+                                                <input placeholder="first" autoFocus="autofocus" id="registerInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="Last Name" id="registerInput" type="text" className="validate" />
+                                                <input placeholder="last" id="registerInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="E-Mail" id="registerInput" type="text" className="validate" />
+                                                <input placeholder="email" id="registerInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">
                                             <div className="input-field" style={{ paddingBottom: "5%" }}>
-                                                <input placeholder="Password" id="registerInput" type="password" className="validate" />
+                                                <input placeholder="password" id="registerInput" type="password" className="validate" />
                                             </div>
                                         </div>
                                     </div>

@@ -194,9 +194,9 @@ app.post("/saveVoyage", function (req, res) {
     voyage.date = req.body.date;
     voyage.description = req.body.description;
     voyage.fuel = req.body.fuel;
-    voyage.mileageStart = req.body.mileageStart;
-    voyage.mileageEnd = req.body.mileageEnd;
-    voyage.voyageDistance = req.body.voyageDistance;
+    voyage.hoursStart = req.body.hoursStart;
+    voyage.hoursEnd = req.body.hoursEnd;
+    voyage.voyageHours = req.body.voyageHours;
 
     //Using Mongoose model, create document within collection of voyages
     db.Voyage.create(voyage)
@@ -270,6 +270,13 @@ app.post('/checkuser', function (req, res) {
         res.json(result)
     })
 })
+//trying to send the req.session.logged_in status to the front end App.js
+app.get('/isLoggedIn', function (req, res){
+    let loggedIn = [req.session.logged_in]
+    console.log(loggedIn)
+    res.json(loggedIn)
+})
+/////////////////////////////////////////////////////////////////////
 
 app.get('/getuser/:id', function (req, res) {
     db.users.find({ _id: mongojs.ObjectId(req.params.id) }, { password: 0 }, function (err, result) {

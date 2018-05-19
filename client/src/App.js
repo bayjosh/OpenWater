@@ -20,6 +20,22 @@ class App extends Component {
       password: ""
     }
   }
+//trying to get the req.session.logged_in status from the server side
+  componentDidUpdate() {
+    return fetch('http://localhost:5000/isLoggedIn', {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+      .then(res => res.json())
+      .then((res) => {
+       console.log(res)
+      })
+      .catch(error => console.log(error));
+  }
+/////////////////////////////////////////////////////////////////////
 
   //Method to handle when user logs in
   handleLogin = event => {
