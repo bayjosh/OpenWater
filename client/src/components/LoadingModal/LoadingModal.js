@@ -122,7 +122,7 @@ class LoadingModal extends Component {
                         <h4 ref={subtitle => this.subtitle = subtitle}>Fetching info for {this.state.city}, {this.state.lState}</h4>
                         <hr />
                         {/* h5 where loading messages appear */}
-                        <h5 id="modal-message"></h5>
+                        <h5 id="modal-message"> </h5>
                     </div>
                 </Modal>
             </div>

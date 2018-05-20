@@ -57,10 +57,9 @@ class Register extends Component {
             }
             else {
                 return axios.post("http://localhost:5000/createUser", { firstName, lastName, password, email }).then(res => {
-                    alert("Account successfully created.")
-                    this.props.handleRegister(event)
                     //Update state to trigger redirect to dashboard
                     this.setState({ fireRedirect: true });
+                    this.props.handleRegister(event)
                 });
             }
         })

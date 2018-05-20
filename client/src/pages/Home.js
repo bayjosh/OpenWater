@@ -39,7 +39,7 @@ class Home extends Component {
 
             {/* Logo/Header */}
             <div className="center-align">
-              <img src={require("../images/OWlogo.png")} style={{ height: `200px`, width: `275px` }} />
+              <img alt='OpenWater Logo' src={require("../images/OWlogo.png")} style={{ height: `200px`, width: `275px` }} />
             </div>
             {/* <p id="homeHeader">Start your voyage</p> */}
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LoginBackground from "../components/LoginBackground";
 import { Redirect, Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import Nav from "../components/Nav"
 import Modal from "react-modal"
 

@@ -13,7 +13,7 @@ class Nav extends Component {
 
     render (){
         return (
-            <Navbar className="navbar-fixed" style={{ opacity: `.7` }} brand={<Link to={this.props.loggedIn ? "/dashboard" : '/'}><img src={require("../../images/OWlogo.png")} style={{ height: `65px`, width: `100px` }} /> </Link>} right>
+            <Navbar className="navbar-fixed black" style={{ opacity: `.7` }} brand={<Link to={this.props.loggedIn ? "/dashboard" : '/'}><img alt='OpenWater Logo' src={require("../../images/OWlogo.png")} style={{ height: `65px`, width: `100px` }} /> </Link>} right>
                 <NavItem onClick={() => console.log('test click')}>Getting started</NavItem>
                 {/* <NavItem href='components.html'>Components</NavItem> */}
             </Navbar>
