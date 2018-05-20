@@ -56,7 +56,8 @@ class Login extends Component {
       .then((res) => {
         console.log(res)
         if (res.length > 0) {
-          this.setState({ fireRedirect: true }); this.props.handleLogin(event)
+          this.setState({ fireRedirect: true });
+          this.props.handleLogin(event);
         } else {
           this.setState({modalIsOpen: true})
           document.getElementById('loginEmailInput').value = "";

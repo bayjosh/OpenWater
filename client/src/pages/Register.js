@@ -3,12 +3,30 @@ import RegisterBackground from "../components/RegisterBackground";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav"
+import Modal from "react-modal"
+
+const customStyles = {
+    overlay: {
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        overflow: 'hidden',
+        borderRadius: '25px'
+    }
+};
+
 class Register extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            fireRedirect: false
+            fireRedirect: false,
+            modalIsOpen: false,
         };
     }
     componentDidMount() {
@@ -16,6 +34,9 @@ class Register extends Component {
         document.querySelector('body').style.overflow = "hidden"
     }
     //Method to handle submit of user registration
+    closeModal = () => {
+        this.setState({ modalIsOpen: false })
+    }
     registerSubmit = event => {
         event.preventDefault();
         let firstName = event.target[0].value;
@@ -23,16 +44,26 @@ class Register extends Component {
         let email = event.target[2].value;
         let password = event.target[3].value;
 
-        //Post method to insert user data into database
-        axios.post("http://localhost:5000/register", {
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            email: email
-        });
-
-        //Update state to trigger redirect to dashboard
-        this.setState({ fireRedirect: true });
+        //Get method to check if user already exists
+        return axios.get("http://localhost:5000/checkdup", {
+            params: { email }
+        }).then(res => {
+            if (res.data.length > 0) {
+                this.setState({ modalIsOpen: true })
+                document.getElementById('registerEmailInput').value = "";
+                document.getElementById('registerPasswordInput').value = "";
+                document.getElementById('registerFirstNameInput').value = "";
+                document.getElementById('registerLastNameInput').value = "";
+            }
+            else {
+                return axios.post("http://localhost:5000/createUser", { firstName, lastName, password, email }).then(res => {
+                    alert("Account successfully created.")
+                    this.props.handleRegister(event)
+                    //Update state to trigger redirect to dashboard
+                    this.setState({ fireRedirect: true });
+                });
+            }
+        })
     };
 
     render() {
@@ -49,24 +80,24 @@ class Register extends Component {
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="first" autoFocus="autofocus" id="registerInput" type="text" className="validate" />
+                                                <input placeholder="first" autoFocus="autofocus" id="registerFirstNameInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="last" id="registerInput" type="text" className="validate" />
+                                                <input placeholder="last" id="registerLastNameInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="email" id="registerInput" type="text" className="validate" />
+                                                <input placeholder="email" id="registerEmailInput" type="text" className="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">
                                             <div className="input-field" style={{ paddingBottom: "5%" }}>
-                                                <input placeholder="password" id="registerInput" type="password" className="validate" />
+                                                <input placeholder="password" id="registerPasswordInput" type="password" className="validate" />
                                             </div>
                                         </div>
                                     </div>
@@ -82,6 +113,23 @@ class Register extends Component {
                         </div>
                     </div>
                 </div>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    shouldCloseOnOverlayClick={true}
+                    shouldCloseOnEsc={true}
+                    //To appease react-modal error
+                    ariaHideApp={false}>
+                    <div className="right-align">
+                        <button style={{ height: `29px`, width: `29px`, padding: `1px` }} onClick={this.closeModal}><i className="material-icons" >close</i></button>
+                    </div>
+                    <div className="center-align">
+                        <h3 style={{ marginTop: `0` }}>Invalid Account</h3>
+                    </div>
+                    <hr />
+                    We already have an account for that email in our records.
+        </Modal>
             </div>
         );
     }

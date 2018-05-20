@@ -278,32 +278,38 @@ app.get('/isLoggedIn', function (req, res){
 })
 /////////////////////////////////////////////////////////////////////
 
-app.get('/getuser/:id', function (req, res) {
-    db.users.find({ _id: mongojs.ObjectId(req.params.id) }, { password: 0 }, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-
-    })
-})
-
+// First check if that email already exists
 app.get('/checkdup', function (req, res) {
-    db.User.find({ $or: [{ 'name': req.query.name }, { 'email': req.query.email }] }, function (err, result) {
+    db.User.find(req.query, function (err, result) {
         if (err) throw err;
         res.json(result);
     })
 })
-
-app.post('/createuser', function (req, res) {
-    db.users.insert({ 'name': req.body.name, 'password': req.body.pass, 'email': req.body.email }, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-        db.flow.insert({ 'userId': result._id, 'name': result.name, 'date': new Date(), 'action': 'joined', 'target': 'ShowFlow' }, function (err, result) {
-            if (err) throw err;
+// then if it doesn't already exist, create new user
+app.post('/createUser', function (req, res) {
+    let newUser = {}
+    newUser.firstName = req.body.firstName
+    newUser.lastName = req.body.lastName
+    newUser.password = req.body.password
+    newUser.email = req.body.email
+    req.session.logged_in = true;
+    req.session.email = req.body.email
+    req.session.firstName = req.body.firstName
+    req.session.lastName = req.body.lastName
+    db.User.create(newUser)
+        .then(function (dbUser) {
+            req.session.userId = dbUser._id
+            console.log('this is req.session: ' + req.session.userId,
+            req.session.logged_in,
+            req.session.email,
+            req.session.firstName,
+            req.session.lastName)
+            res.json(dbUser);
         })
-    })
+        .catch(function (err) {
+            console.log(err)
+        })
 })
-
-
 
 //===========================
 //OLD SCRAPE

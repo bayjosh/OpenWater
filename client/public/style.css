@@ -117,42 +117,45 @@ Voyages Page
 
 /*////////////////////////////////////////////////// 
 
-Login Page Design
+Register Page Design
 
 //////////////////////////////////////////////////*/
 
 
-/* .register{ */
-  /* display: flex;
+/* .register{
+  display: flex;
   flex-direction: row;
-  justify-content: center; */
-  /* align-content: center
+  justify-content: center;
+  align-content: center
 }
 .registerContainer {
-  width: 80%; */
-  /* display: flex;
+  width: 80%;
+  display: flex;
   flex-direction: row;
-  justify-content: center; */
-  /* align-content: center;
+  justify-content: center;
+  align-content: center;
 }
 #registerForm{
   width: 80%;
-  display: flex; */
-  /* flex-direction: row;
-  justify-content: center; */
-  /* align-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
 } */
 
-/* .registerInput {
-  width: 90%;
+#registerFirstNameInput,
+#registerLastNameInput,
+#registerEmailInput,
+#registerPasswordInput  {
+  /* width: 90%; */
   color: white;
   size: 50px;
-  border-bottom: 3px solid white;
+  border-bottom: 2px solid white;
   font-family: "Slabo 27px", serif;
-  text-align: center;
+  /* text-align: center; */
 }
 
-.registerHeader {
+/* .registerHeader {
   color: white;
   font-size: 80px;
   font-family: "Amatic SC", cursive;
