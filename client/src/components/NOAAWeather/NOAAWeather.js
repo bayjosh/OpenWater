@@ -121,7 +121,7 @@ class NOAAWeather extends Component {
                                     </div>
                                     // Otherwise, display empty div #?????
                                     :
-                                    i === this.state.headers.length - 1 ?
+                                    i === this.state.headers.length - 2 || i === this.state.headers.length - 1 ?
                                         <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                             <h4 >
                                                 <strong>
@@ -132,6 +132,7 @@ class NOAAWeather extends Component {
                                                 {this.state.texts[i]}
                                             </p>
                                         </div>
+                                        
                                         :
                                         <div />
                             ))}
