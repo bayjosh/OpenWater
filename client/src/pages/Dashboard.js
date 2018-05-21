@@ -6,8 +6,6 @@ import Dockwa from "../components/Dockwa";
 import AirWeather from "../components/AirWeather";
 import API from "../utils/API";
 import LoadingModal from "../components/LoadingModal";
-import LogVoyage from "../components/LogVoyage";
-import { Redirect, Link } from "react-router-dom";
 import { Modal } from 'react-materialize';
 import Nav from "../components/Nav";
 import MarineTraffic from "../components/MarineTraffic";
@@ -19,7 +17,6 @@ class Dashboard extends Component {
 
     this.state = {
       fireRedirect: false,
-      loginButton: false,
       lat: null,
       lon: null,
       zipCode: null,
@@ -37,11 +34,6 @@ class Dashboard extends Component {
   //Brings user back to map from depth/traffic overlays
   backToMap = () => {
     this.setState({ depthClicked: false, trafficClicked: false })
-  }
-
-  handleLogin = event => {
-    event.preventDefault();
-    this.setState({ loginRedirect: true });
   }
 
   //Opens depth overlay

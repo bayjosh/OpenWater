@@ -6,14 +6,6 @@
   z-index: -2;
 }
 
-@-webkit-keyframes blurIn {
-  0% {
-    -webkit-filter: blur(100px)
-  }
-  100% {
-    -webkit-filter: blur(0px)
-  }
-}
 #header-background {
   background: url('../../images/boatwood.jpg');
   border-bottom-left-radius: 25px;
