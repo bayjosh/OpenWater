@@ -149,39 +149,7 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-        { this.props.loggedIn ?
-          <div>
-              <LogVoyage />
-
-              <Link to="/voyages">
-                <button className="btn"> View Voyages </button>
-              </Link>
-          </div>
-          :
-          <div>
-              <Modal
-              header='You must be logged in to log a voyage'  
-              trigger={<button className="btn">Log a Voyage</button>} 
-              modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
-              <div style={{marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center`}}>
-                    <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
-                    <p style={{width: `55%`, marginLeft: `5%`}} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
-                    {this.state.loginRedirect && <Redirect to="/login" />}
-              </div>
-              </Modal>
-              <Modal
-              header='You must be logged in to view saved voyages'
-              trigger={<button className="btn">View Voyages</button>}
-              modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
-              <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
-                    <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
-                    <p style={{ width: `55%`, marginLeft: `5%` }}id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
-                    {this.state.loginRedirect && <Redirect to="/login" />}
-              </div>
-              </Modal>
-          </div>
-        }
-
+       
           {/* Button to open depth charts in new tab*/}
           {this.state.chartsURL !== "" ?
             <a target="_blank" href={this.state.chartsURL}>
