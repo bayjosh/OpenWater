@@ -40,53 +40,36 @@ class Nav extends Component {
                         <NavItem> <button className="btn" onClick={this.logout}> Log Out </button> </NavItem>
                     </div>
                     :
-                    <div>
-                        <NavItem>
-                            <Modal
-                                header='You must be logged in to log a voyage'
-                                trigger={<button className="btn">Log a Voyage</button>}
-                                modalOptions={window.location.pathname === "/dashboard" ? { complete: () => document.querySelector('body').style.overflow = "scroll" } : {}} >
-                                {window.location.pathname === "/register" ?
+                    window.location.pathname === "/dashboard" ?
+                        <div>
+                            <NavItem>
+                                <Modal
+                                    header='You must be logged in to log a voyage'
+                                    trigger={<button className="btn">Log a Voyage</button>}
+                                    modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
                                     <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
                                         <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
+                                        <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
                                     </div>
-                                    : window.location.pathname === "/login" ?
-                                        <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
-                                            <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
-                                        </div>
-                                        :
-                                        <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
-                                            <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
-                                            <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
-                                        </div>
-                                }
-                                {this.state.loginRedirect && <Redirect to="/login" />}
-                            </Modal>
-                        </NavItem>
-                        <NavItem>
-                            <Modal
-                                header='You must be logged in to view saved voyages'
-                                trigger={<button className="btn">View Voyages</button>}
-                                modalOptions={window.location.pathname === "/dashboard" ? { complete: () => document.querySelector('body').style.overflow = "scroll" } : {}} >
-                                {window.location.pathname === "/register" ?
+                                    {this.state.loginRedirect && <Redirect to="/login" />}
+                                </Modal>
+                            </NavItem>
+                            <NavItem>
+                                <Modal
+                                    header='You must be logged in to view saved voyages'
+                                    trigger={<button className="btn">View Voyages</button>}
+                                    modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
                                     <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
                                         <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
+                                        <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
                                     </div>
-                                    : window.location.pathname === "/login" ?
-                                        <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
-                                            <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
-                                        </div>
-                                        :
-                                        <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
-                                            <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
-                                            <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
-                                        </div>
-                                }
-                                {this.state.loginRedirect && <Redirect to="/login" />}
-                            </Modal>
-                        </NavItem>
-                    </div>
-                }
+                                    {this.state.loginRedirect && <Redirect to="/login" />}
+                                </Modal>
+                            </NavItem>
+                            <NavItem onClick={this.handleLogin}> Sign In </NavItem>
+                        </div>
+                        :
+                        <div />}
             </Navbar>
         )
     }
