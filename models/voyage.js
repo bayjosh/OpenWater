@@ -34,6 +34,10 @@ const voyageSchema = new Schema({
         type: Number,
     },
 
+    pictures: {
+        type: Array,
+    },
+
     dateSaved: {
         type: Date,
         default: Date.now

@@ -26,13 +26,18 @@ app.use(logger("dev"));
 //Allow for login sessions
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-app.use(session({ secret: 'app', cookie: { maxAge: 6 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000 } }));
+app.use(session({
+    secret: 'app',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7},
+    saveUninitialized: false,
+    resave: false
+}));
 app.use(cookieParser());
 
 // Allow access to req.body
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
+app.use(bodyParser.json({ limit: "50mb" }));
 
 //Dependency to set up Mongoose 
 var mongoose = require("mongoose");
@@ -153,7 +158,7 @@ app.post('/dockwaScrape', function (req, res) {
     //Use lat and lon sent from front-end
     nightmare
         .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=8`)
-        .wait('a.marina-card__wrapper')
+        .wait('div.marina-card')
         .evaluate(() => {
             //Define array for docking cards
             var marinaCards = []
@@ -197,6 +202,7 @@ app.post("/saveVoyage", function (req, res) {
     voyage.hoursStart = req.body.hoursStart;
     voyage.hoursEnd = req.body.hoursEnd;
     voyage.voyageHours = req.body.voyageHours;
+    voyage.pictures = req.body.pictures;
 
     //Using Mongoose model, create document within collection of voyages
     db.Voyage.create(voyage)
@@ -309,6 +315,16 @@ app.post('/createUser', function (req, res) {
         .catch(function (err) {
             console.log(err)
         })
+})
+//handle lougout
+app.get('/logout', function (req, res) {
+    req.session.destroy() 
+    res.send('logged out');
+})
+// image upload
+app.post('/img-upload', function (req, res) {
+    console.log(req.body)
+    res.end()
 })
 
 //===========================

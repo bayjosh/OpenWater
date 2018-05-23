@@ -1,10 +1,9 @@
 import "./Nav.css";
 import React, { Component } from "react";
-import { Navbar, NavItem } from 'react-materialize';
+import { Navbar, NavItem, Modal, Chip, Dropdown, Button, Icon } from 'react-materialize';
 import { Redirect, Link } from "react-router-dom";
 import "./Nav.css";
 import LogVoyage from "../../components/LogVoyage";
-import { Modal } from 'react-materialize';
 
 class Nav extends Component {
     constructor(props) {
@@ -18,6 +17,10 @@ class Nav extends Component {
         event.preventDefault();
         this.setState({ loginRedirect: true });
     }
+    logout = event => {
+        event.preventDefault();
+        return fetch ('http://localhost:5000/logout').then(res => res.json())
+    }
 
     render (){
         return (
@@ -28,6 +31,7 @@ class Nav extends Component {
                     <NavItem> <Link to="/voyages">
                         <button className="btn"> View Voyages </button>
                     </Link> </NavItem>
+                    <NavItem> <button onClick={this.logout}> Log Out </button> </NavItem>
                 </div>
             :
                 <div>

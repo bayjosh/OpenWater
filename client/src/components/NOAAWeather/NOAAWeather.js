@@ -16,6 +16,7 @@ class NOAAWeather extends Component {
     componentDidUpdate(prevProps, prevState) {
         //Only load weather if user has clicked somewhere new on the map
         if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
+            this.setState({forecastTime: ""})
             this.loadWeather();
         }
     }
@@ -81,7 +82,7 @@ class NOAAWeather extends Component {
         return (
             <div className="NOAAWeather">
                 {/* If user has clicked on map, render data. Otherwise display empty div #noMarineData */}
-                {this.props.lat !== null ?
+                {this.state.forecastTime !== "" ?
                     (<div>
                         <h5 style={{ textAlign: `center` }}>Applicable Marine Zones: </h5>
                         <div style={{textAlign: `center`}}>
@@ -121,7 +122,9 @@ class NOAAWeather extends Component {
                                     </div>
                                     // Otherwise, display empty div #?????
                                     :
-                                    i === this.state.headers.length - 2 || i === this.state.headers.length - 1 ?
+                                    i === this.state.headers.length - 2
+                                    // in the case of there only being 4 results this doesnt work
+                                    || i === this.state.headers.length - 1 ?
                                         <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                             <h4 >
                                                 <strong>

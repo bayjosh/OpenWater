@@ -14,8 +14,23 @@ class LogVoyage extends Component {
             voyageHoursStart: 0,
             voyageHoursEnd: 0,
             voyageHours: 0,
-            totalHours: 0
+            totalHours: 0,
+            selectedFile: null,
+            pictures: []
         };
+    }
+
+    fileChangedHandler = (event) => {
+        const file = event.target.files[0]
+        this.setState({ selectedFile: event.target.files[0] })
+    }
+
+    uploadHandler = () => {
+        console.log(this.state.selectedFile)
+        this.setState({ pictures: [...this.state.pictures, this.state.selectedFile]}) 
+            // onUploadProgress: progressEvent => {
+            //     console.log(progressEvent.loaded / progressEvent.total)
+            // }
     }
 
     //Method to handle click of "Save Voyage" button
@@ -35,7 +50,8 @@ class LogVoyage extends Component {
                     fuel: this.state.voyageFuel,
                     hoursStart: this.state.voyageHoursStart,
                     hoursEnd: this.state.voyageHoursEnd,
-                    voyageHours: this.state.voyageHours
+                    voyageHours: this.state.voyageHours,
+                    pictures: this.state.pictures
                 });
             }, 1);
         }, 0);
@@ -56,7 +72,8 @@ class LogVoyage extends Component {
                 style={{ borderRadius: `25px` }}>
 
                 <Row className="right-align">
-                    <Button className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
+                    <input type="file" onChange={this.fileChangedHandler}/>
+                        <Button onClick={this.uploadHandler} className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
                 </Row>
 
                 <Row >
