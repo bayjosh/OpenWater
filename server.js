@@ -10,7 +10,8 @@ app.listen(port, function () {
 
 //CORS
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
+    res.header("Access-Control-Allow-Credentials", 'true');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
     next();
@@ -25,14 +26,15 @@ app.use(logger("dev"));
 
 //Allow for login sessions
 var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 var session = require('express-session');
 app.use(session({
     secret: 'app',
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7, secure: false },
     saveUninitialized: true,
     resave: true
 }));
-app.use(cookieParser());
+
 
 // Allow access to req.body
 var bodyParser = require("body-parser");
@@ -257,10 +259,10 @@ app.delete("/api/voyages/delete/:id", function (req, res) {
 
 // Login routes to verify or create user
 
-app.post('/checkuser', function (req, res) {
-    console.log('this is req.body.email: ' + req.body.email)
+app.get('/checkuser', function (req, res) {
+    // console.log('this is req.query.email: ' + req.query.email)
 
-    db.User.find(req.body, function (err, result) {
+    db.User.find(req.query, { password: 0 }, function (err, result) {
         if (err) throw err;
         console.log('this is the result[0]: ' + result[0])
 
@@ -272,15 +274,26 @@ app.post('/checkuser', function (req, res) {
             req.session.lastName = result[0].lastName
         }
 
-        console.log("this session belongs to: " + req.session.firstName, req.session.lastName + " logged_in = " + req.session.logged_in);
+        console.log("this session belongs to: " + req.session.firstName, req.session.lastName + " logged_in = " + req.session.logged_in + " req.session.id = " + req.session.id);
         res.json(result)
     })
 })
 //trying to send the req.session.logged_in status to the front end App.js
 app.get('/isLoggedIn', function (req, res) {
-    let loggedIn = [req.session.logged_in]
-    console.log(loggedIn)
-    res.json(loggedIn)
+    db.User.find({}, function (error, response) {
+
+    }).then(() => {
+        let currentSession = { name: "Josh" }
+        currentSession.userId = req.session.userId
+        currentSession.logged_in = req.session.logged_in
+        currentSession.email = req.session.email
+        currentSession.firstName = req.session.firstName
+        currentSession.lastName = req.session.lastName
+        console.log("req.session.id: " + req.session.id)
+        res.json(currentSession)
+    }
+    )
+
 })
 /////////////////////////////////////////////////////////////////////
 
@@ -319,8 +332,9 @@ app.post('/createUser', function (req, res) {
 //handle lougout
 app.get('/logout', function (req, res) {
     // console.log("req.session: " + req.session)
-    // req.session.destroy()
-    console.log("req.session.firstName: " + req.session.firstName)
+    req.session.destroy(function (err) {
+        if (err) throw err
+    })
     res.json({});
 })
 // image upload

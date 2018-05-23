@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Voyages from "./pages/Voyages";
+import axios from "axios";
 // import Nav from "./components/Nav";
 // import Footer from "./components/Footer";
 
@@ -22,17 +23,15 @@ class App extends Component {
     }
   }
   //trying to get the req.session.logged_in status from the server side
-  componentDidUpdate() {
+  componentDidMount() {
     return fetch('http://localhost:5000/isLoggedIn', {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
+      credentials: "include"
     })
       .then(res => res.json())
-      .then((res) => {
-        console.log(res)
+      .then(res => {
+        if (res.logged_in) {
+          this.setState({ loggedIn: true })
+        }
       })
       .catch(error => console.log(error));
   }
@@ -41,22 +40,20 @@ class App extends Component {
   //Method to handle when user logs in
   handleLogin = event => {
     event.preventDefault()
-
-    // let username = event.target[0].value;
-    // let password = event.target[1].value;
-
-    //Post request to capture user login credentials
-    // axios.post("http://localhost:5000/login", {
-    //   username: username,
-    //   password: password
-    // });
     this.setState({ loggedIn: true })
   }
-
   handleLogOut = event => {
     event.preventDefault();
-    this.setState({ loggedIn: false })
-    this.setState({ fireRedirect: true })
+    return fetch('http://localhost:5000/logout', {
+      credentials: "include"
+    })
+      .then((res) => {
+        this.setState({ loggedIn: false })
+        this.setState({ fireRedirect: true })
+        console.log(res)
+      })
+      .catch(error => console.log(error));
+
 
   }
 

@@ -4,6 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 // import axios from "axios";
 import Nav from "../components/Nav"
 import Modal from "react-modal"
+import axios from "axios";
 
 const customStyles = {
   overlay: {
@@ -36,7 +37,7 @@ class Login extends Component {
 
   //Method to handle user login
   closeModal = () => {
-    this.setState({modalIsOpen: false})
+    this.setState({ modalIsOpen: false })
   }
   loginSubmit = event => {
     event.preventDefault();
@@ -44,22 +45,17 @@ class Login extends Component {
     let email = event.target[0].value;
     let password = event.target[1].value;
 
-    return fetch('http://localhost:5000/checkuser', {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, password }),
+    return axios.get('http://localhost:5000/checkuser', {
+      params: { email, password },
+      withCredentials: true
     })
-      .then(res => res.json())
       .then((res) => {
         console.log(res)
-        if (res.length > 0) {
+        if (res.data.length > 0) {
           this.setState({ fireRedirect: true });
           this.props.handleLogin(event);
         } else {
-          this.setState({modalIsOpen: true})
+          this.setState({ modalIsOpen: true })
           document.getElementById('loginEmailInput').value = "";
           document.getElementById('loginPasswordInput').value = "";
         }
@@ -130,7 +126,7 @@ class Login extends Component {
             <button style={{ height: `29px`, width: `29px`, padding: `1px` }} onClick={this.closeModal}><i className="material-icons" >close</i></button>
           </div>
           <div className="center-align">
-            <h3 style={{ marginTop: `0`}}>Invalid Login</h3>
+            <h3 style={{ marginTop: `0` }}>Invalid Login</h3>
           </div>
           <hr />
           We do not have that email and password combination in our records.
