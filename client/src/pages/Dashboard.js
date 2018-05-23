@@ -35,7 +35,6 @@ class Dashboard extends Component {
   backToMap = () => {
     this.setState({ depthClicked: false, trafficClicked: false })
   }
-
   //Opens depth overlay
   depthWasClicked = () => {
     this.setState({ depthClicked: true })
@@ -74,7 +73,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Nav loggedIn={this.props.loggedIn}/>
+        <Nav handleLogOut={this.props.handleLogOut} loggedIn={this.props.loggedIn} />
         <DashboardBackground />
         <LoadingModal lat={this.state.lat} lon={this.state.lon} zipCode={this.state.zipCode} forecastTime={this.state.forecastTime} />
 
@@ -141,7 +140,7 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-       
+
           {/* Button to open depth charts in new tab*/}
           {this.state.chartsURL !== "" ?
             <a target="_blank" href={this.state.chartsURL}>

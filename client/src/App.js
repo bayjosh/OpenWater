@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -17,10 +17,11 @@ class App extends Component {
       userFirstName: "",
       username: "",
       email: "",
-      password: ""
+      password: "",
+      fireRedirect: false
     }
   }
-//trying to get the req.session.logged_in status from the server side
+  //trying to get the req.session.logged_in status from the server side
   componentDidUpdate() {
     return fetch('http://localhost:5000/isLoggedIn', {
       method: "GET",
@@ -31,11 +32,11 @@ class App extends Component {
     })
       .then(res => res.json())
       .then((res) => {
-       console.log(res)
+        console.log(res)
       })
       .catch(error => console.log(error));
   }
-/////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////
 
   //Method to handle when user logs in
   handleLogin = event => {
@@ -50,6 +51,13 @@ class App extends Component {
     //   password: password
     // });
     this.setState({ loggedIn: true })
+  }
+
+  handleLogOut = event => {
+    event.preventDefault();
+    this.setState({ loggedIn: false })
+    this.setState({ fireRedirect: true })
+
   }
 
   //Method to handle when new user registers
@@ -67,10 +75,11 @@ class App extends Component {
             <div>
               {/* <Nav /> */}
               <Route exact path="/" component={Home} />
-              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} {...props}/>)} />
+              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn}  {...props} />)} />
               <Route exact path="/login" render={(props) => (<Login handleLogin={this.handleLogin} {...props} />)} />
               <Route exact path="/register" render={(props) => (<Register handleRegister={this.handleRegister} {...props} />)} />
               {/* <Footer /> */}
+              {this.state.fireRedirect && <Redirect to="/" />}
             </div>
           </Router>
         </div>
@@ -82,8 +91,8 @@ class App extends Component {
           <Router>
             <div>
               {/* <Nav /> */}
-              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} {...props}/>)} />
-              <Route exact path="/voyages" render={(props) => (<Voyages loggedIn={this.state.loggedIn} {...props} />)} />
+              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} {...props} />)} />
+              <Route exact path="/voyages" render={(props) => (<Voyages loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} {...props} />)} />
               {/* <Footer /> */}
             </div>
           </Router>

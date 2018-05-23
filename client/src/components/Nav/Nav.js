@@ -20,8 +20,13 @@ class Nav extends Component {
 
     logout = event => {
         event.preventDefault();
-        return fetch('http://localhost:5000/logout').then(res => res.json())
+        this.props.handleLogOut(event);
+        // return fetch('http://localhost:5000/logout')
+        //     .then(res => res.json())
+
     }
+
+
 
     render() {
         return (
@@ -32,7 +37,7 @@ class Nav extends Component {
                         <NavItem> <Link to="/voyages">
                             <button className="btn"> View Voyages </button>
                         </Link> </NavItem>
-                        <NavItem> <button onClick={this.logout}> Log Out </button> </NavItem>
+                        <NavItem> <button className="btn" onClick={this.logout}> Log Out </button> </NavItem>
                     </div>
                     :
                     <div>

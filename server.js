@@ -318,8 +318,10 @@ app.post('/createUser', function (req, res) {
 })
 //handle lougout
 app.get('/logout', function (req, res) {
-    req.session.destroy()
-    res.send('logged out');
+    // console.log("req.session: " + req.session)
+    // req.session.destroy()
+    console.log("req.session.firstName: " + req.session.firstName)
+    res.json({});
 })
 // image upload
 app.post('/img-upload', function (req, res) {
