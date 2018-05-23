@@ -46,7 +46,7 @@ class Register extends Component {
 
         //Get method to check if user already exists
         return axios.get("http://localhost:5000/checkdup", {
-            params: { email }
+            params: { email },
         }).then(res => {
             if (res.data.length > 0) {
                 this.setState({ modalIsOpen: true })
@@ -56,11 +56,20 @@ class Register extends Component {
                 document.getElementById('registerLastNameInput').value = "";
             }
             else {
-                return axios.post("http://localhost:5000/createUser", { firstName, lastName, password, email }).then(res => {
-                    //Update state to trigger redirect to dashboard
-                    this.setState({ fireRedirect: true });
-                    this.props.handleRegister(event)
-                });
+                return axios.post("http://localhost:5000/createUser",
+                    { firstName, lastName, password, email },
+                    { withCredentials: true }
+                )
+                    .then(res => {
+                        //Update state to trigger redirect to dashboard
+                        this.setState({ fireRedirect: true });
+                        console.log("line 62: " + res.data._id)
+                        let userId = res.data._id;
+                        firstName = res.data.firstName
+                        lastName = res.data.lastName
+                        email = res.data.email
+                        this.props.handleRegister(event, userId, firstName, lastName, email)
+                    });
             }
         })
     };
@@ -91,7 +100,7 @@ class Register extends Component {
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
-                                                <input placeholder="email" id="registerEmailInput" type="text" className="validate" />
+                                                <input placeholder="email" id="registerEmailInput" type="email" className="validate" />
                                             </div>
                                         </div>
                                         <div className="col m6">

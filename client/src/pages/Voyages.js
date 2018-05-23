@@ -43,7 +43,10 @@ class Voyages extends Component {
 
     loadVoyages = () => {
         //Get request to display all voyages in database
-        return fetch("http://localhost:5000/api/voyages").then(res => res.json());
+        return fetch("http://localhost:5000/api/voyages", {
+            credentials: "include"
+        })
+            .then(res => res.json());
     };
 
     openRemoveModal = event => {
@@ -84,7 +87,7 @@ class Voyages extends Component {
     render() {
         return (
             <div>
-                <Nav loggedIn={this.props.loggedIn} handleLogOut={this.props.handleLogOut} />
+                <Nav loggedIn={this.props.loggedIn} handleLogOut={this.props.handleLogOut} userId={this.props.userId} />
                 <div className="container">
 
                     <Link to="/dashboard">

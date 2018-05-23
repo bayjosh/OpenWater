@@ -51,9 +51,14 @@ class Login extends Component {
     })
       .then((res) => {
         console.log(res)
+        let userId = res.data[0]._id;
+        let firstName = res.data[0].firstName
+        let lastName = res.data[0].lastName
+        let email = res.data[0].email
+
         if (res.data.length > 0) {
           this.setState({ fireRedirect: true });
-          this.props.handleLogin(event);
+          this.props.handleLogin(event, userId, firstName, lastName, email);
         } else {
           this.setState({ modalIsOpen: true })
           document.getElementById('loginEmailInput').value = "";

@@ -73,12 +73,16 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Nav handleLogOut={this.props.handleLogOut} loggedIn={this.props.loggedIn} />
+        <Nav handleLogOut={this.props.handleLogOut} userId={this.props.userId} loggedIn={this.props.loggedIn} />
         <DashboardBackground />
         <LoadingModal lat={this.state.lat} lon={this.state.lon} zipCode={this.state.zipCode} forecastTime={this.state.forecastTime} />
 
         {/* Flex-box styling for whole page */}
         <div className="dashboard" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-evenly`, flexWrap: `wrap`, padding: `2.5%`, height: `100vh`, width: `100vw` }}>
+          <br />
+          <br />
+          <br />
+          <h1>Oh hey, {this.props.firstName}!</h1>
 
           {/* Location/Map card */}
           <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%`, marginTop: "5%" }}>

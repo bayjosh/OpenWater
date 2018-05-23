@@ -33,7 +33,7 @@ class Nav extends Component {
             <Navbar id='nav' brand={<img alt='OpenWater Logo' src={require("../../images/OWlogo.png")} style={{ height: `65px`, opacity: `1 !important`, width: `100px` }} />} right>
                 {this.props.loggedIn ?
                     <div>
-                        <NavItem> <LogVoyage /> </NavItem>
+                        <NavItem> <LogVoyage userId={this.props.userId} /> </NavItem>
                         <NavItem> <Link to="/voyages">
                             <button className="btn"> View Voyages </button>
                         </Link> </NavItem>

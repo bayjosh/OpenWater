@@ -205,6 +205,7 @@ app.post("/saveVoyage", function (req, res) {
     voyage.hoursEnd = req.body.hoursEnd;
     voyage.voyageHours = req.body.voyageHours;
     voyage.pictures = req.body.pictures;
+    voyage.userId = req.body.userId
 
     //Using Mongoose model, create document within collection of voyages
     db.Voyage.create(voyage)
@@ -218,7 +219,7 @@ app.post("/saveVoyage", function (req, res) {
 
 //Get request to display all saved voyages
 app.get("/api/voyages", function (req, res) {
-    db.Voyage.find({}, function (error, response) {
+    db.Voyage.find({ userId: req.session.userId }, function (error, response) {
         res.send(response);
     });
 });
@@ -299,7 +300,7 @@ app.get('/isLoggedIn', function (req, res) {
 
 // First check if that email already exists
 app.get('/checkdup', function (req, res) {
-    db.User.find(req.query, function (err, result) {
+    db.User.find(req.query, { password: 0 }, function (err, result) {
         if (err) throw err;
         res.json(result);
     })

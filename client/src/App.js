@@ -15,10 +15,9 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       userId: "",
-      userFirstName: "",
-      username: "",
+      firstName: "",
+      lastName: "",
       email: "",
-      password: "",
       fireRedirect: false
     }
   }
@@ -30,7 +29,7 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         if (res.logged_in) {
-          this.setState({ loggedIn: true })
+          this.setState({ loggedIn: true, userId: res.userId, firstName: res.firstName, lastName: res.lastName, email: res.email })
         }
       })
       .catch(error => console.log(error));
@@ -38,9 +37,10 @@ class App extends Component {
   /////////////////////////////////////////////////////////////////////
 
   //Method to handle when user logs in
-  handleLogin = event => {
+  handleLogin = (event, userId, firstName, lastName, email) => {
     event.preventDefault()
-    this.setState({ loggedIn: true })
+
+    this.setState({ loggedIn: true, userId: userId, firstName: firstName, lastName: lastName, email: email })
   }
   handleLogOut = event => {
     event.preventDefault();
@@ -48,7 +48,7 @@ class App extends Component {
       credentials: "include"
     })
       .then((res) => {
-        this.setState({ loggedIn: false })
+        this.setState({ loggedIn: false, userId: "", firstName: "", lastName: "", email: "" })
         this.setState({ fireRedirect: true })
         console.log(res)
       })
@@ -58,9 +58,9 @@ class App extends Component {
   }
 
   //Method to handle when new user registers
-  handleRegister = event => {
+  handleRegister = (event, userId, firstName, lastName, email) => {
     event.preventDefault();
-    this.setState({ loggedIn: true })
+    this.setState({ loggedIn: true, userId: userId, firstName: firstName, lastName: lastName, email: email })
   }
 
   render() {
@@ -88,8 +88,8 @@ class App extends Component {
           <Router>
             <div>
               {/* <Nav /> */}
-              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} {...props} />)} />
-              <Route exact path="/voyages" render={(props) => (<Voyages loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} {...props} />)} />
+              <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} firstName={this.state.firstName} userId={this.state.userId} {...props} />)} />
+              <Route exact path="/voyages" render={(props) => (<Voyages loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} userId={this.state.userId} {...props} />)} />
               {/* <Footer /> */}
               {window.location.pathname === "/" && <Redirect to="/dashboard" />}}
             </div>

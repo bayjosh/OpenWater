@@ -38,6 +38,10 @@ const voyageSchema = new Schema({
         type: Array,
     },
 
+    userId: {
+        type: String,
+    },
+
     dateSaved: {
         type: Date,
         default: Date.now

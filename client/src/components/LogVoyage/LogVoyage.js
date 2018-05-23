@@ -51,7 +51,8 @@ class LogVoyage extends Component {
                     hoursStart: this.state.voyageHoursStart,
                     hoursEnd: this.state.voyageHoursEnd,
                     voyageHours: this.state.voyageHours,
-                    pictures: this.state.pictures
+                    pictures: this.state.pictures,
+                    userId: this.props.userId
                 });
             }, 1);
         }, 0);
@@ -79,6 +80,7 @@ class LogVoyage extends Component {
                 <Row >
                     <br />
                     {/* Form inputs and setting state with each value */}
+                    <Input type="hidden" value={this.props.userId} />
                     <Input validate placeholder="Name your voyage here" s={12} label="Name" onChange={(e, value) => { this.setState({ voyageName: value }) }}><Icon>directions_boat</Icon></Input>
                     <Input label="Date" name='on' type='date' onChange={(e, value) => { this.setState({ voyageDate: value }) }}><Icon>date_range</Icon></Input>
                     <Input type="textarea" placeholder="Add a brief summary of your voyage here" label="Description" s={12} onChange={(e, value) => { this.setState({ voyageDescription: value }) }}><Icon>create</Icon></Input>
