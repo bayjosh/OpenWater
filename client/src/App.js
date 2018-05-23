@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Voyages from "./pages/Voyages";
-import axios from "axios";
+// import axios from "axios";
 // import Nav from "./components/Nav";
 // import Footer from "./components/Footer";
 
@@ -91,6 +91,7 @@ class App extends Component {
               <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} {...props} />)} />
               <Route exact path="/voyages" render={(props) => (<Voyages loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} {...props} />)} />
               {/* <Footer /> */}
+              {window.location.pathname === "/" && <Redirect to="/dashboard" />}}
             </div>
           </Router>
         </div>

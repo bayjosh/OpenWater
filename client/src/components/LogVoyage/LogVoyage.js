@@ -27,10 +27,10 @@ class LogVoyage extends Component {
 
     uploadHandler = () => {
         console.log(this.state.selectedFile)
-        this.setState({ pictures: [...this.state.pictures, this.state.selectedFile]}) 
-            // onUploadProgress: progressEvent => {
-            //     console.log(progressEvent.loaded / progressEvent.total)
-            // }
+        this.setState({ pictures: [...this.state.pictures, this.state.selectedFile] })
+        // onUploadProgress: progressEvent => {
+        //     console.log(progressEvent.loaded / progressEvent.total)
+        // }
     }
 
     //Method to handle click of "Save Voyage" button
@@ -66,14 +66,14 @@ class LogVoyage extends Component {
                 header='Log a Voyage'
                 trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
                 actions={<Button modal="close" onClick={this.saveVoyage}>
-                <Icon left>check_circle</Icon>Save This Voyage</Button>}
+                    <Icon left>check_circle</Icon>Save This Voyage</Button>}
                 modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}
                 fixedFooter
                 style={{ borderRadius: `25px` }}>
 
                 <Row className="right-align">
-                    <input type="file" onChange={this.fileChangedHandler}/>
-                        <Button onClick={this.uploadHandler} className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
+                    <input type="file" onChange={this.fileChangedHandler} />
+                    <Button onClick={this.uploadHandler} className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
                 </Row>
 
                 <Row >

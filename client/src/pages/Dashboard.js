@@ -81,7 +81,7 @@ class Dashboard extends Component {
         <div className="dashboard" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-evenly`, flexWrap: `wrap`, padding: `2.5%`, height: `100vh`, width: `100vw` }}>
 
           {/* Location/Map card */}
-          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%` }}>
+          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%`, marginTop: "5%" }}>
             <div className="card-content" style={{ height: `95%` }}>
               <div className="card-title">
                 <h3>Location</h3>

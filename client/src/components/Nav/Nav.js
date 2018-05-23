@@ -1,6 +1,6 @@
 import "./Nav.css";
 import React, { Component } from "react";
-import { Navbar, NavItem, Modal, Chip, Dropdown, Button, Icon } from 'react-materialize';
+import { Navbar, NavItem, Modal } from 'react-materialize';
 import { Redirect, Link } from "react-router-dom";
 import "./Nav.css";
 import LogVoyage from "../../components/LogVoyage";
@@ -30,7 +30,7 @@ class Nav extends Component {
 
     render() {
         return (
-            <Navbar id='nav' brand={<Link to={this.props.loggedIn ? "/dashboard" : '/'}><img alt='OpenWater Logo' src={require("../../images/OWlogo.png")} style={{ height: `65px`, opacity: `1 !important`, width: `100px` }} /> </Link>} right>
+            <Navbar id='nav' brand={<img alt='OpenWater Logo' src={require("../../images/OWlogo.png")} style={{ height: `65px`, opacity: `1 !important`, width: `100px` }} />} right>
                 {this.props.loggedIn ?
                     <div>
                         <NavItem> <LogVoyage /> </NavItem>
