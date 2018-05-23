@@ -28,9 +28,9 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 app.use(session({
     secret: 'app',
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7},
-    saveUninitialized: false,
-    resave: false
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+    saveUninitialized: true,
+    resave: true
 }));
 app.use(cookieParser());
 
@@ -263,7 +263,7 @@ app.post('/checkuser', function (req, res) {
     db.User.find(req.body, function (err, result) {
         if (err) throw err;
         console.log('this is the result[0]: ' + result[0])
-        
+
         if (result[0] != undefined) {
             req.session.userId = result[0]._id
             req.session.logged_in = true;
@@ -277,7 +277,7 @@ app.post('/checkuser', function (req, res) {
     })
 })
 //trying to send the req.session.logged_in status to the front end App.js
-app.get('/isLoggedIn', function (req, res){
+app.get('/isLoggedIn', function (req, res) {
     let loggedIn = [req.session.logged_in]
     console.log(loggedIn)
     res.json(loggedIn)
@@ -303,14 +303,14 @@ app.post('/createUser', function (req, res) {
     req.session.firstName = req.body.firstName
     req.session.lastName = req.body.lastName
     db.User.create(newUser)
-        .then(function (dbUser) {
-            req.session.userId = dbUser._id
+        .then(function (dbNewUser) {
+            req.session.userId = dbNewUser._id
             console.log('this is req.session: ' + req.session.userId,
-            req.session.logged_in,
-            req.session.email,
-            req.session.firstName,
-            req.session.lastName)
-            res.json(dbUser);
+                req.session.logged_in,
+                req.session.email,
+                req.session.firstName,
+                req.session.lastName)
+            res.json(dbNewUser);
         })
         .catch(function (err) {
             console.log(err)
@@ -318,7 +318,7 @@ app.post('/createUser', function (req, res) {
 })
 //handle lougout
 app.get('/logout', function (req, res) {
-    req.session.destroy() 
+    req.session.destroy()
     res.send('logged out');
 })
 // image upload
