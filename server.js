@@ -154,12 +154,12 @@ app.post('/weatherScrape', function (req, res) {
 
 
 //Post request to scrape docking options
-app.post('/dockwaScrape', function (req, res) {
+app.get('/dockwaScrape/:lat/:lon', function (req, res) {
     const Nightmare = require('nightmare')
     const nightmare = Nightmare({ typeInterval: 10 })
     //Use lat and lon sent from front-end
     nightmare
-        .goto(`https://dockwa.com/search?lat=${req.body.lat}&lon=${req.body.lon}&zoom=8`)
+        .goto(`https://dockwa.com/search?lat=${req.params.lat}&lon=${req.params.lon}&zoom=8`)
         .wait('div.marina-card')
         .evaluate(() => {
             //Define array for docking cards

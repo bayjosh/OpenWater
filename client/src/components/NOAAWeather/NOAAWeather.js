@@ -137,7 +137,7 @@ class NOAAWeather extends Component {
                                         </div>
                                         
                                         :
-                                        <div />
+                                        <div key={i}/>
                             ))}
                         </div>
                     </div>)

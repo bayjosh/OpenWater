@@ -18,10 +18,8 @@ class Dockwa extends Component {
     loadDockwa = () => {
         let lat = this.props.lat
         let lon = this.props.lon
-        //Post request to scrape dockwa site with lat and lon
-        return fetch('http://localhost:5000/dockwaScrape', {
-            method: "POST",
-            body: JSON.stringify({ lat, lon }),
+        //GET request to scrape dockwa site with lat and lon
+        return fetch(`http://localhost:5000/dockwaScrape/${lat}/${lon}`, {
         })
             .then(res => res.json())
             .then(res => {
