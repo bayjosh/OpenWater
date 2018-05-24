@@ -1,6 +1,5 @@
 #nav{
     background: black;
-    opacity: .85;
     position: fixed;
     z-index: 5;
 }

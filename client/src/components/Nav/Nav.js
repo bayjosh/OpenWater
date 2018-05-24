@@ -25,9 +25,9 @@ class Nav extends Component {
         //     .then(res => res.json())
 
     }
-// if you are on the /voyages page, hitting th view voyages button will refresh the page
+    // if you are on the /voyages page, hitting th view voyages button will refresh the page
     refresh = () => {
-        if (window.location.pathname === '/voyages'){
+        if (window.location.pathname === '/voyages') {
             window.location.reload()
         }
     }
@@ -40,16 +40,16 @@ class Nav extends Component {
                 {this.props.loggedIn ?
                     <div>
                         <NavItem>
-                        <Dropdown
-                        trigger={<button className="btn"> Captain's Log </button>} >
-                            <LogVoyage userId={this.props.userId} />
-                            <NavItem divider />
-                            <NavItem>
-                                <Link style={{color: `black`, backgroundColor: `rgba(0,0,0,0)`}}to="/voyages">
-                                    View Voyages
-                                </Link> 
-                            </NavItem>
-                        </Dropdown>
+                            <Dropdown
+                                trigger={<button className="btn"> Captain's Log </button>} >
+                                <LogVoyage userId={this.props.userId} />
+                                <NavItem divider />
+                                <NavItem>
+                                    <Link style={{ color: `black`, backgroundColor: `rgba(0,0,0,0)` }} to="/voyages">
+                                        View Voyages
+                                </Link>
+                                </NavItem>
+                            </Dropdown>
                         </NavItem>
                         <NavItem onClick={this.logout}> Log Out </NavItem>
                     </div>

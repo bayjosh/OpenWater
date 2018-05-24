@@ -10,6 +10,7 @@ import { Modal } from 'react-materialize';
 import Nav from "../components/Nav";
 import MarineTraffic from "../components/MarineTraffic";
 import DepthOverlay from "../components/DepthOverlay";
+import VoyageTracker from "../components/VoyageTracker";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -30,11 +31,6 @@ class Dashboard extends Component {
   componentDidMount() {
     // Allow for page scrolling
     document.querySelector('body').style.overflow = "scroll"
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        console.log(position);
-      });
-    }
   }
   //Brings user back to map from depth/traffic overlays
   backToMap = () => {
@@ -160,6 +156,17 @@ class Dashboard extends Component {
               trigger={<button className="btn">NOAA Nautical Charts</button>}
               modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
             </Modal>}
+
+          {/* Location/Map card */}
+          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%`, marginTop: "5%" }}>
+            <div className="card-content" style={{ height: `95%` }}>
+              <div className="card-title">
+                <h3>Tracker</h3>
+                <hr />
+              </div>
+              <VoyageTracker />
+            </div>
+          </div>
 
         </div>
       </div>
