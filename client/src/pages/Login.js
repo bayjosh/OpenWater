@@ -8,6 +8,7 @@ import axios from "axios";
 
 const customStyles = {
   overlay: {
+    zIndex: 10
   },
   content: {
     top: '50%',

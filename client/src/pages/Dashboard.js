@@ -30,6 +30,11 @@ class Dashboard extends Component {
   componentDidMount() {
     // Allow for page scrolling
     document.querySelector('body').style.overflow = "scroll"
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position);
+      });
+    }
   }
   //Brings user back to map from depth/traffic overlays
   backToMap = () => {

@@ -1,6 +1,6 @@
 import "./Nav.css";
 import React, { Component } from "react";
-import { Navbar, NavItem, Modal } from 'react-materialize';
+import { Navbar, NavItem, Modal, Dropdown } from 'react-materialize';
 import { Redirect, Link } from "react-router-dom";
 import "./Nav.css";
 import LogVoyage from "../../components/LogVoyage";
@@ -39,10 +39,18 @@ class Nav extends Component {
             <Navbar id='nav' brand={<img alt='OpenWater Logo' src={require("../../images/OWlogo.png")} style={{ height: `65px`, opacity: `1 !important`, width: `100px` }} />} right>
                 {this.props.loggedIn ?
                     <div>
-                        <NavItem> <LogVoyage userId={this.props.userId} /> </NavItem>
-                        <NavItem> <Link to="/voyages">
-                            <button onClick={this.refresh} className="btn"> View Voyages </button>
-                        </Link> </NavItem>
+                        <NavItem>
+                        <Dropdown
+                        trigger={<button className="btn"> Captain's Log </button>} >
+                            <LogVoyage userId={this.props.userId} />
+                            <NavItem divider />
+                            <NavItem>
+                                <Link style={{color: `black`, backgroundColor: `rgba(0,0,0,0)`}}to="/voyages">
+                                    View Voyages
+                                </Link> 
+                            </NavItem>
+                        </Dropdown>
+                        </NavItem>
                         <NavItem onClick={this.logout}> Log Out </NavItem>
                     </div>
                     :

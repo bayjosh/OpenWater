@@ -1,6 +1,6 @@
 import "./LogVoyage.css";
 import React, { Component } from "react";
-import { Button, Icon, Modal, Row, Input } from 'react-materialize'
+import { Button, Icon, Modal, Row, Input, NavItem } from 'react-materialize'
 import axios from "axios";
 
 class LogVoyage extends Component {
@@ -70,7 +70,7 @@ class LogVoyage extends Component {
         return (
             <Modal
                 header='Log a Voyage'
-                trigger={<Button className="blue lighten-2">Log A Voyage</Button>}
+                trigger={<NavItem style={{textAlign: `center`, color: `black`}}>Log A Voyage</NavItem>}
                 actions={<Button modal="close" onClick={this.saveVoyage}>
                     <Icon left>check_circle</Icon>Save This Voyage</Button>}
                 modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}
