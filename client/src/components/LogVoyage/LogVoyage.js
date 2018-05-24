@@ -35,7 +35,7 @@ class LogVoyage extends Component {
 
     //Method to handle click of "Save Voyage" button
     saveVoyage = event => {
-        event.preventDefault();
+        event.preventDefault()
         //Close modal and calculate voyage hours
         //Initial setTimeout of zero to ensure that fires first
         setTimeout(() => {
@@ -53,9 +53,14 @@ class LogVoyage extends Component {
                     voyageHours: this.state.voyageHours,
                     pictures: this.state.pictures,
                     userId: this.props.userId
-                });
+                    // the line below refreshes the page if youre on /dashboard to see the newly added voyage
+                }).then(() => { if (window.location.pathname === '/voyages') {
+                        window.location.reload()
+                    }
+                })
             }, 1);
         }, 0);
+        
     };
 
     render() {

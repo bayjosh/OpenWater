@@ -25,6 +25,12 @@ class Nav extends Component {
         //     .then(res => res.json())
 
     }
+// if you are on the /voyages page, hitting th view voyages button will refresh the page
+    refresh = () => {
+        if (window.location.pathname === '/voyages'){
+            window.location.reload()
+        }
+    }
 
 
 
@@ -35,9 +41,9 @@ class Nav extends Component {
                     <div>
                         <NavItem> <LogVoyage userId={this.props.userId} /> </NavItem>
                         <NavItem> <Link to="/voyages">
-                            <button className="btn"> View Voyages </button>
+                            <button onClick={this.refresh} className="btn"> View Voyages </button>
                         </Link> </NavItem>
-                        <NavItem> <button className="btn" onClick={this.logout}> Log Out </button> </NavItem>
+                        <NavItem onClick={this.logout}> Log Out </NavItem>
                     </div>
                     :
                     window.location.pathname === "/dashboard" ?
