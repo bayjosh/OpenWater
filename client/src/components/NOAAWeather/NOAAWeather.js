@@ -33,6 +33,39 @@ class NOAAWeather extends Component {
             return str
         }
     }
+    tomorrowCheck = (str) => {
+        if (this.state.forecastTime.indexOf('Mon') !== -1 && str.indexOf('TUE') !== -1) {
+            let splitStr = str.split(' ')
+            splitStr.splice(0, 1, 'Tomorrow')
+            return splitStr.join(' ')
+        } else if (this.state.forecastTime.indexOf('Tue') !== -1 && str.indexOf('WED') !== -1) {
+            let splitStr = str.split(' ')
+            splitStr.splice(0, 1, 'Tomorrow')
+            return splitStr.join(' ')
+        } else if (this.state.forecastTime.indexOf('Wed') !== -1 && str.indexOf('THU') !== -1) {
+            let splitStr = str.split(' ')
+            splitStr.splice(0, 1, 'Tomorrow')
+            return splitStr.join(' ')
+        } else if(this.state.forecastTime.indexOf('Thu') !== -1 && str.indexOf('FRI') !== -1) {
+            let splitStr = str.split(' ')
+            splitStr.splice(0, 1, 'Tomorrow')
+            return splitStr.join(' ')
+        } else if (this.state.forecastTime.indexOf('Fri') !== -1 && str.indexOf('SAT') !== -1) {
+            let splitStr = str.split(' ')
+            splitStr.splice(0, 1, 'Tomorrow')
+            return splitStr.join(' ')
+        } else if (this.state.forecastTime.indexOf('Sat') !== -1 && str.indexOf('SUN') !== -1) {
+            let splitStr = str.split(' ')
+            splitStr.splice(0, 1, 'Tomorrow')
+            return splitStr.join(' ')
+        } else if (this.state.forecastTime.indexOf('Sun') !== -1 && str.indexOf('MON') !== -1) {
+            let splitStr = str.split(' ')
+            splitStr.splice(0, 1, 'Tomorrow')
+            return splitStr.join(' ')
+        } else {
+            return str
+        }
+    }
 
     //Method to separate applicable marine zones with a divider
     loopMarineZones = (arg) => {
@@ -96,7 +129,7 @@ class NOAAWeather extends Component {
                                     <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                         <h4 >
                                             <strong>
-                                                {this.titleCase(this.state.headers[i - 1])}
+                                                {this.titleCase(this.tomorrowCheck(this.state.headers[i - 1]))}
                                             </strong>
                                         </h4>
                                         <p style={{ margin: `4%` }}>
@@ -104,29 +137,28 @@ class NOAAWeather extends Component {
                                         </p>
                                         <h4 >
                                             <strong>
-                                                {this.titleCase(this.state.headers[i])}
+                                                {this.titleCase(this.tomorrowCheck(this.state.headers[i]))}
                                             </strong>
                                         </h4>
                                         <p style={{ margin: `4%` }}>
                                             {this.state.texts[i]}
                                         </p>
                                     </div>
-                                    // Otherwise, display empty div #?????
+                                    // Otherwise, (if NIGHT isn't in the header):
                                     :
-                                    i === this.state.headers.length - 2
-                                    // in the case of there only being 4 results this doesnt work
+                                    // if the iterator is on the 2nd to last header AND the next iteration header does not have NIGHT in it, OR if it is on the last header, show it and its corresponding text
+                                    (i === this.state.headers.length - 2 && this.state.headers[i + 1].indexOf("NIGHT") === -1)
                                     || i === this.state.headers.length - 1 ?
                                         <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                             <h4 >
                                                 <strong>
-                                                    {this.titleCase(this.state.headers[i])}
+                                                    {this.titleCase(this.tomorrowCheck(this.state.headers[i]))}
                                                 </strong>
                                             </h4>
                                             <p style={{ margin: `4%` }}>
                                                 {this.state.texts[i]}
                                             </p>
                                         </div>
-                                        
                                         :
                                         <div key={i}/>
                             ))}
