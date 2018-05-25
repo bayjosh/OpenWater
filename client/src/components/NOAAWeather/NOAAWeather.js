@@ -50,19 +50,10 @@ class NOAAWeather extends Component {
 
     //Method to load marine conditions
     loadWeather = () => {
-        let latlon = {
-            lat: this.props.lat,
-            lon: this.props.lon
-        }
+        let lat = this.props.lat
+        let lon = this.props.lon
         //Post request to scrape marine conditions with lat/lon from user click
-        return fetch('http://localhost:5000/weatherScrape', {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ latlon }),
-        })
+        return fetch(`http://localhost:5000/weatherScrape/${lat}/${lon}`)
             .then(res => res.json())
             .then(res => {
                 this.setState({

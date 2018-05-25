@@ -62,12 +62,12 @@ const selector = 'div.row-forecast'
 //Global variable to store scraping data
 let info = {}
 //Post request to scrape marine conditions
-app.post('/weatherScrape', function (req, res) {
+app.get('/weatherScrape/:lat/:lon', function (req, res) {
     const Nightmare = require('nightmare')
     const nightmare = Nightmare({});
     let zoneId = "";
-    let lat = req.body.latlon.lat
-    let lon = req.body.latlon.lon
+    let lat = req.params.lat
+    let lon = req.params.lon
     //Convert lat and lon to a marine zone id:
     nightmare
         .goto(`http://marine.weather.gov/MapClick.php?site=LOT&lat=${lat}&lon=${lon}`)

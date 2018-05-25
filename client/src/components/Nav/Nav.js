@@ -40,15 +40,15 @@ class Nav extends Component {
                 {this.props.loggedIn ?
                     <div>
                         <NavItem>
-                            <Dropdown
+                            <Dropdown style={{ width: '135px' }}
                                 trigger={<button className="btn"> Captain's Log </button>} >
                                 <LogVoyage userId={this.props.userId} />
                                 <NavItem divider />
-                                <NavItem>
-                                    <Link style={{ color: `black`, backgroundColor: `rgba(0,0,0,0)` }} to="/voyages">
+                                <Link to="/voyages">
+                                    <NavItem>
                                         View Voyages
+                                    </NavItem>
                                 </Link>
-                                </NavItem>
                             </Dropdown>
                         </NavItem>
                         <NavItem onClick={this.logout}> Log Out </NavItem>

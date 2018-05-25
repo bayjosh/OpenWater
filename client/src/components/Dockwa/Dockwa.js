@@ -11,6 +11,7 @@ class Dockwa extends Component {
     //Only load docking options if new user click on map is registered
     componentDidUpdate(prevProps, prevState) {
         if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
+            this.setState({ DockwaInfo: []})
             this.loadDockwa()
         }
     }
