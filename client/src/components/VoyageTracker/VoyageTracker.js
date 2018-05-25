@@ -21,10 +21,12 @@ class VoyageTracker extends PureComponent {
     }
     trackVoyage = () => {
         if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                console.log(position);
-                this.setState({ currentPosition: { lat: position.coords.latitude, lng: position.coords.longitude } })
-            });
+            setInterval(() => {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    console.log(position);
+                    this.setState({ currentPosition: { lat: position.coords.latitude, lng: position.coords.longitude } })
+                });
+            }, 1000 * 60)
         }
     }
 
