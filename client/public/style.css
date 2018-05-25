@@ -162,3 +162,9 @@ Register Page Design
   font-weight: bold;
   margin-bottom: 0;
 } */
+
+
+/* Navbar ///////////////////////////////////// */
+nav ul a:hover {
+  background-color: rgba(245, 245, 245, 0.377)
+}

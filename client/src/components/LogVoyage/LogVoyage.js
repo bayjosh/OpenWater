@@ -54,9 +54,6 @@ class LogVoyage extends Component {
                     pictures: this.state.pictures,
                     userId: this.props.userId
                     // the line below refreshes the page if youre on /dashboard to see the newly added voyage
-                }).then(() => { if (window.location.pathname === '/voyages') {
-                        window.location.reload()
-                    }
                 })
             }, 1);
         }, 0);
