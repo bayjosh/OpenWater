@@ -2,12 +2,6 @@
 var express = require("express");
 var app = express();
 
-// Sets up the backend server Port
-var port = process.env.PORT || 5000;
-app.listen(port, function () {
-    console.log("App listening on PORT " + port);
-});
-
 //CORS
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
@@ -343,6 +337,12 @@ app.post('/img-upload', function (req, res) {
     console.log(req.body)
     res.end()
 })
+
+// Sets up the backend server Port
+var port = process.env.PORT || 5000;
+app.listen(port, function () {
+    console.log("App listening on PORT " + port);
+});
 
 //===========================
 //OLD SCRAPE
