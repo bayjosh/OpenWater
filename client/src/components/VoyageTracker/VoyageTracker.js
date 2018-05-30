@@ -10,7 +10,7 @@ class VoyageTracker extends PureComponent {
             markerPositionLat: -32,
             markerPositionLon: 74,
             currentPosition: {},
-            pathCoordinates: [{ lat: 50, lng: -85 }]
+            pathCoordinates: [{ lat: 41.9349631, lng: -87.65939259999999 }]
         }
     }
     componentDidUpdate(prevProps, prevState) {
@@ -23,8 +23,9 @@ class VoyageTracker extends PureComponent {
         if ("geolocation" in navigator) {
             setInterval(() => {
                 navigator.geolocation.getCurrentPosition((position) => {
-                    console.log(position);
+                    
                     this.setState({ currentPosition: { lat: position.coords.latitude, lng: position.coords.longitude } })
+                    console.log(this.state.pathCoordinates);
                 });
             }, 1000 * 60)
         }

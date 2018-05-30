@@ -33,7 +33,7 @@ class NOAAWeather extends Component {
             return str
         }
     }
-    tomorrowCheck = (str) => {
+    tomorrowCheck = str => {
         if (this.state.forecastTime.indexOf('Mon') !== -1 && str.indexOf('TUE') !== -1) {
             let splitStr = str.split(' ')
             splitStr.splice(0, 1, 'Tomorrow')
