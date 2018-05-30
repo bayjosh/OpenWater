@@ -1,0 +1,170 @@
+/*///////////////////////////////////////////////
+
+Home Page Design
+
+////////////////////////////////////////////////*/
+
+body {
+  overflow: hidden;
+}
+.home-content {
+  text-align: center;
+}
+#continueAsGuestButton,
+#loginButton {
+  width: 40%;
+  color: white;
+  font-family: "Slabo 27px", serif;
+  font-size: 150%;
+  background-color: rgba(145, 174, 194, 0.918);
+  border-radius: 25px;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  margin-top: 3%;
+  -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+}
+
+#homeHeader {
+  color: white;
+  font-size: 80px;
+  font-family: "Amatic SC", cursive;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
+}
+
+#registerTextContainer {
+  margin-top: 3%;
+}
+
+
+/*////////////////////////////////////////////////// 
+
+Login Page Design
+
+//////////////////////////////////////////////////*/
+.login{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center
+}
+.loginContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+#loginForm{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+#loginEmailInput {
+  width: 90%;
+  color: white;
+  size: 50px;
+  border-bottom: 2px solid white;
+  font-family: "Slabo 27px", serif;
+  /* text-align: center; */
+}
+
+#usernameHeader {
+  color: white;
+  font-size: 80px;
+  font-family: "Amatic SC", cursive;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+#loginPasswordInput {
+  width: 90%;
+  color: white;
+  size: 50px;
+  border-bottom: 2px solid white;
+  font-family: "Slabo 27px", serif;
+  /* text-align: center; */
+}
+
+#passwordHeader {
+  color: white;
+  font-size: 80px;
+  font-family: "Amatic SC", cursive;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/*////////////////////////////////////////////////// 
+
+Voyages Page
+
+//////////////////////////////////////////////////*/
+
+
+.vCard{
+  color: white;
+    background-color: rgba(0, 0, 0, 0.719);
+    -webkit-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+}
+
+/*////////////////////////////////////////////////// 
+
+Register Page Design
+
+//////////////////////////////////////////////////*/
+
+
+/* .register{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center
+}
+.registerContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+#registerForm{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+} */
+
+#registerFirstNameInput,
+#registerLastNameInput,
+#registerEmailInput,
+#registerPasswordInput  {
+  /* width: 90%; */
+  color: white;
+  size: 50px;
+  border-bottom: 2px solid white;
+  font-family: "Slabo 27px", serif;
+  /* text-align: center; */
+}
+
+/* .registerHeader {
+  color: white;
+  font-size: 80px;
+  font-family: "Amatic SC", cursive;
+  font-weight: bold;
+  margin-bottom: 0;
+} */
+
+
+/* Navbar ///////////////////////////////////// */
+nav ul a:hover {
+  background-color: rgba(245, 245, 245, 0.377)
+}
