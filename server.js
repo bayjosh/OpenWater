@@ -69,7 +69,7 @@ app.get('/weatherScrape/:lat/:lon', function (req, res) {
     let lon = req.params.lon
     //Convert lat and lon to a marine zone id:
     nightmare
-        .goto(`https://marine.weather.gov/MapClick.php?site=LOT&lat=${lat}&lon=${lon}`)
+        .goto(`http://marine.weather.gov/MapClick.php?site=LOT&lat=${lat}&lon=${lon}`)
         .click('#seven-day-forecast-body a')
         .wait('.row-forecast .forecast-label b')
         .url()
@@ -78,7 +78,7 @@ app.get('/weatherScrape/:lat/:lon', function (req, res) {
             var el = result.split('=')[1].split('#')[0];
             zoneId = el;
             //Use zone id to access marine conditions:
-            var URL = `https://www.marineweatherbybluefin.com/reverse-proxy?id=${zoneId}&pro=1&source=aws&uri=offshoreweather/forecast.php`;
+            var URL = `http://www.marineweatherbybluefin.com/reverse-proxy?id=${zoneId}&pro=1&source=aws&uri=offshoreweather/forecast.php`;
             console.log('URL: ' + URL)
             request(URL, function (error, response, html) {
                 if (error) throw error
@@ -230,7 +230,7 @@ app.get("/api/charts/:lat/:lon", function (req, res) {
     let lat = req.params.lat;
     let lon = req.params.lon;
     nightmare
-        .goto('https://www.charts.noaa.gov/InteractiveCatalog/nrnc.shtml')
+        .goto('http://www.charts.noaa.gov/InteractiveCatalog/nrnc.shtml')
         .select('#searchDropDown1', 'latlon')
         .type('#searchText1', `${lat},${lon}`)
         .click('#searchButton1')
