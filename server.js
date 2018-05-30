@@ -11,8 +11,13 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Serve the public folder as a static directory
-app.use(express.static("public"));
+// Express only serves static assets in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
+
+// // Serve the public folder as a static directory
+// app.use(express.static("public"));
 
 //Allow for detailed logging requests
 var logger = require("morgan");
@@ -337,6 +342,13 @@ app.post('/img-upload', function (req, res) {
     console.log(req.body)
     res.end()
 })
+
+var path = require("path");
+
+// Default route
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, './client/build/index.html'));
+});
 
 // Sets up the backend server Port
 var port = process.env.PORT || 5000;
