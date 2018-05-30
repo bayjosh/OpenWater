@@ -45,7 +45,7 @@ class Register extends Component {
         let password = event.target[3].value;
 
         //Get method to check if user already exists
-        return axios.get("http://localhost:5000/checkdup", {
+        return axios.get("/checkdup", {
             params: { email },
         }).then(res => {
             if (res.data.length > 0) {
@@ -56,7 +56,7 @@ class Register extends Component {
                 document.getElementById('registerLastNameInput').value = "";
             }
             else {
-                return axios.post("http://localhost:5000/createUser",
+                return axios.post("/createUser",
                     { firstName, lastName, password, email },
                     { withCredentials: true }
                 )

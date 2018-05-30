@@ -43,7 +43,7 @@ class Voyages extends Component {
 
     loadVoyages = () => {
         //Get request to display all voyages in database
-        return fetch("http://localhost:5000/api/voyages", {
+        return fetch("/api/voyages", {
             credentials: "include"
         })
             .then(res => res.json());
@@ -70,7 +70,7 @@ class Voyages extends Component {
 
     deleteVoyage = () => {
         //Delete method to remove selected voyage from database
-        fetch(`http://localhost:5000/api/voyages/delete/${this.state.deleteID}`, {
+        fetch(`/api/voyages/delete/${this.state.deleteID}`, {
             method: "DELETE"
         })
             .then(res => res.json())

@@ -23,7 +23,7 @@ class App extends Component {
   }
   //trying to get the req.session.logged_in status from the server side
   componentDidMount() {
-    return fetch('http://localhost:5000/isLoggedIn', {
+    return fetch('/isLoggedIn', {
       credentials: "include"
     })
       .then(res => res.json())
@@ -44,7 +44,7 @@ class App extends Component {
   }
   handleLogOut = event => {
     event.preventDefault();
-    return fetch('http://localhost:5000/logout', {
+    return fetch('/logout', {
       credentials: "include"
     })
       .then((res) => {

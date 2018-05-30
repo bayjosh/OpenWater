@@ -43,7 +43,7 @@ class LogVoyage extends Component {
             setTimeout(() => {
                 //Calcuate total hours of all voyages user has logged????
                 this.setState({ totalHours: this.state.totalHours + this.state.voyageHours })
-                axios.post("http://localhost:5000/saveVoyage", {
+                axios.post("/saveVoyage", {
                     name: this.state.voyageName,
                     date: this.state.voyageDate,
                     description: this.state.voyageDescription,
@@ -57,7 +57,7 @@ class LogVoyage extends Component {
                 })
             }, 1);
         }, 0);
-        
+
     };
 
     render() {
@@ -67,7 +67,7 @@ class LogVoyage extends Component {
         return (
             <Modal
                 header='Log a Voyage'
-                trigger={<NavItem style={{textAlign: `center`, color: `black`}}>Log A Voyage</NavItem>}
+                trigger={<NavItem style={{ textAlign: `center`, color: `black` }}>Log A Voyage</NavItem>}
                 actions={<Button modal="close" onClick={this.saveVoyage}>
                     <Icon left>check_circle</Icon>Save This Voyage</Button>}
                 modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}

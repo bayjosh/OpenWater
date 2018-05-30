@@ -11,7 +11,7 @@ class Dockwa extends Component {
     //Only load docking options if new user click on map is registered
     componentDidUpdate(prevProps, prevState) {
         if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
-            this.setState({ DockwaInfo: []})
+            this.setState({ DockwaInfo: [] })
             this.loadDockwa()
         }
     }
@@ -20,7 +20,7 @@ class Dockwa extends Component {
         let lat = this.props.lat
         let lon = this.props.lon
         //GET request to scrape dockwa site with lat and lon
-        return fetch(`http://localhost:5000/dockwaScrape/${lat}/${lon}`, {
+        return fetch(`/dockwaScrape/${lat}/${lon}`, {
         })
             .then(res => res.json())
             .then(res => {

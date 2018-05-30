@@ -16,7 +16,7 @@ class AirWeather extends Component {
   //Only get weather if new user click on map is registered
   componentDidUpdate(prevProps, prevState) {
     if (this.props.zipCode !== 0 && prevProps.zipCode !== this.props.zipCode) {
-      this.setState({city: ""})
+      this.setState({ city: "" })
       this.getWeather()
     }
   }

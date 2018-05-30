@@ -46,7 +46,7 @@ class Login extends Component {
     let email = event.target[0].value;
     let password = event.target[1].value;
 
-    return axios.get('http://localhost:5000/checkuser', {
+    return axios.get('/checkuser', {
       params: { email, password },
       withCredentials: true
     })

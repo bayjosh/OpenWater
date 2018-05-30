@@ -61,7 +61,7 @@ class Dashboard extends Component {
       .then(result => {
         this.setState({ zipCode: result })
         //Prepare depth charts by creating custom url and setting state
-        return fetch(`http://localhost:5000/api/charts/${this.state.lat}/${this.state.lon}`)
+        return fetch(`/api/charts/${this.state.lat}/${this.state.lon}`)
           .then(res => res.json())
           .then(res => this.setState({ chartsURL: res }));
       })
@@ -94,7 +94,7 @@ class Dashboard extends Component {
               </div>
               <MapComponent isMarkerShown={false} onChange={this.onMapChange} />
             </div>
-            <div id="mapButtonDiv" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+            <div id="mapButtonDiv" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
               <button onClick={this.depthWasClicked} className="btn activator">Depth Overlay</button>
               <button onClick={this.trafficWasClicked} className="btn activator">Marine Traffic</button>
               {/* Button to open depth charts in new tab*/}
@@ -118,7 +118,7 @@ class Dashboard extends Component {
                 : this.state.trafficClicked ?
                   <MarineTraffic trafficClicked={this.state.trafficClicked} lat={this.state.lat} lon={this.state.lon} />
                   // Otherwise, stay on map
-                  : <div></div>}    
+                  : <div></div>}
             </div>
           </div>
 
@@ -159,7 +159,7 @@ class Dashboard extends Component {
           </div>
 
           {/* Voyage Tracker card */}
-          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%`}}>
+          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%` }}>
             <div className="card-content" style={{ height: `95%` }}>
               <div className="card-title">
                 <h3>Tracker</h3>
