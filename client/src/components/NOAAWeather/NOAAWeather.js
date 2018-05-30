@@ -16,7 +16,7 @@ class NOAAWeather extends Component {
     componentDidUpdate(prevProps, prevState) {
         //Only load weather if user has clicked somewhere new on the map
         if (this.props.lat !== 0 && prevProps.lat !== this.props.lat) {
-            this.setState({forecastTime: ""})
+            this.setState({ forecastTime: "" })
             this.loadWeather();
         }
     }
@@ -34,7 +34,11 @@ class NOAAWeather extends Component {
         }
     }
     tomorrowCheck = str => {
-        if (this.state.forecastTime.indexOf('Mon') !== -1 && str.indexOf('TUE') !== -1) {
+        //because in some cases we just added an empty div (see around line 166)
+        if (str === undefined) {
+            return str;
+            //otherwise run through each day case    
+        } else if (this.state.forecastTime.indexOf('Mon') !== -1 && str.indexOf('TUE') !== -1) {
             let splitStr = str.split(' ')
             splitStr.splice(0, 1, 'Tomorrow')
             return splitStr.join(' ')
@@ -46,7 +50,7 @@ class NOAAWeather extends Component {
             let splitStr = str.split(' ')
             splitStr.splice(0, 1, 'Tomorrow')
             return splitStr.join(' ')
-        } else if(this.state.forecastTime.indexOf('Thu') !== -1 && str.indexOf('FRI') !== -1) {
+        } else if (this.state.forecastTime.indexOf('Thu') !== -1 && str.indexOf('FRI') !== -1) {
             let splitStr = str.split(' ')
             splitStr.splice(0, 1, 'Tomorrow')
             return splitStr.join(' ')
@@ -109,8 +113,8 @@ class NOAAWeather extends Component {
                 {this.state.forecastTime !== "" ?
                     (<div>
                         <h5 style={{ textAlign: `center` }}>Applicable Marine Zones: </h5>
-                        <div style={{textAlign: `center`}}>
-                        {this.loopMarineZones(marineZone)}
+                        <div style={{ textAlign: `center` }}>
+                            {this.loopMarineZones(marineZone)}
                         </div>
                         <hr />
                         <h5>WARNINGS</h5>
@@ -148,7 +152,7 @@ class NOAAWeather extends Component {
                                     :
                                     // if the iterator is on the 2nd to last header AND the next iteration header does not have NIGHT in it, OR if it is on the last header, show it and its corresponding text
                                     (i === this.state.headers.length - 2 && this.state.headers[i + 1].indexOf("NIGHT") === -1)
-                                    || i === this.state.headers.length - 1 ?
+                                        || i === this.state.headers.length - 1 ?
                                         <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                             <h4 >
                                                 <strong>
@@ -160,7 +164,7 @@ class NOAAWeather extends Component {
                                             </p>
                                         </div>
                                         :
-                                        <div key={i}/>
+                                        <div key={i} />
                             ))}
                         </div>
                     </div>)
