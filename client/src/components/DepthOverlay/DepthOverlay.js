@@ -13,7 +13,7 @@ class DepthOverlay extends Component {
         }
     }
 
-    //How does iframe work with render below????
+    //How does iframe work with render below???? -- won't work with https
     openDepthOverlay = () => {
         let iframe = document.createElement('iframe')
         iframe.setAttribute('width', '100%')
@@ -30,7 +30,7 @@ class DepthOverlay extends Component {
         }
     }
     render() {
-        return(
+        return (
             <div style={{ height: `95%` }}>
                 <div style={{ textAlign: `center`, color: `black` }} id="real-title"><h3>Depth Overlay</h3></div>
                 <hr />
