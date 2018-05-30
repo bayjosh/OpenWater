@@ -71,6 +71,13 @@ class Dashboard extends Component {
     this.setState({ forecastTime: forecastTime })
   }
 
+  testFunction = () => {
+    return fetch('/test')
+      .then(res => res.json())
+      .then(console.log("frontend worked!"))
+  }
+
+
   render() {
     return (
       <div>
@@ -120,6 +127,11 @@ class Dashboard extends Component {
                   // Otherwise, stay on map
                   : <div></div>}
             </div>
+          </div>
+
+          {/* Test Deployment Button */}
+          <div>
+            <button className='btn' onClick={this.testFunction}>Test</button>
           </div>
 
           {/* Marine Conditions Card */}

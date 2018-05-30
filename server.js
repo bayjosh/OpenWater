@@ -58,6 +58,11 @@ var request = require("request")
 var cheerio = require('cheerio');
 const selector = 'div.row-forecast'
 
+//test route for deployment
+app.get('/test', function (req, res) {
+    console.log("backend worked!!!");
+})
+
 //Global variable to store scraping data
 let info = {}
 //Post request to scrape marine conditions
