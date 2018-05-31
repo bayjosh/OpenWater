@@ -21,6 +21,10 @@ class Dockwa extends Component {
         let lon = this.props.lon
         //GET request to scrape dockwa site with lat and lon
         return fetch(`/dockwaScrape/${lat}/${lon}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
         })
             .then(res => res.json())
             .then(res => {

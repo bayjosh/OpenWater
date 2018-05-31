@@ -61,7 +61,12 @@ class Dashboard extends Component {
       .then(result => {
         this.setState({ zipCode: result })
         //Prepare depth charts by creating custom url and setting state
-        return fetch(`/api/charts/${this.state.lat}/${this.state.lon}`)
+        return fetch(`/api/charts/${this.state.lat}/${this.state.lon}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
           .then(res => res.json())
           .then(res => this.setState({ chartsURL: res }));
       })
@@ -72,7 +77,12 @@ class Dashboard extends Component {
   }
 
   testFunction = () => {
-    return fetch('/test')
+    return fetch('/test', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
       .then(res => res.json())
       .then(console.log("frontend worked!"))
       .catch(error => {
