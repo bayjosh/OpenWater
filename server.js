@@ -61,7 +61,11 @@ const selector = 'div.row-forecast'
 //test route for deployment
 app.get('/test', function (req, res) {
     console.log("backend worked!!!");
-    res.json();
+    const testObj =
+        {
+            testKey: "testValue"
+        }
+    res.json(testObj);
 })
 
 //Global variable to store scraping data
