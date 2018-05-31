@@ -75,6 +75,9 @@ class Dashboard extends Component {
     return fetch('/test')
       .then(res => res.json())
       .then(console.log("frontend worked!"))
+      .catch(error => {
+        console.error('Search failed:', error)
+      })
   }
 
 
