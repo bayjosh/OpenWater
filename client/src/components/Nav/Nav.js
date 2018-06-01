@@ -46,6 +46,11 @@ class Nav extends Component {
                 {this.props.loggedIn ?
                     <div>
                         <NavItem>
+                            <Link to="trackvoyage">
+                                <button className="btn"> Track a Voyage </button>
+                            </Link>
+                        </NavItem>
+                        <NavItem>
                             <Dropdown
                                 trigger={<button className="btn"> Captain's Log </button>} >
                                 <LogVoyage userId={this.props.userId} />
