@@ -103,7 +103,11 @@ class Dashboard extends Component {
           <br />
           <br />
           <br />
-          <h1>Oh hey, {this.props.firstName}!</h1>
+          <div style={{ marginTop: "50%", zIndex: "20" }}>
+            {this.props.loggedIn ? <h1>Oh hey, {this.props.firstName}!</h1>
+              : <h1>Oh hey, guest!</h1>}
+          </div>
+
 
           {/* Location/Map card */}
           <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%`, marginTop: "5%" }}>

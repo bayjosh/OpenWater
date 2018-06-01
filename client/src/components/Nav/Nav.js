@@ -63,30 +63,30 @@ class Nav extends Component {
                     window.location.pathname === "/dashboard" ?
                         <div>
                             <NavItem>
-                            <Dropdown trigger={<button className="btn"> Captain's Log </button>} >
-                                <Modal
-                                    header='You must be logged in to log a voyage'
-                                    trigger={<NavItem> Log a Voyage</NavItem>}
-                                    modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
-                                    {/* <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
+                                <Dropdown trigger={<button className="btn"> Captain's Log </button>} >
+                                    <Modal
+                                        header='You must be logged in to log a voyage'
+                                        trigger={<NavItem> Log a Voyage</NavItem>}
+                                        modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
+                                        {/* <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
                                         <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
                                         <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
                                     </div> */}
-                                    {this.state.loginRedirect && <Redirect to="/login" />}
-                                </Modal>
-                            <NavItem divider />
-                                <Modal
-                                    header='You must be logged in to view saved voyages'
-                                    trigger={<NavItem>View Voyages</NavItem>}
-                                    modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
-                                    {/* <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
+                                        {this.state.loginRedirect && <Redirect to="/login" />}
+                                    </Modal>
+                                    <NavItem divider />
+                                    <Modal
+                                        header='You must be logged in to view saved voyages'
+                                        trigger={<NavItem>View Voyages</NavItem>}
+                                        modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
+                                        {/* <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
                                         <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
                                         <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
                                     </div> */}
-                                    {this.state.loginRedirect && <Redirect to="/login" />}
-                                    {this.state.registerRedirect && <Redirect to="/register" />}
-                                </Modal>
-                            </Dropdown>
+                                        {this.state.loginRedirect && <Redirect to="/login" />}
+                                        {this.state.registerRedirect && <Redirect to="/register" />}
+                                    </Modal>
+                                </Dropdown>
                             </NavItem>
                             <NavItem onClick={this.handleLogin}> Log In </NavItem>
                             <NavItem onClick={this.handleRegister}> Register for Free </NavItem>
