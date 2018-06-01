@@ -73,7 +73,7 @@ let info = {}
 //Post request to scrape marine conditions
 app.get('/weatherScrape/:lat/:lon', function (req, res) {
     const Nightmare = require('nightmare')
-    const nightmare = Nightmare({});
+    const nightmare = Nightmare({show: true});
     let zoneId = "";
     let lat = req.params.lat
     let lon = req.params.lon
