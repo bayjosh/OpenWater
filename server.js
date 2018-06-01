@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+    app.use(express.static('./client/build'));
 }
 
 // // Serve the public folder as a static directory
@@ -69,6 +69,7 @@ app.get('/weatherScrape/:lat/:lon', function (req, res) {
     let lon = req.params.lon
     //Convert lat and lon to a marine zone id:
     nightmare
+    //this site works with https
         .goto(`http://marine.weather.gov/MapClick.php?site=LOT&lat=${lat}&lon=${lon}`)
         .click('#seven-day-forecast-body a')
         .wait('.row-forecast .forecast-label b')
@@ -78,6 +79,7 @@ app.get('/weatherScrape/:lat/:lon', function (req, res) {
             var el = result.split('=')[1].split('#')[0];
             zoneId = el;
             //Use zone id to access marine conditions:
+            //this site does not work with https
             var URL = `http://www.marineweatherbybluefin.com/reverse-proxy?id=${zoneId}&pro=1&source=aws&uri=offshoreweather/forecast.php`;
             console.log('URL: ' + URL)
             request(URL, function (error, response, html) {
@@ -230,6 +232,7 @@ app.get("/api/charts/:lat/:lon", function (req, res) {
     let lat = req.params.lat;
     let lon = req.params.lon;
     nightmare
+    //doesn't work with https
         .goto('http://www.charts.noaa.gov/InteractiveCatalog/nrnc.shtml')
         .select('#searchDropDown1', 'latlon')
         .type('#searchText1', `${lat},${lon}`)
