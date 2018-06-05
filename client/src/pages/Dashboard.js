@@ -11,6 +11,7 @@ import Nav from "../components/Nav";
 import MarineTraffic from "../components/MarineTraffic";
 import DepthOverlay from "../components/DepthOverlay";
 import VoyageTracker from "../components/VoyageTracker";
+import Foot from "../components/Foot"
 
 class Dashboard extends Component {
   constructor(props) {
@@ -188,7 +189,7 @@ class Dashboard extends Component {
           </div>
 
           {/* Voyage Tracker card */}
-          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%` }}>
+          {/* <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%` }}>
             <div className="card-content" style={{ height: `95%` }}>
               <div className="card-title">
                 <h3>Tracker</h3>
@@ -196,9 +197,11 @@ class Dashboard extends Component {
               </div>
               <VoyageTracker />
             </div>
-          </div>
+          </div> */}
 
         </div>
+
+        <Foot id="footer" />
       </div>
     );
   }

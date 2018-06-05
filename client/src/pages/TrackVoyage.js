@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../components/Nav"
+import Foot from "../components/Foot"
 
 class TrackVoyage extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class TrackVoyage extends Component {
                 <div className="container">
 
                 </div>
+                <Foot id="footer" />
             </div>
         )
     }

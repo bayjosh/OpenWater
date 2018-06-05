@@ -4,6 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav"
 import Modal from "react-modal"
+import Foot from "../components/Foot"
 
 const customStyles = {
     overlay: {
@@ -137,7 +138,8 @@ class Register extends Component {
                     </div>
                     <hr />
                     We already have an account for that email in our records.
-        </Modal>
+                </Modal>
+                <Foot id="footer" />
             </div>
         );
     }

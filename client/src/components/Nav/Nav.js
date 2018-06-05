@@ -2,7 +2,6 @@ import "./Nav.css";
 import React, { Component } from "react";
 import { Navbar, NavItem, Modal, Dropdown } from 'react-materialize';
 import { Redirect, Link } from "react-router-dom";
-import "./Nav.css";
 import LogVoyage from "../../components/LogVoyage";
 
 class Nav extends Component {

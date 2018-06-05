@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import Nav from "../components/Nav"
+import Foot from "../components/Foot"
 
 const customStyles = {
     overlay: {
@@ -121,6 +122,7 @@ class Voyages extends Component {
                     ))}
 
                 </div>
+                <Foot id="footer" />
             </div>
         )
     }

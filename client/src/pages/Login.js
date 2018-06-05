@@ -5,6 +5,7 @@ import { Redirect, Link } from "react-router-dom";
 import Nav from "../components/Nav"
 import Modal from "react-modal"
 import axios from "axios";
+import Foot from "../components/Foot"
 
 const customStyles = {
   overlay: {
@@ -136,6 +137,7 @@ class Login extends Component {
           <hr />
           We do not have that email and password combination in our records.
         </Modal>
+        <Foot id="footer" />
       </div >
     );
   }
