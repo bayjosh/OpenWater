@@ -1,6 +1,6 @@
 import "./Foot.css";
 import React, { Component } from "react";
-import Footer from 'react-materialize';
+import { Footer } from 'react-materialize';
 import { Redirect, Link } from "react-router-dom";
 
 class Foot extends Component {
@@ -12,7 +12,7 @@ class Foot extends Component {
 
     render() {
         return (
-            <Footer copyrights="&copy 2015 Copyright Text"
+            <Footer id="footer" style={{ width: "100vw" }} copyrights="&copy 2015 Copyright Text"
                 moreLinks={<a className="grey-text text-lighten-4 right" href="#!">More Links</a>}
                 links={<ul>
                     <li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li>

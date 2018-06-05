@@ -137,7 +137,7 @@ class Login extends Component {
           <hr />
           We do not have that email and password combination in our records.
         </Modal>
-        <Foot id="footer" />
+        <Foot />
       </div >
     );
   }

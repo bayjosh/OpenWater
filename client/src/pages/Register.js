@@ -139,7 +139,7 @@ class Register extends Component {
                     <hr />
                     We already have an account for that email in our records.
                 </Modal>
-                <Foot id="footer" />
+                <Foot />
             </div>
         );
     }

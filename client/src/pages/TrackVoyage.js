@@ -22,7 +22,7 @@ class TrackVoyage extends Component {
                 <div className="container">
 
                 </div>
-                <Foot id="footer" />
+                <Foot />
             </div>
         )
     }

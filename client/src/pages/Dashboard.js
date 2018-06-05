@@ -198,10 +198,10 @@ class Dashboard extends Component {
               <VoyageTracker />
             </div>
           </div> */}
-
+          <Foot />
         </div>
 
-        <Foot id="footer" />
+
       </div>
     );
   }

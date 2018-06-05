@@ -122,7 +122,7 @@ class Voyages extends Component {
                     ))}
 
                 </div>
-                <Foot id="footer" />
+                <Foot />
             </div>
         )
     }
