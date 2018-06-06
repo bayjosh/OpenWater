@@ -94,32 +94,26 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ display: `flex`, flexDirection: `row`, flexWrap: `wrap`}}>
         <Nav handleLogOut={this.props.handleLogOut} userId={this.props.userId} loggedIn={this.props.loggedIn} />
         <DashboardBackground />
         <LoadingModal lat={this.state.lat} lon={this.state.lon} zipCode={this.state.zipCode} forecastTime={this.state.forecastTime} />
 
         {/* Flex-box styling for whole page */}
-        <div className="dashboard" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-evenly`, flexWrap: `wrap`, padding: `2.5%`, height: `100vh`, width: `100vw` }}>
+        <div className="dashboard" style={{ display: `flex`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-evenly`, flexWrap: `wrap`, padding: `2.5%`, width: `100vw`, height: `100%` }}>
           <br />
           <br />
           <br />
-          <div style={{ marginTop: "50%", zIndex: "20" }}>
-            {this.props.loggedIn ? <h1>Oh hey, {this.props.firstName}!</h1>
-              : <h1>Oh hey, guest!</h1>}
-          </div>
-
-
           {/* Location/Map card */}
-          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `200%`, marginTop: "5%" }}>
-            <div className="card-content" style={{ height: `95%` }}>
+          <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `100vh`, marginTop: "5%" }}>
+            <div className="card-content" style={{ height: `95vh` }}>
               <div className="card-title">
                 <h3>Location</h3>
                 <hr />
               </div>
               <MapComponent isMarkerShown={false} onChange={this.onMapChange} />
             </div>
-            <div id="mapButtonDiv" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+            <div id="mapButtonDiv" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', }}>
               <button onClick={this.depthWasClicked} className="btn activator">Depth Overlay</button>
               <button onClick={this.trafficWasClicked} className="btn activator">Marine Traffic</button>
               {/* Button to open depth charts in new tab*/}
@@ -198,11 +192,13 @@ class Dashboard extends Component {
               <VoyageTracker />
             </div>
           </div> */}
-          <Foot style={{ position: 'absolute', bottom: '0', width: '100vw' }} />
         </div>
-        
+        <div style={{
+          position: `relative`, bottom: `-100%`}}>
+        <Foot style={{width: '100vw' }} />
+        </div>
+    
       </div>
-      
 
     );
   }

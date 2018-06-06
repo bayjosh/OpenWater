@@ -9,9 +9,9 @@ const image = require('../../images/smallanchor.png')
 const MapWindow = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCw1e-uu8VD-vsFQDzMXlHkiN_XL5N8YFg&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `90%` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
+    loadingElement: <div style={{ height: `100vh` }} />,
+    containerElement: <div style={{ height: `100vh` }} />,
+    mapElement: <div style={{ height: `70vh` }} />,
   }),
   withScriptjs,
   withGoogleMap
