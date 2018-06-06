@@ -44,15 +44,17 @@ class Nav extends Component {
             <Navbar id='nav' brand={<img alt='OpenWater Logo' src={require("../../images/OWlogo.png")} style={{ height: `65px`, opacity: `1 !important`, width: `100px` }} />} right>
                 {this.props.loggedIn ?
                     <div>
-                        <NavItem>
+                        {/* <NavItem>
                             <Link to="trackvoyage">
                                 <button className="btn"> Track a Voyage </button>
                             </Link>
-                        </NavItem>
-                        <NavItem>
+                        </NavItem> */}
+                        <NavItem className="navGreeting">  Welcome, {this.props.firstName}! </NavItem>
+                        <NavItem id="navGreeting" className="navGreeting"> //////////</NavItem>
+                        <NavItem className="captainLogButtonNav">
                             <Dropdown
-                                trigger={<button className="btn"> Captain's Log </button>} >
-                                <LogVoyage userId={this.props.userId} />
+                                trigger={<button className="btn button"> Captain's Log </button>} >
+                                <NavItem><LogVoyage userId={this.props.userId} /></NavItem>
                                 <NavItem divider />
                                 <Link to="/voyages">
                                     <NavItem>
@@ -62,12 +64,14 @@ class Nav extends Component {
                             </Dropdown>
                         </NavItem>
                         <NavItem onClick={this.logout}> Log Out </NavItem>
+
+
                     </div>
                     :
                     window.location.pathname === "/dashboard" ?
                         <div>
-                            <NavItem>
-                                <Dropdown trigger={<button className="btn"> Captain's Log </button>} >
+                            <NavItem className="captainLogButtonNav">
+                                <Dropdown trigger={<button className="btn button"> Captain's Log </button>} >
                                     <Modal
                                         header='You must be logged in to log a voyage'
                                         trigger={<NavItem> Log a Voyage</NavItem>}
@@ -94,6 +98,7 @@ class Nav extends Component {
                             </NavItem>
                             <NavItem onClick={this.handleLogin}> Log In </NavItem>
                             <NavItem onClick={this.handleRegister}> Register for Free </NavItem>
+
                         </div>
                         :
                         <div />}

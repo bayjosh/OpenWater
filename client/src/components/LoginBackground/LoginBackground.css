@@ -23,15 +23,6 @@
   margin-bottom: 0;
 }
 
-.loginHeader {
-  font-size: 60px;
-  color: rgb(96, 190, 245);
-  text-align: center;
-  padding-top: 5%;
-  text-shadow: 1px 1px 3px #fdfdfd;
-  font-family: 'Times New Roman'
-}
-
 #signUp {
   text-align: center;
   color: rgba(255, 255, 255, 0.651);

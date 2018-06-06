@@ -85,7 +85,7 @@ class Register extends Component {
                         <div className="col m8 offset-m2">
                             <div id="registerContainer">
                                 <form id="registerForm" onSubmit={this.registerSubmit}>
-                                    <p id="firstNameHeader" className="registerHeader">Open Water</p>
+                                    <p id="firstNameHeader" className="registerHeader">Register</p>
                                     <div className="row">
                                         <div className="col m6">
                                             <div className="input-field">
@@ -139,7 +139,6 @@ class Register extends Component {
                     <hr />
                     We already have an account for that email in our records.
                 </Modal>
-                <Foot />
             </div>
         );
     }

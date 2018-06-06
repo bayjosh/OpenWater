@@ -156,7 +156,7 @@ class NOAAWeather extends Component {
                                     // Otherwise, (if NIGHT isn't in the header):
                                     :
                                     // if the iterator is on the 2nd to last header AND the next iteration header does not have NIGHT in it, OR if it is on the last header, show it and its corresponding text
-                                    (i === this.state.headers.length - 2 && this.state.headers[i + 1].indexOf("NIGHT") === -1)
+                                    (i === this.state.headers.length - 3 && this.state.headers[i + 1].indexOf("NIGHT") === -1) || (i === this.state.headers.length - 2 && this.state.headers[i + 1].indexOf("NIGHT") === -1)
                                         || i === this.state.headers.length - 1 ?
                                         <div style={{ border: `black 1px solid`, borderRadius: "25px", overflowWrap: `break-word`, width: `28%`, margin: `1% 1.5%` }} key={i}>
                                             <h4 >

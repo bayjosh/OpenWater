@@ -73,13 +73,13 @@ let info = {}
 //Post request to scrape marine conditions
 app.get('/weatherScrape/:lat/:lon', function (req, res) {
     const Nightmare = require('nightmare')
-    const nightmare = Nightmare({show: true});
+    const nightmare = Nightmare({ show: false });
     let zoneId = "";
     let lat = req.params.lat
     let lon = req.params.lon
     //Convert lat and lon to a marine zone id:
     nightmare
-    //this site works with https
+        //this site works with https
         .goto(`http://marine.weather.gov/MapClick.php?site=LOT&lat=${lat}&lon=${lon}`)
         .click('#seven-day-forecast-body a')
         .wait('.row-forecast .forecast-label b')
@@ -242,7 +242,7 @@ app.get("/api/charts/:lat/:lon", function (req, res) {
     let lat = req.params.lat;
     let lon = req.params.lon;
     nightmare
-    //doesn't work with https
+        //doesn't work with https
         .goto('http://www.charts.noaa.gov/InteractiveCatalog/nrnc.shtml')
         .select('#searchDropDown1', 'latlon')
         .type('#searchText1', `${lat},${lon}`)

@@ -74,10 +74,10 @@ class LogVoyage extends Component {
                 fixedFooter
                 style={{ borderRadius: `25px` }}>
 
-                <Row className="right-align">
+                {/* <Row className="right-align">
                     <input type="file" onChange={this.fileChangedHandler} />
                     <Button onClick={this.uploadHandler} className="left-align" s={12}>Upload Photos<Icon left>add_a_photo</Icon></Button>
-                </Row>
+                </Row> */}
 
                 <Row >
                     <br />

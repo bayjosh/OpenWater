@@ -1,5 +1,27 @@
 /*///////////////////////////////////////////////
 
+Global
+
+////////////////////////////////////////////////*/
+
+.button {
+  background-color: rgb(40, 162, 233);
+  color: white;
+  border: 1px solid white;
+  border-radius: 25px;
+  -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+}
+
+.button:hover {
+  color: rgb(40, 162, 233);
+  background-color: white;
+}
+
+
+/*///////////////////////////////////////////////
+
 Home Page Design
 
 ////////////////////////////////////////////////*/
@@ -13,17 +35,11 @@ body {
 #continueAsGuestButton,
 #loginButton {
   width: 40%;
-  color: white;
-  font-family: "Slabo 27px", serif;
   font-size: 150%;
-  background-color: rgba(145, 174, 194, 0.918);
   border-radius: 25px;
   margin-right: 2.5%;
   margin-left: 2.5%;
   margin-top: 3%;
-  -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
 }
 
 #homeHeader {
@@ -101,6 +117,14 @@ Login Page Design
   margin-bottom: 0;
 }
 
+.loginHeader {
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  padding-top: 5%;
+  font-family: 'Poiret One', cursive;
+}
+
 /*////////////////////////////////////////////////// 
 
 Voyages Page
@@ -113,6 +137,7 @@ Voyages Page
     background-color: rgba(0, 0, 0, 0.719);
     -webkit-box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
     box-shadow: 4px 5px 13px 0px rgba(0,0,0,0.75);
+    margin-bottom: 2.5%;
 }
 
 /*////////////////////////////////////////////////// 
@@ -155,19 +180,49 @@ Register Page Design
   /* text-align: center; */
 }
 
-/* .registerHeader {
+
+.registerHeader {
+  font-size: 60px;
   color: white;
-  font-size: 80px;
-  font-family: "Amatic SC", cursive;
-  font-weight: bold;
-  margin-bottom: 0;
-} */
+  text-align: center;
+  padding-top: 5%;
+  font-family: 'Poiret One', cursive;
+}
+
 
 
 /* Navbar ///////////////////////////////////// */
+
 nav ul a:hover {
   background-color: rgba(245, 245, 245, 0.377)
 }
+
+.navGreeting > a:hover {
+  background-color: black;
+  cursor: default;
+}
+
+.navGreeting > a {
+  font-family: 'Poiret One', cursive;
+  font-size: 40px
+}
+#navGreeting > a {
+  color: black
+}
+
+#nav > .nav-wrapper {
+  margin-left: 1%;
+  margin-right: 1%;
+
+}
+
+.captainLogButtonNav > a:hover {
+  background-color: black;
+  cursor: default;
+}
+
+
+
 
 /* Footer*/
 .footer-link:hover {

@@ -94,8 +94,8 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div style={{ display: `flex`, flexDirection: `row`, flexWrap: `wrap`}}>
-        <Nav handleLogOut={this.props.handleLogOut} userId={this.props.userId} loggedIn={this.props.loggedIn} />
+      <div style={{ display: `flex`, flexDirection: `row`, flexWrap: `wrap` }}>
+        <Nav handleLogOut={this.props.handleLogOut} userId={this.props.userId} loggedIn={this.props.loggedIn} firstName={this.props.firstName} />
         <DashboardBackground />
         <LoadingModal lat={this.state.lat} lon={this.state.lon} zipCode={this.state.zipCode} forecastTime={this.state.forecastTime} />
 
@@ -114,16 +114,16 @@ class Dashboard extends Component {
               <MapComponent isMarkerShown={false} onChange={this.onMapChange} />
             </div>
             <div id="mapButtonDiv" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', }}>
-              <button onClick={this.depthWasClicked} className="btn activator">Depth Overlay</button>
-              <button onClick={this.trafficWasClicked} className="btn activator">Marine Traffic</button>
+              <button onClick={this.depthWasClicked} className="btn button activator">Depth Overlay</button>
+              <button onClick={this.trafficWasClicked} className="btn button activator">Marine Traffic</button>
               {/* Button to open depth charts in new tab*/}
               {this.state.chartsURL !== "" ?
                 <a target="_blank" href={this.state.chartsURL}>
-                  <button className="btn">NOAA Nautical Charts</button>
+                  <button className="btn button">NOAA Nautical Charts</button>
                 </a> :
                 <Modal
                   header='NOAA Charts Currently Unavailable'
-                  trigger={<button className="btn">NOAA Nautical Charts</button>}
+                  trigger={<button className="btn button">NOAA Nautical Charts</button>}
                   modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
                 </Modal>}
             </div>
@@ -142,9 +142,9 @@ class Dashboard extends Component {
           </div>
 
           {/* Test Deployment Button */}
-          <div>
+          {/* <div>
             <button className='btn' onClick={this.testFunction}>Test</button>
-          </div>
+          </div> */}
 
           {/* Marine Conditions Card */}
           <div id="weather" className="card darken-1" style={{ width: `100%` }}>
@@ -194,10 +194,11 @@ class Dashboard extends Component {
           </div> */}
         </div>
         <div style={{
-          position: `relative`, bottom: `-100%`}}>
-        <Foot style={{width: '100vw' }} />
+          position: `relative`, bottom: `-100%`
+        }}>
+          <Foot style={{ width: '100vw' }} />
         </div>
-    
+
       </div>
 
     );

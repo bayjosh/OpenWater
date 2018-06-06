@@ -43,8 +43,8 @@ class Home extends Component {
             </div>
             {/* <p id="homeHeader">Start your voyage</p> */}
 
-            <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
-            <button onClick={this.handleContinueAsGuest} className="waves-effect btn-large waves-light btn" id="continueAsGuestButton" type="button">Continue As Guest</button>
+            <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn button" id="loginButton">Log In</button>
+            <button onClick={this.handleContinueAsGuest} className="waves-effect btn-large waves-light btn button" id="continueAsGuestButton" type="button">Continue As Guest</button>
             <p id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
 
             {/* Trigger redirects to login/dashboard */}

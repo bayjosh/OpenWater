@@ -93,7 +93,7 @@ class Login extends Component {
             <div className="col m8 offset-m2">
               <div id="signinContainer">
                 <form id="registerForm" onSubmit={this.loginSubmit}>
-                  <p id="firstNameHeader" className="loginHeader">Login</p>
+                  <p id="firstNameHeader" className="loginHeader">Log In</p>
                   <div className="row">
                     <div className="col m12">
                       <div className="input-field">
@@ -109,7 +109,7 @@ class Login extends Component {
                     </div>
                   </div>
 
-                  <button type="submit" className="waves-effect waves-light btn signinButton">Login</button>
+                  <button type="submit" className="waves-effect waves-light btn signinButton">Log In</button>
                   <br />
                   <Link to="/"><button type="button" className="waves-effect waves-light btn registerButton"> Back to Home </button></Link>
                 </form>
@@ -137,7 +137,6 @@ class Login extends Component {
           <hr />
           We do not have that email and password combination in our records.
         </Modal>
-        <Foot />
       </div >
     );
   }
