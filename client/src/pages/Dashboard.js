@@ -198,11 +198,12 @@ class Dashboard extends Component {
               <VoyageTracker />
             </div>
           </div> */}
-          <Foot />
+          <Foot style={{ position: 'absolute', bottom: '0', width: '100vw' }} />
         </div>
-
-
+        
       </div>
+      
+
     );
   }
 }

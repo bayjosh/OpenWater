@@ -168,3 +168,17 @@ Register Page Design
 nav ul a:hover {
   background-color: rgba(245, 245, 245, 0.377)
 }
+
+/* Footer*/
+.footer-link:hover {
+  color: rgb(0, 153, 255) !important
+}
+
+#footer > div.container {
+  width: 95%
+}
+
+#footer > div.footer-copyright {
+  width: 100%;
+  text-align: center
+}
