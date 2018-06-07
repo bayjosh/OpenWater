@@ -234,7 +234,7 @@ nav ul a:hover {
 
 
 
-/* Footer*/
+/* ///////////////////Footer/////////////////////*/
 .footer-link:hover {
   color: rgb(40, 162, 233) !important
 }
@@ -265,3 +265,9 @@ nav ul a:hover {
   color: rgb(40, 162, 233);
   margin-bottom: 1%;
 }
+/* //////////////////////map component ////////////////*/
+#mapButtonDiv > button:nth-child(2) {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+

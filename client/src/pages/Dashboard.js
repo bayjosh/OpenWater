@@ -106,26 +106,27 @@ class Dashboard extends Component {
           <br />
           {/* Location/Map card */}
           <div id="map-card" className="card darken-1" style={{ width: `100%`, height: `100vh`, marginTop: "5%" }}>
-            <div className="card-content" style={{ height: `95vh` }}>
-              <div className="card-title">
-                <h3>Location</h3>
-                <hr />
-              </div>
-              <MapComponent isMarkerShown={false} onChange={this.onMapChange} />
-            </div>
-            <div id="mapButtonDiv" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', }}>
-              <button onClick={this.depthWasClicked} className="btn button activator">Depth Overlay</button>
-              <button onClick={this.trafficWasClicked} className="btn button activator">Marine Traffic</button>
-              {/* Button to open depth charts in new tab*/}
-              {this.state.chartsURL !== "" ?
-                <a target="_blank" href={this.state.chartsURL}>
-                  <button className="btn button">NOAA Nautical Charts</button>
-                </a> :
-                <Modal
-                  header='NOAA Charts Currently Unavailable'
-                  trigger={<button className="btn button">NOAA Nautical Charts</button>}
-                  modalOptions={{ complete: () => document.querySelector('body').style.overflowY = "scroll" }}>
-                </Modal>}
+            <div className="card-content" style={{ height: `90vh` }}>
+                <div className="card-title">
+                    <h3>Location</h3>
+                    <hr />
+                </div>
+                <MapComponent isMarkerShown={false} onChange={this.onMapChange} />
+                <div id="mapButtonDiv" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', }}>
+                  <button onClick={this.depthWasClicked} className="btn button activator">Depth Overlay</button>
+                  <button onClick={this.trafficWasClicked} className="btn button activator">Marine Traffic</button>
+                  {/* Button to open depth charts in new tab*/}
+                  {this.state.chartsURL !== "" ?
+                  <a target="_blank" href={this.state.chartsURL}>
+                    <button className="btn button">NOAA Nautical Charts</button>
+                  </a>
+                  :
+                  <Modal
+                    header='NOAA Charts Currently Unavailable'
+                    trigger={<button className="btn button">NOAA Nautical Charts</button>}
+                    modalOptions={{ complete: () => document.querySelector('body').style.overflowY = "scroll" }}>
+                  </Modal>}
+                </div>
             </div>
             {/* Overlay Reveal */}
             <div className="card-reveal">
