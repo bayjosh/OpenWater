@@ -13,6 +13,10 @@ class Nav extends Component {
         };
     }
 
+    unwantedClick = event => {
+        event.preventDefault();
+    }
+
     handleLogin = event => {
         event.preventDefault();
         this.setState({ loginRedirect: true });
@@ -49,18 +53,20 @@ class Nav extends Component {
                                 <button className="btn"> Track a Voyage </button>
                             </Link>
                         </NavItem> */}
-                        <NavItem className="navGreeting">  Welcome, {this.props.firstName}! </NavItem>
-                        <NavItem id="navGreeting" className="navGreeting"> //////////</NavItem>
-                        <NavItem className="captainLogButtonNav">
+                        <NavItem onClick={this.unwantedClick} className="navGreeting">  Welcome, {this.props.firstName}! </NavItem>
+                        <NavItem onClick={this.unwantedClick} id="navGreeting" className="navGreeting"> //////////</NavItem>
+                        <NavItem onClick={this.unwantedClick} className="captainLogButtonNav">
                             <Dropdown
                                 trigger={<button className="btn button"> Captain's Log </button>} >
-                                <NavItem><LogVoyage userId={this.props.userId} /></NavItem>
+                                <LogVoyage userId={this.props.userId} />
                                 <NavItem divider />
+                                <NavItem>
                                 <Link to="/voyages">
                                     <NavItem>
                                         View Voyages
                                     </NavItem>
                                 </Link>
+                                </NavItem>
                             </Dropdown>
                         </NavItem>
                         <NavItem onClick={this.logout}> Log Out </NavItem>
@@ -70,12 +76,12 @@ class Nav extends Component {
                     :
                     window.location.pathname === "/dashboard" ?
                         <div>
-                            <NavItem className="captainLogButtonNav">
+                            <NavItem onClick={this.unwantedClick} className="captainLogButtonNav">
                                 <Dropdown trigger={<button className="btn button"> Captain's Log </button>} >
                                     <Modal
                                         header='You must be logged in to log a voyage'
                                         trigger={<NavItem> Log a Voyage</NavItem>}
-                                        modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
+                                        modalOptions={{ complete: () => document.querySelector('body').style.overflowY = "scroll" }} >
                                         {/* <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
                                         <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
                                         <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>
@@ -86,7 +92,7 @@ class Nav extends Component {
                                     <Modal
                                         header='You must be logged in to view saved voyages'
                                         trigger={<NavItem>View Voyages</NavItem>}
-                                        modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }} >
+                                        modalOptions={{ complete: () => document.querySelector('body').style.overflowY = "scroll" }} >
                                         {/* <div style={{ marginRight: `0`, display: `flex`, flexDirection: `row`, flexWrap: `wrap`, justifyContent: `center` }}>
                                         <button onClick={this.handleLogin} className="waves-effect btn-large waves-light btn" id="loginButton">Log In</button>
                                         <p style={{ width: `55%`, marginLeft: `5%` }} id="registerTextContainer">Maiden voyage with Open Water? Register <Link to="/register">here</Link>!</p>

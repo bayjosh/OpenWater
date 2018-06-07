@@ -68,9 +68,9 @@ class LogVoyage extends Component {
             <Modal
                 header='Log a Voyage'
                 trigger={<NavItem style={{ textAlign: `center`, color: `black` }}>Log A Voyage</NavItem>}
-                actions={<Button modal="close" onClick={this.saveVoyage}>
+                actions={<Button className="button" modal="close" onClick={this.saveVoyage}>
                     <Icon left>check_circle</Icon>Save This Voyage</Button>}
-                modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}
+                modalOptions={{ complete: () => document.querySelector('body').style.overflowY = "scroll" }}
                 fixedFooter
                 style={{ borderRadius: `25px` }}>
 

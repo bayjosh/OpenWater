@@ -40,6 +40,7 @@ body {
   margin-right: 2.5%;
   margin-left: 2.5%;
   margin-top: 3%;
+  opacity: 0.9
 }
 
 #homeHeader {
@@ -221,12 +222,21 @@ nav ul a:hover {
   cursor: default;
 }
 
+.dropdown-content > li:nth-child(3) > a > a > li > a {
+	padding: 0;
+	padding-top: 14px;
+}
+
+.dropdown-content > li:nth-child(3) > a {
+	padding-top: 0;
+	padding-bottom: 0;
+}
 
 
 
 /* Footer*/
 .footer-link:hover {
-  color: rgb(0, 153, 255) !important
+  color: rgb(40, 162, 233) !important
 }
 
 #footer > div.container {
@@ -236,4 +246,22 @@ nav ul a:hover {
 #footer > div.footer-copyright {
   width: 100%;
   text-align: center
+}
+
+#footer > div.container > div > div.col.s12.l4.offset-l2{
+  width: 15%;
+  margin-left: 33%;
+}
+
+#footer > div.container > div {
+  margin-bottom: 0;
+}
+
+#footer > div.container > div > div.col.s12.l6 > p {
+  margin-left: 16%;
+}
+
+#footer-title {
+  color: rgb(40, 162, 233);
+  margin-bottom: 1%;
 }

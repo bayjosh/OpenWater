@@ -93,8 +93,8 @@ class App extends Component {
             <div>
               {/* <Nav /> */}
               <Route exact path="/dashboard" render={(props) => (<Dashboard loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} firstName={this.state.firstName} userId={this.state.userId} {...props} />)} />
-              <Route exact path="/voyages" render={(props) => (<Voyages loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} userId={this.state.userId} {...props} />)} />
-              <Route exact path="/trackvoyage" render={(props) => (<TrackVoyage loggedIn={this.state.loggedIn} handleLogOut={this.handleLogOut} userId={this.state.userId} {...props} />)} />
+              <Route exact path="/voyages" render={(props) => (<Voyages loggedIn={this.state.loggedIn} firstName={this.state.firstName} handleLogOut={this.handleLogOut} userId={this.state.userId} {...props} />)} />
+              <Route exact path="/trackvoyage" render={(props) => (<TrackVoyage loggedIn={this.state.loggedIn} firstName={this.state.firstName} handleLogOut={this.handleLogOut} userId={this.state.userId} {...props} />)} />
               {/* <Footer /> */}
               {window.location.pathname === "/" && <Redirect to="/dashboard" />} {window.location.pathname === "/login" && <Redirect to="/dashboard" />} {window.location.pathname === "/register" && <Redirect to="/dashboard" />}
             </div>

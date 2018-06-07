@@ -19,7 +19,7 @@ class Foot extends Component {
                     <li><a target="_blank" className="grey-text footer-link text-lighten-3" href="https://www.accuweather.com/">Accuweather</a></li>
                 </ul>}
                 className='example'>
-                <h5 className="white-text">Open Water</h5>
+                <h3 id="footer-title">Open Water</h3>
                 <p className="grey-text text-lighten-4">Sail into the 21st century.</p>
             </Footer>
         )

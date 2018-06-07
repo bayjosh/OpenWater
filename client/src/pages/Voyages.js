@@ -88,7 +88,7 @@ class Voyages extends Component {
     render() {
         return (
             <div>
-                <Nav loggedIn={this.props.loggedIn} handleLogOut={this.props.handleLogOut} userId={this.props.userId} />
+                <Nav loggedIn={this.props.loggedIn} firstName={this.props.firstName} handleLogOut={this.props.handleLogOut} userId={this.props.userId} />
                 <div className="container">
 
                     <Link to="/dashboard">

@@ -31,7 +31,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     // Allow for page scrolling
-    document.querySelector('body').style.overflow = "scroll"
+    document.querySelector('body').style.overflowY = "scroll"
   }
   //Brings user back to map from depth/traffic overlays
   backToMap = () => {
@@ -124,7 +124,7 @@ class Dashboard extends Component {
                 <Modal
                   header='NOAA Charts Currently Unavailable'
                   trigger={<button className="btn button">NOAA Nautical Charts</button>}
-                  modalOptions={{ complete: () => document.querySelector('body').style.overflow = "scroll" }}>
+                  modalOptions={{ complete: () => document.querySelector('body').style.overflowY = "scroll" }}>
                 </Modal>}
             </div>
             {/* Overlay Reveal */}
