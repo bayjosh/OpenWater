@@ -2,11 +2,11 @@ import axios from "axios";
 
 export default {
   getLocation: function (zip) {
-    return axios.get(`https://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=0GkBsi8RAWLbQHcAH8SWLtK3eb6G2gnG
+    return axios.get(`https://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=pKk1tRvQnSvZ9IFAfojCJQGzefgDAYJS
     &q=${zip}`)
   },
   getWeather: function (key) {
-    return axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=0GkBsi8RAWLbQHcAH8SWLtK3eb6G2gnG
+    return axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=pKk1tRvQnSvZ9IFAfojCJQGzefgDAYJS
     `);
   },
   getZipCode: function (lat, lon) {
