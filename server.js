@@ -72,6 +72,7 @@ app.get('/test', function (req, res) {
 let info = {}
 //Post request to scrape marine conditions
 app.get('/weatherScrape/:lat/:lon', function (req, res) {
+    console.log("weatherscrape test")
     const Nightmare = require('nightmare')
     const nightmare = Nightmare({ show: false });
     let zoneId = "";
