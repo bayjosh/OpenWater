@@ -67,17 +67,13 @@ app.get('/test', function (req, res) {
         }
     res.json(testObj);
 })
-
-//Global variable to store scraping data
-let info = {}
-//Post request to scrape marine conditions
-app.get('/weatherScrape/:lat/:lon', function (req, res) {
+function callWeatherScrape(lat, lon, callback) {
     console.log("weatherscrape test")
     const Nightmare = require('nightmare')
     const nightmare = Nightmare({ show: false });
     let zoneId = "";
-    let lat = req.params.lat
-    let lon = req.params.lon
+    lat = lat;
+    lon = lon;
     //Convert lat and lon to a marine zone id:
     nightmare
         //this site works with https
@@ -155,14 +151,21 @@ app.get('/weatherScrape/:lat/:lon', function (req, res) {
                 info.forecastTime = forecastTime;
                 info.headers = headers;
                 info.texts = texts;
-                res.json(info)
+                callback(info);
             })
         })
         //Check for errors
         .catch(error => {
             console.error('Search failed:', error)
         })
+}
+//Global variable to store scraping data
+let info = {}
+//Post request to scrape marine conditions
+app.get('/weatherScrape/:lat/:lon', function (req, res) {
+    callWeatherScrape(req.params.lat, req.params.lon, res.json)
 })
+callWeatherScrape(42, -87, (data) => console.log(data));
 
 
 //Post request to scrape docking options
