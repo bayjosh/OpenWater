@@ -1,0 +1,54 @@
+
+#trip-name-background-zoom {
+  text-align: center;
+  background: url("../../images/dock2.jpg") center fixed
+    no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  -webkit-animation: blurOut .75s ease-in;
+  animation-fill-mode: forwards;
+}
+
+/* @-webkit-keyframes zoomin2 {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.5);
+  }
+} */
+
+@-webkit-keyframes blurOut {
+  0% {
+    -webkit-filter: blur(0px)
+    
+  }
+  100% {
+    -webkit-filter: blur(100px)
+  }
+}
+
+#trip-name-background-initZoom {
+  text-align: center;
+  background: url("../../images/dock2.jpg") center fixed
+    no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  -webkit-animation: zoomin 15s ease-out;
+   animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes zoomin {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.15);
+  }
+}
