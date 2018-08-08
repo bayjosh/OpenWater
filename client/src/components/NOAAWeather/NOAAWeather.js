@@ -2,15 +2,12 @@ import "./NOAAWeather.css";
 import React, { Component } from "react";
 
 class NOAAWeather extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            forecastTime: "",
-            affectedZones: [],
-            headers: [],
-            texts: [],
-            warning: "",
-        };
+    state = {
+        forecastTime: "",
+        affectedZones: [],
+        headers: [],
+        texts: [],
+        warning: "",
     }
 
     componentDidUpdate(prevProps, prevState) {

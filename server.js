@@ -62,9 +62,9 @@ const selector = 'div.row-forecast'
 app.get('/test', function (req, res) {
     console.log("backend worked!!!");
     const testObj =
-        {
-            testKey: "testValue"
-        }
+    {
+        testKey: "testValue"
+    }
     res.json(testObj);
 })
 function callWeatherScrape(lat, lon, callback) {
